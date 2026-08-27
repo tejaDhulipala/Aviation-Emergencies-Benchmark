@@ -29,10 +29,10 @@ MIN_SIZE_FT = 200  # floor so size_nm never collapses to ~0 near landing
 CUR_PHOTO_DIR = "CurPhoto"
 
 # --- Utility for scaling positions: always centers (center_x, center_y) on screen ---
-def make_scale(center_x, center_y, size_nm):
+def make_scale(center_x, center_y, size_nm, width=WIDTH, height=HEIGHT):
     def scale(x, y):
-        sx = int(WIDTH / 2 + (x - center_x) / size_nm * WIDTH)
-        sy = int(HEIGHT / 2 - (y - center_y) / size_nm * HEIGHT)
+        sx = int(width / 2 + (x - center_x) / size_nm * width)
+        sy = int(height / 2 - (y - center_y) / size_nm * height)
         return sx, sy
     return scale
 
@@ -50,25 +50,25 @@ def _nice_step(raw_step):
         if candidate >= raw_step:
             return candidate
 
-def draw_ruler(screen, scale, size_nm, center_x, center_y):
+def draw_ruler(screen, scale, size_nm, center_x, center_y, width=WIDTH, height=HEIGHT):
     font = pg.font.SysFont(None, 22, bold=True)
     raw_step = (size_nm / 2) / N_SIDE_TICKS
     step = _nice_step(raw_step)
     decimals = max(0, -math.floor(math.log10(step)))
     n_ticks = math.ceil((size_nm / 2) / step)
-    y_label_row = HEIGHT - MARGIN // 2
+    y_label_row = height - MARGIN // 2
     x_label_col = MARGIN // 2
 
     ticks = []
-    grid_surface = pg.Surface((WIDTH, HEIGHT), pg.SRCALPHA)
+    grid_surface = pg.Surface((width, height), pg.SRCALPHA)
     for k in range(-n_ticks, n_ticks + 1):
         x_nm = center_x + k * step
         sx, _ = scale(x_nm, center_y)
-        pg.draw.line(grid_surface, (*GRID_LINE_COLOR, 90), (sx, 0), (sx, HEIGHT), 1)
+        pg.draw.line(grid_surface, (*GRID_LINE_COLOR, 90), (sx, 0), (sx, height), 1)
 
         y_nm = center_y + k * step
         _, sy = scale(center_x, y_nm)
-        pg.draw.line(grid_surface, (*GRID_LINE_COLOR, 90), (0, sy), (WIDTH, sy), 1)
+        pg.draw.line(grid_surface, (*GRID_LINE_COLOR, 90), (0, sy), (width, sy), 1)
 
         ticks.append((sx, x_nm, sy, y_nm))
     screen.blit(grid_surface, (0, 0))
