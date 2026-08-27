@@ -125,6 +125,7 @@ class ScenarioBuilderApp:
                 entry.bind("<FocusOut>", lambda e, idx=i: self.on_option_edited(idx))
                 entry.bind("<Return>", lambda e, idx=i: self.on_option_edited(idx))
             ttk.Radiobutton(frame, variable=self.ground_truth_index, value=i).grid(row=0, column=4)
+            ttk.Button(frame, text="✕", width=2, command=lambda idx=i: self.on_delete_option(idx)).grid(row=0, column=5)
 
             self.option_row_widgets.append({
                 "frame": frame, "rel_x": rel_x_var, "rel_y": rel_y_var, "heading": heading_var,
@@ -144,6 +145,27 @@ class ScenarioBuilderApp:
             return
         option = self.landing_options[index]
         option["rel_x"], option["rel_y"], option["heading"] = rel_x, rel_y, heading
+        self.redraw_canvas()
+
+    def on_delete_option(self, index):
+        if index >= len(self.landing_options):
+            return
+        removed_number = self.landing_options[index]["number"]
+        del self.landing_options[index]
+
+        if self.pending_point_index == index:
+            self.pending_point_index = None
+        elif self.pending_point_index is not None and self.pending_point_index > index:
+            self.pending_point_index -= 1
+
+        gt = self.ground_truth_index.get()
+        if gt == index:
+            self.ground_truth_index.set(-1)
+        elif gt > index:
+            self.ground_truth_index.set(gt - 1)
+
+        self.status_var.set(f"Deleted option #{removed_number}.")
+        self._rebuild_option_rows()
         self.redraw_canvas()
 
     # ------------------------------------------------------------------ map fetch / redraw
