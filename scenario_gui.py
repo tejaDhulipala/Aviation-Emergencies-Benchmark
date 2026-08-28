@@ -20,9 +20,16 @@ from scenario_viewport import (
     render_full_surface,
     surface_to_pil_image,
 )
-from altitude_loss_levels import compute_altitude_loss
+from main import make_scale
+from altitude_loss_levels import compute_altitude_loss, altitude_loss_full_physics_path
 from utils.basic_math import desired_heading
 from utils.constants import W_MAX, V_GLIDE, OBSTACLE_CLEARANCE_FT
+from utils.dubins import dubins_path_points
+
+PROBE_DOT_COLOR = "red"
+PROBE_DOT_RADIUS_PX = 3
+PROBE_PATH_COLOR = "red"
+PROBE_PATH_WIDTH_PX = 1
 
 pg.font.init()  # required for pg.font.SysFont used by main.draw_ruler / landing-option labels.
                 # Never call pg.init()/pg.display.set_mode() here -- a real pygame display
@@ -49,6 +56,7 @@ class ScenarioBuilderApp:
         self._cached_background_key = None  # (lat, lon, size_nm, resolution) tuple
         self._current_photoimage = None     # keep a live ref so Tk doesn't GC it blank
         self._preview_scale_factor = 1.0    # displayed_px -> full_resolution_px
+        self._probe_overlay_ids = []        # canvas item ids for the active altitude-loss probe's dot/path
 
         self._build_widgets()
 
@@ -269,16 +277,92 @@ class ScenarioBuilderApp:
         except ValueError:
             return
 
-        lines = [f"Probe point: rel_x={rel_x:.3f} nm, rel_y={rel_y:.3f} nm"]
-        for level in (1, 2, 3):
-            loss, reachable = compute_altitude_loss(
-                level, x_cur=0, y_cur=0, heading_cur=values["heading"], x_goal=rel_x, y_goal=rel_y,
-                altitude_agl_ft=values["altitude_agl_ft"], weight=W_MAX, airspeed=V_GLIDE,
-                wind_direction=values["wind_direction"], wind_speed=values["wind_speed"],
-                bank_angle=DEFAULT_BANK_ANGLE_DEG, flaps=0, obstacle_clearance_ft=OBSTACLE_CLEARANCE_FT)
-            level_name = {1: "Barebones", 2: "Wind-aware", 3: "Full physics"}[level]
-            lines.append(f"Level {level} ({level_name}): {loss:.0f} ft loss, reachable={reachable}")
-        messagebox.showinfo("Altitude-loss probe", "\n".join(lines))
+        common_args = dict(
+            x_cur=0, y_cur=0, heading_cur=values["heading"], x_goal=rel_x, y_goal=rel_y,
+            altitude_agl_ft=values["altitude_agl_ft"], weight=W_MAX, airspeed=V_GLIDE,
+            wind_direction=values["wind_direction"], wind_speed=values["wind_speed"],
+            bank_angle=DEFAULT_BANK_ANGLE_DEG, flaps=0, obstacle_clearance_ft=OBSTACLE_CLEARANCE_FT)
+
+        # Levels 1/2 don't take a target heading, so their results are fixed for this
+        # probe point; only level 3 (Dubins) needs the editable heading_goal below.
+        static_lines = [f"Probe point: rel_x={rel_x:.3f} nm, rel_y={rel_y:.3f} nm"]
+        for level in (1, 2):
+            loss, reachable = compute_altitude_loss(level, **common_args)
+            level_name = {1: "Barebones", 2: "Wind-aware"}[level]
+            static_lines.append(f"Level {level} ({level_name}): {loss:.0f} ft loss, reachable={reachable}")
+
+        # Default to the straight-line bearing to the point (degenerates the arrival
+        # turn to ~0 degrees); the user can edit it to see how a required arrival
+        # heading (e.g. a landing option's approach direction) changes level 3's loss.
+        default_heading_goal = desired_heading(0, 0, rel_x, rel_y)
+
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Altitude-loss probe")
+        dialog.transient(self.root)
+
+        for i, line in enumerate(static_lines):
+            ttk.Label(dialog, text=line).grid(row=i, column=0, columnspan=2, sticky="w", padx=8, pady=(8 if i == 0 else 2, 2))
+
+        heading_row = len(static_lines)
+        ttk.Label(dialog, text="Arrival heading (deg):").grid(row=heading_row, column=0, sticky="w", padx=8, pady=(8, 2))
+        heading_var = tk.StringVar(value=f"{default_heading_goal:.1f}")
+        heading_entry = ttk.Entry(dialog, textvariable=heading_var, width=10)
+        heading_entry.grid(row=heading_row, column=1, sticky="w", padx=8, pady=(8, 2))
+
+        level3_var = tk.StringVar(value="")
+        ttk.Label(dialog, textvariable=level3_var).grid(
+            row=heading_row + 1, column=0, columnspan=2, sticky="w", padx=8, pady=(2, 8))
+
+        scale = make_scale(0, 0, values["size_nm"], width=values["resolution"], height=values["resolution"])
+
+        def to_canvas_px(x, y):
+            sx, sy = scale(x, y)
+            return sx / self._preview_scale_factor, sy / self._preview_scale_factor
+
+        def clear_probe_overlay():
+            for item_id in self._probe_overlay_ids:
+                self.canvas.delete(item_id)
+            self._probe_overlay_ids = []
+
+        def draw_probe_overlay(heading_goal):
+            clear_probe_overlay()
+            dx, dy = to_canvas_px(rel_x, rel_y)
+            r = PROBE_DOT_RADIUS_PX
+            self._probe_overlay_ids.append(
+                self.canvas.create_oval(dx - r, dy - r, dx + r, dy + r, fill=PROBE_DOT_COLOR, outline=PROBE_DOT_COLOR))
+
+            path_result = altitude_loss_full_physics_path(
+                0, 0, values["heading"], rel_x, rel_y, values["altitude_agl_ft"], heading_goal,
+                wind_direction=values["wind_direction"], wind_speed=values["wind_speed"])
+            if path_result is not None:
+                path, _bank_angle_deg = path_result
+                nm_points = dubins_path_points((0, 0), values["heading"], (rel_x, rel_y), heading_goal, path)
+                flat_px = [coord for x, y in nm_points for coord in to_canvas_px(x, y)]
+                self._probe_overlay_ids.append(
+                    self.canvas.create_line(*flat_px, fill=PROBE_PATH_COLOR, width=PROBE_PATH_WIDTH_PX))
+
+        def update_level3(*_):
+            try:
+                heading_goal = float(heading_var.get())
+            except ValueError:
+                level3_var.set("Level 3 (Full physics): invalid heading")
+                return
+            loss, reachable = compute_altitude_loss(3, heading_goal=heading_goal, **common_args)
+            level3_var.set(f"Level 3 (Full physics): {loss:.0f} ft loss, reachable={reachable}")
+            draw_probe_overlay(heading_goal)
+
+        heading_var.trace_add("write", update_level3)
+        update_level3()
+
+        def on_close():
+            clear_probe_overlay()
+            dialog.destroy()
+
+        dialog.protocol("WM_DELETE_WINDOW", on_close)
+        ttk.Button(dialog, text="Close", command=on_close).grid(
+            row=heading_row + 2, column=0, columnspan=2, pady=(0, 8))
+        heading_entry.focus_set()
+        heading_entry.select_range(0, "end")
 
     def on_randomize_numbers(self):
         if not self.landing_options:

@@ -57,7 +57,9 @@ def cessna_glide_ratio(weight=W_MAX, density=RHO_0, airspeed=V_GLIDE, wind_delta
     # is used elsewhere (utils/paths.py's turn_radius_ft) as an absolute speed, where TAS
     # actually matters -- turn radius is underestimated at altitude as a result. Tracked as
     # a known limitation (small at this app's altitudes) rather than fixed now.
-    ground_speed = airspeed - wind_speed * math.cos(wind_delta / 180 * math.pi)
+    wind_delta_rad = wind_delta / 180 * math.pi
+    wind_correction_angle = math.asin(math.sin(wind_delta_rad) * wind_speed / airspeed)
+    ground_speed = airspeed * math.cos(wind_correction_angle) - wind_speed * math.cos(wind_delta_rad)
     glide_ratio *= ground_speed / airspeed
 
     glide_ratio -= (flaps / 10) * FLAP_GR_PENALTY_PER_10_DEG
@@ -120,11 +122,13 @@ if __name__ == "__main__":
         passed = tailwind > baseline
         print(f"tailwind_increases_glide_ratio: {passed}")
 
-    def test_crosswind_no_change():
+    def test_crosswind_decreases_glide_ratio_slightly():
+        # A pure crosswind requires crabbing into the wind to hold course, which
+        # bleeds a small amount of ground speed relative to no-wind conditions.
         baseline, _ = cessna_glide_ratio(W_MAX, RHO_0, V_GLIDE, 0.0, 0)
         crosswind, _ = cessna_glide_ratio(W_MAX, RHO_0, V_GLIDE, 90, 10)
-        passed = abs(crosswind - baseline) < 1e-9
-        print(f"crosswind_no_change: {passed}")
+        passed = crosswind < baseline
+        print(f"crosswind_decreases_glide_ratio_slightly: {passed}")
 
     def test_headwind_decreases_glide_ratio():
         baseline, _ = cessna_glide_ratio(W_MAX, RHO_0, V_GLIDE, 0.0, 0)
@@ -190,7 +194,7 @@ if __name__ == "__main__":
     sweep()
     test_standard_conditions()
     test_tailwind_increases_glide_ratio()
-    test_crosswind_no_change()
+    test_crosswind_decreases_glide_ratio_slightly()
     test_headwind_decreases_glide_ratio()
     test_wings_level_bank_angle_no_change()
     test_bank_angle_decreases_glide_ratio()
