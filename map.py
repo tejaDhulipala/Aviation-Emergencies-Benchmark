@@ -107,6 +107,6 @@ if __name__ == "__main__":
     tests = [(f"image-{i}", 33.9425, -118.4081, i) for i in range(1, 9)]
     for name, lat, lon, size in tests:
         img = smap.get_image(lat, lon, size)
-        out_path = f"Photos/map_test_{name}.png"
+        out_path = f"map-api-tests/map_test_{name}.png"
         img.save(out_path)
         print(f"[{name}] center=({lat},{lon}) {size}x{size}nm -> {out_path} size={img.size}")
