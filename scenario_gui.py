@@ -23,8 +23,9 @@ from scenario_viewport import (
 from main import make_scale
 from altitude_loss_levels import compute_altitude_loss, altitude_loss_full_physics_path
 from utils.basic_math import desired_heading
-from utils.constants import W_MAX, V_GLIDE, OBSTACLE_CLEARANCE_FT
+from utils.constants import W_MAX, V_GLIDE, OBSTACLE_CLEARANCE_FT, FT_PER_NM, GR_0
 from utils.dubins import dubins_path_points
+from scenario_tags import TAG_CATEGORIES
 
 PROBE_DOT_COLOR = "red"
 PROBE_DOT_RADIUS_PX = 3
@@ -35,7 +36,7 @@ pg.font.init()  # required for pg.font.SysFont used by main.draw_ruler / landing
                 # Never call pg.init()/pg.display.set_mode() here -- a real pygame display
                 # window competing with Tkinter's own mainloop is the failure mode to avoid.
 
-CANVAS_PREVIEW_MAX_PX = 900
+CANVAS_PREVIEW_MAX_PX = 800
 DATASET_DIR = "dataset"
 
 DEFAULT_LAT = "28.106733"
@@ -57,6 +58,7 @@ class ScenarioBuilderApp:
         self._current_photoimage = None     # keep a live ref so Tk doesn't GC it blank
         self._preview_scale_factor = 1.0    # displayed_px -> full_resolution_px
         self._probe_overlay_ids = []        # canvas item ids for the active altitude-loss probe's dot/path
+        self.selected_tags = set()          # tag_ids (from scenario_tags.TAG_CATEGORIES) chosen for this scenario
 
         self._build_widgets()
 
@@ -77,7 +79,7 @@ class ScenarioBuilderApp:
             ("longitude", DEFAULT_LON),
             ("heading_deg", "270"),
             ("viewport_width_nm", "6.5"),
-            ("resolution_px", "900"),
+            ("resolution_px", "800"),
             ("altitude_agl_ft", "1500"),
             ("wind_speed_kt", "0"),
             ("wind_direction_deg", "0"),
@@ -100,12 +102,14 @@ class ScenarioBuilderApp:
 
         ttk.Button(left, text="Randomize numbers", command=self.on_randomize_numbers).grid(
             row=2, column=0, sticky="ew", pady=(8, 0))
-        ttk.Button(left, text="Export Scenario", command=self.on_export).grid(
+        ttk.Button(left, text="Tags...", command=self.on_open_tags_dialog).grid(
             row=3, column=0, sticky="ew", pady=(4, 0))
+        ttk.Button(left, text="Export Scenario", command=self.on_export).grid(
+            row=4, column=0, sticky="ew", pady=(4, 0))
 
         self.status_var = tk.StringVar(value="Enter scenario setup, then click Render / Refresh Map.")
         ttk.Label(left, textvariable=self.status_var, wraplength=260).grid(
-            row=4, column=0, sticky="ew", pady=(8, 0))
+            row=5, column=0, sticky="ew", pady=(8, 0))
 
         canvas_size = min(int(field_specs[4][1]), CANVAS_PREVIEW_MAX_PX)
         self.canvas = tk.Canvas(right, width=canvas_size, height=canvas_size, background="black")
@@ -374,6 +378,44 @@ class ScenarioBuilderApp:
         self._rebuild_option_rows()
         self.redraw_canvas()
 
+    def on_open_tags_dialog(self):
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Scenario Tags")
+        dialog.transient(self.root)
+        dialog.geometry("480x600")
+
+        container = ttk.Frame(dialog)
+        container.pack(fill="both", expand=True)
+        canvas = tk.Canvas(container, borderwidth=0, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+        scrollable_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+
+        tag_vars = {}  # tag_id -> tk.BooleanVar
+        for category, tags in TAG_CATEGORIES.items():
+            frame = ttk.LabelFrame(scrollable_frame, text=category, padding=6)
+            frame.pack(fill="x", padx=8, pady=6, anchor="n")
+            for tag_id, label, description in tags:
+                var = tk.BooleanVar(value=tag_id in self.selected_tags)
+                tag_vars[tag_id] = var
+                ttk.Checkbutton(frame, text=label, variable=var).pack(anchor="w")
+                ttk.Label(frame, text=description, foreground="gray", wraplength=420,
+                          justify="left", font=("TkDefaultFont", 8)).pack(anchor="w", padx=(20, 0), pady=(0, 4))
+
+        def on_done():
+            self.selected_tags = {tag_id for tag_id, var in tag_vars.items() if var.get()}
+            self.status_var.set(f"{len(self.selected_tags)} tag(s) selected.")
+            dialog.destroy()
+
+        button_bar = ttk.Frame(dialog)
+        button_bar.pack(fill="x", pady=6)
+        ttk.Button(button_bar, text="Done", command=on_done).pack()
+        dialog.protocol("WM_DELETE_WINDOW", on_done)
+
     # ------------------------------------------------------------------ export
 
     def on_export(self):
@@ -397,6 +439,8 @@ class ScenarioBuilderApp:
         image.save(image_path)
 
         ground_truth_index = self.ground_truth_index.get()
+        naive_glide_distance_nm = (values["altitude_agl_ft"] / FT_PER_NM) * GR_0
+        viewport_glide_ratio = values["size_nm"] / naive_glide_distance_nm
         scenario = {
             "latitude": self.fields["latitude"].get(),
             "longitude": self.fields["longitude"].get(),
@@ -404,6 +448,7 @@ class ScenarioBuilderApp:
             "viewport_width_nm": values["size_nm"],
             "resolution_px": values["resolution"],
             "altitude_agl_ft": values["altitude_agl_ft"],
+            "viewport:glide ratio": viewport_glide_ratio,
             "wind_speed_kt": values["wind_speed"],
             "wind_direction_deg": values["wind_direction"],
             "airspeed_kt": V_GLIDE,
@@ -415,6 +460,7 @@ class ScenarioBuilderApp:
                 for o in self.landing_options
             ],
             "ground_truth_index": ground_truth_index if ground_truth_index >= 0 else None,
+            "tags": sorted(self.selected_tags),
             "image_file": "viewport.png",
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         }
