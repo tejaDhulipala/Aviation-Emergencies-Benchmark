@@ -1,74 +1,118 @@
-"""Scenario tag taxonomy for the benchmark dataset. Each category is a list of
-(tag_id, label, description) tuples. tag_id is the stable, machine-readable key stored in
-exported scenario.json files; label/description are for the tagging UI only.
+"""Scenario tag taxonomy for the benchmark dataset. Two categories: "Starting Condition Tags"
+and "Expected Behavior Tags". Each category is a list of entries, where an entry is either:
 
-"Highway landings" appears under both Starting Condition (two opposite-direction options on
-a highway) and Expected Behavior (choosing the with-traffic direction) -- these are related
-but distinct concepts, so they get distinct tag_ids (highway_landings_option, highway_landings_traffic_direction).
+- Tag(tag_id, label, description): a standalone, checkable tag.
+- TagHeader(label, description, subtags): a grouping-only label (not itself checkable) whose
+  subtags are Tags with slash-prefixed ids, e.g. "advanced_physics/turning_incorporation".
+
+tag_id is the stable, machine-readable key stored in exported scenario.json files;
+label/description are for the tagging UI only.
 """
 
+from typing import NamedTuple
+
+
+class Tag(NamedTuple):
+    tag_id: str
+    label: str
+    description: str = ""
+
+
+class TagHeader(NamedTuple):
+    label: str
+    description: str
+    subtags: list
+
+
 TAG_CATEGORIES = {
-    "Starting Condition": [
-        ("enroute_standard", "Enroute standard",
-         "Above 3000 AGL, over standard terrain: airports, highways, open fields, forests, lakes, deserts, urban areas."),
-        ("airport_in_reach", "Airport",
-         "Easy test -- there is an airport within reach."),
-        ("reject_safest_surface", "Reject safest surface due to physics constraints",
-         "The LLM must reject the safest-seeming surface (runway, highway, open field) because of physics "
-         "constraints, and instead choose a worse surface (trees, water, marsh)."),
-        ("lower_altitudes", "Lower altitudes",
-         "1000-3000 AGL. Good for testing things like whether turns matter."),
-        ("engine_failure_on_climb", "Engine failure on climb",
-         "200-1000 AGL. Engine failure on departure leg or crosswind after takeoff."),
-        ("coastal", "Coastal",
-         "Engine failure with beach and/or ocean in the frame. May require considering wave direction and wind strength."),
-        ("obstacles_on_approach_starting", "Obstacles on approach",
-         "Some of the proposed options have obstacles enroute to the landing spot."),
-        ("nighttime_starting", "Nighttime",
-         "Scenario takes place at night."),
-        ("highway_landings_option", "Highway landings",
-         "Has two options on a highway in opposite directions."),
+    "Starting Condition Tags": [
+        Tag("standard_terrain", "Standard Terrain",
+            "Over standard terrain like: airports, highways, open fields, forests, lakes, deserts, and urban areas."),
+        Tag("agl_under_1000", "< 1000 ft AGL"),
+        Tag("agl_1000_3000", "1000-3000 ft AGL"),
+        Tag("agl_3000_5000", "3000-5000 ft AGL"),
+        Tag("agl_5000_7000", "5000-7000 ft AGL"),
+        Tag("agl_7000_plus", "7000+ ft AGL"),
+        Tag("engine_failure_on_departure", "Engine Failure on Departure"),
     ],
-    "Scenario Modification": [
-        ("faulty_option_choices", "Faulty option choices",
-         "There is a mismatch between what is on the screen and what is being described."),
-        ("instructions", "Instructions",
-         "There are NOTAMs or instructions from ATC. Sometimes the LLM should follow them, sometimes disregard them."),
-    ],
-    "Expected Behavior": [
-        ("basic_physics", "Basic physics",
-         "Check reachability with basic glide ratio calculations (no advanced physics required). Scenario can have "
-         "wind, but the LLM doesn't need to consider it to choose the right answer."),
-        ("basic_surface_heuristic", "Basic surface heuristic",
-         "Choose the best surface with a basic heuristic (airport > road > field > ...)."),
-        ("advanced_physics", "Advanced physics",
-         "Requires calculations incorporating turning physics or wind physics."),
-        ("turning_incorporation", "Turning incorporation",
-         "Requires incorporating extra height loss during a turn into the calculation."),
-        ("wind_incorporation", "Wind incorporation",
-         "Requires incorporating worse glide ratio against the wind into the calculation."),
-        ("turn_into_wind", "Turn into wind",
-         "Requires knowing you should land with a headwind."),
-        ("land_with_tailwind", "Land with tailwind",
-         "Lands with a tailwind in a case where it's actually necessary to do so."),
-        ("landing_distances", "Landing distances",
-         "The surface at the point is good (e.g. a field), but factoring in landing distance makes it infeasible."),
-        ("wave_consideration", "Wave consideration",
-         "Depending on wind strength, there's a right and wrong way to land on waves."),
-        ("forest_type_consideration", "Forest type consideration",
-         "When forced into a forested area, choose trees that are low and closely spaced."),
-        ("obstacles_on_approach_behavior", "Detecting obstacles on approach to point",
-         "The likely landing choice has an approach path with obstacles (e.g. powerlines)."),
-        ("nighttime_decision_making", "Nighttime detection and decision-making",
-         "Detecting surfaces at night; prioritizing highways or airports as the first choice."),
-        ("highway_landings_traffic_direction", "Highway landings (traffic direction)",
-         "Choosing to land with, not against, traffic."),
-        ("harm_minimization", "Harm minimization",
-         "Every option risks civilians; choose the one with least expected damage."),
-        ("anti_rule_following", "Anti-rule following",
-         "Instructions are given that the LLM should recognize it needs to break during an emergency "
-         "(e.g. ATC telling it to do a left 360, or a runway being NOTAMed closed)."),
-        ("hallucination_avoidance", "Hallucination avoidance",
-         "Doesn't fall for mismatches between text and image; trusts the image."),
+    "Expected Behavior Tags": [
+        Tag("basic_physics", "Basic physics",
+            "Check for reachability with basic glide ratio calculations (no advanced physics required). "
+            "Scenario can have wind, but the LLM doesn't have to consider wind to choose the right answer "
+            "(it would get the same answer with or without consideration of wind)."),
+        Tag("basic_surface_heuristic", "Basic surface heuristic",
+            "Choose the best surface with a basic heuristic (i.e. airport > road > field etc...)."),
+        TagHeader("Advanced physics",
+                  "Requires using calculations that require incorporation of turning physics or wind physics.",
+                  [
+                      Tag("advanced_physics/turning_incorporation", "Turning incorporation",
+                          "Requires incorporating more height loss during a turn into aviation calculations."),
+                      Tag("advanced_physics/wind_incorporation", "Wind incorporations",
+                          "Requires incorporating ideas of worse glide ratio against wind into aviation calculations."),
+                      Tag("advanced_physics/landing_distances", "Landing distances",
+                          "The surface at the point is good (i.e. a field), but when you take into account "
+                          "landing distances it is infeasible."),
+                  ]),
+        TagHeader("Tailwind consideration", "", [
+            Tag("tailwind_consideration/turn_into_wind", "Turn into wind",
+                "Requires use of the aviation knowledge that you should land with a headwind."),
+            Tag("tailwind_consideration/land_with_tailwind", "Land with tailwind",
+                "Lands with a tailwind in a case where it is necessary to do so."),
+        ]),
+        TagHeader("Advanced Surface Analysis", "", [
+            Tag("advanced_surface_analysis/wave_consideration", "Wave consideration",
+                "Depending on the wind strength there's a right and wrong way to land on waves."),
+            Tag("advanced_surface_analysis/forest_type_consideration", "Forest type consideration",
+                "When you have to choose a forested area, choose trees that are low and closely spaced together."),
+            Tag("advanced_surface_analysis/obstacles_on_approach", "Detecting obstacles on approach to point",
+                "The point the LLM will likely choose to land necessarily has an approach path with some "
+                "obstacles (like powerlines)."),
+            Tag("advanced_surface_analysis/highway_landings", "Highway landings",
+                "Choosing to land with, instead of against, traffic."),
+            Tag("advanced_surface_analysis/nighttime_decision_making", "Nighttime detection and decision-making",
+                "Detecting surfaces during nighttime. Making the aeronautical decision to go for highways or "
+                "airports as a first priority."),
+        ]),
+        Tag("harm_minimization", "Harm minimization",
+            "Every option has some risk to civilians; choose the one with least expected damage."),
+        Tag("anti_rule_following", "Anti-rule following",
+            "Give it some instructions and test that it understands it should break rules and instructions "
+            "during emergencies. For example, ATC telling it to do a left 360, or a runway being NOTAMed closed."),
+        Tag("hallucination_avoidance", "Hallucination avoidance",
+            "Doesn't fall for mismatches between text and image; trusts the image."),
     ],
 }
+
+
+def _leaf_tags(entries):
+    for entry in entries:
+        if isinstance(entry, TagHeader):
+            yield from entry.subtags
+        else:
+            yield entry
+
+
+def category_json_key(category_label):
+    """'Starting Condition Tags' -> 'starting_condition_tags'."""
+    return category_label.lower().replace(" ", "_")
+
+
+TAG_ID_TO_CATEGORY = {
+    tag.tag_id: category
+    for category, entries in TAG_CATEGORIES.items()
+    for tag in _leaf_tags(entries)
+}
+
+
+def split_tags_by_category(selected_tag_ids):
+    """Returns {json_key: sorted [tag_id, ...]} for every category in TAG_CATEGORIES,
+    partitioning selected_tag_ids by which category each belongs to. Unrecognized tag ids
+    (e.g. from an older taxonomy) are ignored."""
+    result = {category_json_key(category): [] for category in TAG_CATEGORIES}
+    for tag_id in selected_tag_ids:
+        category = TAG_ID_TO_CATEGORY.get(tag_id)
+        if category is not None:
+            result[category_json_key(category)].append(tag_id)
+    for key in result:
+        result[key].sort()
+    return result

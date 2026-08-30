@@ -25,7 +25,7 @@ from altitude_loss_levels import compute_altitude_loss, altitude_loss_full_physi
 from utils.basic_math import desired_heading
 from utils.constants import W_MAX, V_GLIDE, OBSTACLE_CLEARANCE_FT, FT_PER_NM, GR_0
 from utils.dubins import dubins_path_points
-from scenario_tags import TAG_CATEGORIES
+from scenario_tags import TAG_CATEGORIES, TagHeader, split_tags_by_category
 
 PROBE_DOT_COLOR = "red"
 PROBE_DOT_RADIUS_PX = 3
@@ -395,16 +395,28 @@ class ScenarioBuilderApp:
         canvas.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
-        tag_vars = {}  # tag_id -> tk.BooleanVar
-        for category, tags in TAG_CATEGORIES.items():
+        def add_tag_row(parent, tag, indent=0):
+            var = tk.BooleanVar(value=tag.tag_id in self.selected_tags)
+            tag_vars[tag.tag_id] = var
+            ttk.Checkbutton(parent, text=tag.label, variable=var).pack(anchor="w", padx=(indent, 0))
+            if tag.description:
+                ttk.Label(parent, text=tag.description, foreground="gray", wraplength=420 - indent,
+                          justify="left", font=("TkDefaultFont", 8)).pack(anchor="w", padx=(indent + 20, 0), pady=(0, 4))
+
+        tag_vars = {}  # tag_id -> tk.BooleanVar (leaf tags only; headers are not checkable)
+        for category, entries in TAG_CATEGORIES.items():
             frame = ttk.LabelFrame(scrollable_frame, text=category, padding=6)
             frame.pack(fill="x", padx=8, pady=6, anchor="n")
-            for tag_id, label, description in tags:
-                var = tk.BooleanVar(value=tag_id in self.selected_tags)
-                tag_vars[tag_id] = var
-                ttk.Checkbutton(frame, text=label, variable=var).pack(anchor="w")
-                ttk.Label(frame, text=description, foreground="gray", wraplength=420,
-                          justify="left", font=("TkDefaultFont", 8)).pack(anchor="w", padx=(20, 0), pady=(0, 4))
+            for entry in entries:
+                if isinstance(entry, TagHeader):
+                    ttk.Label(frame, text=entry.label, font=("TkDefaultFont", 9, "bold")).pack(anchor="w", pady=(4, 0))
+                    if entry.description:
+                        ttk.Label(frame, text=entry.description, foreground="gray", wraplength=420,
+                                  justify="left", font=("TkDefaultFont", 8)).pack(anchor="w", padx=(0, 0), pady=(0, 2))
+                    for subtag in entry.subtags:
+                        add_tag_row(frame, subtag, indent=20)
+                else:
+                    add_tag_row(frame, entry)
 
         def on_done():
             self.selected_tags = {tag_id for tag_id, var in tag_vars.items() if var.get()}
@@ -460,10 +472,10 @@ class ScenarioBuilderApp:
                 for o in self.landing_options
             ],
             "ground_truth_index": ground_truth_index if ground_truth_index >= 0 else None,
-            "tags": sorted(self.selected_tags),
             "image_file": "viewport.png",
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         }
+        scenario.update(split_tags_by_category(self.selected_tags))
         with open(os.path.join(scenario_dir, "scenario.json"), "w") as f:
             json.dump(scenario, f, indent=2)
 
