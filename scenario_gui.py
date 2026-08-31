@@ -100,21 +100,34 @@ class ScenarioBuilderApp:
         self.options_frame = options_frame
         self.option_row_widgets = []  # list of dicts of per-row StringVars/widgets
 
-        notes_frame = ttk.LabelFrame(left, text="Explanation / Notes", padding=6)
-        notes_frame.grid(row=2, column=0, sticky="ew", pady=(8, 0))
-        self.notes_text = tk.Text(notes_frame, width=32, height=5, wrap="word")
-        self.notes_text.pack(fill="both", expand=True)
+        self.text_boxes = {}
+        text_box_specs = [
+            ("notes", "Explanation / Notes"),
+            ("answer_explanation", "Answer Explanation"),
+            ("prompt_additions", "Prompt Additions"),
+        ]
+        row = 2
+        for key, title in text_box_specs:
+            frame = ttk.LabelFrame(left, text=title, padding=6)
+            frame.grid(row=row, column=0, sticky="ew", pady=(8, 0))
+            text = tk.Text(frame, width=32, height=5, wrap="word")
+            text.pack(fill="both", expand=True)
+            self.text_boxes[key] = text
+            row += 1
 
         ttk.Button(left, text="Randomize numbers", command=self.on_randomize_numbers).grid(
-            row=3, column=0, sticky="ew", pady=(8, 0))
+            row=row, column=0, sticky="ew", pady=(8, 0))
+        row += 1
         ttk.Button(left, text="Tags...", command=self.on_open_tags_dialog).grid(
-            row=4, column=0, sticky="ew", pady=(4, 0))
+            row=row, column=0, sticky="ew", pady=(4, 0))
+        row += 1
         ttk.Button(left, text="Export Scenario", command=self.on_export).grid(
-            row=5, column=0, sticky="ew", pady=(4, 0))
+            row=row, column=0, sticky="ew", pady=(4, 0))
+        row += 1
 
         self.status_var = tk.StringVar(value="Enter scenario setup, then click Render / Refresh Map.")
         ttk.Label(left, textvariable=self.status_var, wraplength=260).grid(
-            row=6, column=0, sticky="ew", pady=(8, 0))
+            row=row, column=0, sticky="ew", pady=(8, 0))
 
         canvas_size = min(int(field_specs[4][1]), CANVAS_PREVIEW_MAX_PX)
         self.canvas = tk.Canvas(right, width=canvas_size, height=canvas_size, background="black")
@@ -493,7 +506,9 @@ class ScenarioBuilderApp:
                 for o in self.landing_options
             ],
             "ground_truth_index": ground_truth_index if ground_truth_index >= 0 else None,
-            "notes": self.notes_text.get("1.0", "end-1c"),
+            "notes": self.text_boxes["notes"].get("1.0", "end-1c"),
+            "answer_explanation": self.text_boxes["answer_explanation"].get("1.0", "end-1c"),
+            "prompt_additions": self.text_boxes["prompt_additions"].get("1.0", "end-1c"),
             "image_file": "viewport.png",
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         }
