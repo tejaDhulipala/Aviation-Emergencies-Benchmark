@@ -28,6 +28,9 @@ TAG_CATEGORIES = {
     "Starting Condition Tags": [
         Tag("standard_terrain", "Standard Terrain",
             "Over standard terrain like: airports, highways, open fields, forests, lakes, deserts, and urban areas."),
+        TagHeader("Nonstandard Terrain", "Nonstandard terrain like: mountains, beaches, oceans, and canyons", [
+            Tag("mountains", "Mountains", "Image includes mountainous terrain")
+        ]),
         Tag("agl_under_1000", "< 1000 ft AGL"),
         Tag("agl_1000_3000", "1000-3000 ft AGL"),
         Tag("agl_3000_5000", "3000-5000 ft AGL"),
@@ -72,6 +75,8 @@ TAG_CATEGORIES = {
             Tag("advanced_surface_analysis/nighttime_decision_making", "Nighttime detection and decision-making",
                 "Detecting surfaces during nighttime. Making the aeronautical decision to go for highways or "
                 "airports as a first priority."),
+            Tag("advanced_surface_analysis/farm_furrows", "Determining the correct direction to land in field given furrows",
+                            "Making the decision to land parallel, as opposed to perpendicular to, furrows."),
         ]),
         Tag("harm_minimization", "Harm minimization",
             "Every option has some risk to civilians; choose the one with least expected damage."),

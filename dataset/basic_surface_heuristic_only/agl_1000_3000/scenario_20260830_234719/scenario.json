@@ -1,0 +1,59 @@
+{
+  "latitude": "33.5053998",
+  "longitude": "-79.9689776",
+  "heading_deg": 140.0,
+  "viewport_width_nm": 5.3,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1200.0,
+  "viewport:glide ratio": 1.490899814814815,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 3,
+      "rel_x_nm": 0.41075,
+      "rel_y_nm": 0.258375,
+      "heading_deg": 40.914383220025115
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.4902,
+      "rel_y_nm": -0.7023,
+      "heading_deg": 105.6
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.6029,
+      "rel_y_nm": -0.5,
+      "heading_deg": 45.0
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 1.7,
+      "rel_y_nm": 1.1,
+      "heading_deg": 45.0
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 1.185875,
+      "rel_y_nm": -0.960625,
+      "heading_deg": 117.21611155730744
+    }
+  ],
+  "ground_truth_index": 0,
+  "answer_explanation": "Choice number 3 is an empty field which is better than all the other options which are pointed towards trees or rivers. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-08-30T23:47:19",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}
