@@ -15,6 +15,7 @@ LANDING_OPTION_RADIUS = 10             # px
 LANDING_OPTION_NUMBER_FONT_SIZE = 18
 SMALL_LANDING_OPTION_RADIUS = 5              # px, half of standard
 SMALL_LANDING_OPTION_NUMBER_FONT_SIZE = 10   # roughly half of standard
+SMALL_LANDING_OPTION_SIZE_SCALE = 0.5        # shrinks the arrow itself (independent of radius)
 PLANE_COLOR = (255, 0, 0)              # red, matches main.py's PLANE_COLOR
 PLANE_RADIUS = 8
 DEFAULT_BANK_ANGLE_DEG = 30            # fixed, non-editable bank angle used for the physics probe
@@ -39,26 +40,28 @@ def surface_to_pil_image(surface):
     return Image.frombytes("RGB", surface.get_size(), data)
 
 
-def draw_plane(surface, heading_deg, sx, sy, radius=PLANE_RADIUS, color=PLANE_COLOR):
+def draw_plane(surface, heading_deg, sx, sy, radius=PLANE_RADIUS, color=PLANE_COLOR, size_scale=1.0):
     """Draws a circle + heading arrow by reusing plane.Plane.draw's vector-drawing logic
     against a minimal stand-in (Plane.draw only reads aircraft_condition/landing, and only
     when aircraft_condition == "landed", which we never set here)."""
     stand_in = types.SimpleNamespace(aircraft_condition="intact", landing=None)
-    Plane.draw(stand_in, surface, color, sx, sy, heading=heading_deg, radius=radius, scale=None)
+    Plane.draw(stand_in, surface, color, sx, sy, heading=heading_deg, radius=radius, scale=None,
+               size_scale=size_scale)
 
 
 def draw_landing_option(surface, option, sx, sy):
     """option: {"number": int, "rel_x": float, "rel_y": float, "heading": float | None,
     "small": bool (optional, default False)}."""
     if option.get("small", False):
-        radius, font_size = SMALL_LANDING_OPTION_RADIUS, SMALL_LANDING_OPTION_NUMBER_FONT_SIZE
+        radius, font_size, size_scale = (SMALL_LANDING_OPTION_RADIUS, SMALL_LANDING_OPTION_NUMBER_FONT_SIZE,
+                                          SMALL_LANDING_OPTION_SIZE_SCALE)
     else:
-        radius, font_size = LANDING_OPTION_RADIUS, LANDING_OPTION_NUMBER_FONT_SIZE
+        radius, font_size, size_scale = LANDING_OPTION_RADIUS, LANDING_OPTION_NUMBER_FONT_SIZE, 1.0
 
     if option["heading"] is None:
         pg.draw.circle(surface, LANDING_OPTION_COLOR, (sx, sy), radius)
     else:
-        draw_plane(surface, option["heading"], sx, sy, radius=radius, color=LANDING_OPTION_COLOR)
+        draw_plane(surface, option["heading"], sx, sy, radius=radius, color=LANDING_OPTION_COLOR, size_scale=size_scale)
 
     font = pg.font.SysFont(None, font_size, bold=True)
     label = font.render(str(option["number"]), True, (0, 0, 0))

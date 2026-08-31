@@ -104,22 +104,23 @@ class Plane:
         y_end = y_start + landing_dist * dy
         self.landing = x_start, y_start, x_end, y_end
 
-    def draw(self, surface, color, sx, sy, heading=None, radius=8, scale=None):
+    def draw(self, surface, color, sx, sy, heading=None, radius=8, scale=None, size_scale=1.0):
         """
         Draw the plane as a circle with an arrow for heading.
         sx, sy: screen coordinates (already scaled)
         heading: if None, use self.heading
         scale: function to convert (x, y) in NM to screen coordinates (sx, sy)
+        size_scale: multiplies the arrow's length/head/line-width (independent of radius,
+            which only sizes the circle) -- 1.0 reproduces the original fixed
+            arrow_length=40/head=15/width=4 exactly, regardless of radius.
         """
         import pygame as pg
         if heading is None:
             heading = self.heading
         pg.draw.circle(surface, color, (sx, sy), radius)
-        # Draw heading arrow, sized proportionally to radius (radius=8 reproduces the
-        # original fixed arrow_length=40/head=15/width=4 exactly).
-        arrow_length = 5 * radius
-        head_length = 1.875 * radius
-        line_width = max(1, round(radius / 2))
+        arrow_length = 40 * size_scale
+        head_length = 15 * size_scale
+        line_width = max(1, round(4 * size_scale))
         angle_rad = math.radians(heading)
         arrow_dx = arrow_length * math.sin(angle_rad)
         arrow_dy = -arrow_length * math.cos(angle_rad)
