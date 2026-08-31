@@ -100,16 +100,21 @@ class ScenarioBuilderApp:
         self.options_frame = options_frame
         self.option_row_widgets = []  # list of dicts of per-row StringVars/widgets
 
+        notes_frame = ttk.LabelFrame(left, text="Explanation / Notes", padding=6)
+        notes_frame.grid(row=2, column=0, sticky="ew", pady=(8, 0))
+        self.notes_text = tk.Text(notes_frame, width=32, height=5, wrap="word")
+        self.notes_text.pack(fill="both", expand=True)
+
         ttk.Button(left, text="Randomize numbers", command=self.on_randomize_numbers).grid(
-            row=2, column=0, sticky="ew", pady=(8, 0))
+            row=3, column=0, sticky="ew", pady=(8, 0))
         ttk.Button(left, text="Tags...", command=self.on_open_tags_dialog).grid(
-            row=3, column=0, sticky="ew", pady=(4, 0))
-        ttk.Button(left, text="Export Scenario", command=self.on_export).grid(
             row=4, column=0, sticky="ew", pady=(4, 0))
+        ttk.Button(left, text="Export Scenario", command=self.on_export).grid(
+            row=5, column=0, sticky="ew", pady=(4, 0))
 
         self.status_var = tk.StringVar(value="Enter scenario setup, then click Render / Refresh Map.")
         ttk.Label(left, textvariable=self.status_var, wraplength=260).grid(
-            row=5, column=0, sticky="ew", pady=(8, 0))
+            row=6, column=0, sticky="ew", pady=(8, 0))
 
         canvas_size = min(int(field_specs[4][1]), CANVAS_PREVIEW_MAX_PX)
         self.canvas = tk.Canvas(right, width=canvas_size, height=canvas_size, background="black")
@@ -451,8 +456,11 @@ class ScenarioBuilderApp:
         image.save(image_path)
 
         ground_truth_index = self.ground_truth_index.get()
+        # The viewport is centered on the plane, so center-to-edge is size_nm / 2; compare that
+        # to the naive glide radius so a ratio of 1.0 means the frame edge sits exactly at the
+        # plane's max naive glide distance.
         naive_glide_distance_nm = (values["altitude_agl_ft"] / FT_PER_NM) * GR_0
-        viewport_glide_ratio = values["size_nm"] / naive_glide_distance_nm
+        viewport_glide_ratio = (values["size_nm"] / 2) / naive_glide_distance_nm
         scenario = {
             "latitude": self.fields["latitude"].get(),
             "longitude": self.fields["longitude"].get(),
@@ -472,6 +480,7 @@ class ScenarioBuilderApp:
                 for o in self.landing_options
             ],
             "ground_truth_index": ground_truth_index if ground_truth_index >= 0 else None,
+            "notes": self.notes_text.get("1.0", "end-1c"),
             "image_file": "viewport.png",
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         }
