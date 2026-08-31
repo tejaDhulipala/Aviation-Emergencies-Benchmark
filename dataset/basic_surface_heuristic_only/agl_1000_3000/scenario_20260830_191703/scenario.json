@@ -1,0 +1,64 @@
+{
+  "latitude": "28.1036632",
+  "longitude": "-80.6792293",
+  "heading_deg": 340.0,
+  "viewport_width_nm": 4.5,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1000.0,
+  "viewport:glide ratio": 1.51903,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 3,
+      "rel_x_nm": 1.0125,
+      "rel_y_nm": 0.106875,
+      "heading_deg": 87.95459151111277
+    },
+    {
+      "number": 1,
+      "rel_x_nm": -0.15750000000000003,
+      "rel_y_nm": 0.421875,
+      "heading_deg": 337.83365417791754
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -0.658125,
+      "rel_y_nm": 1.1306249999999998,
+      "heading_deg": 39.093858886229384
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 0.47812499999999997,
+      "rel_y_nm": 0.309375,
+      "heading_deg": 73.30075576600638
+    },
+    {
+      "number": 6,
+      "rel_x_nm": -0.433125,
+      "rel_y_nm": -0.15750000000000003,
+      "heading_deg": 180.0
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 0.08437499999999999,
+      "rel_y_nm": 0.601875,
+      "heading_deg": 357.5104470780009
+    }
+  ],
+  "ground_truth_index": 0,
+  "image_file": "viewport.png",
+  "created_at": "2026-08-30T19:17:03",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ],
+  "notes": "There is an airport within gliding distance, so it is the best landing option."
+}

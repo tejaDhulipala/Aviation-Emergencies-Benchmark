@@ -1,0 +1,59 @@
+{
+  "latitude": "32.4583058",
+  "longitude": "-84.6588073",
+  "heading_deg": 30.0,
+  "viewport_width_nm": 4.5,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1000.0,
+  "viewport:glide ratio": 1.51903,
+  "wind_speed_kt": 15.0,
+  "wind_direction_deg": 90.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 4,
+      "rel_x_nm": 0.07875000000000001,
+      "rel_y_nm": 0.725625,
+      "heading_deg": 77.19573393471319
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.225,
+      "rel_y_nm": 0.433125,
+      "heading_deg": 37.23483398157464
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 0.7425,
+      "rel_y_nm": 0.883125,
+      "heading_deg": 225.0
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.601875,
+      "rel_y_nm": 0.15750000000000003,
+      "heading_deg": 90.0
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 0.118125,
+      "rel_y_nm": 1.378125,
+      "heading_deg": 79.50852298766841
+    }
+  ],
+  "ground_truth_index": 0,
+  "image_file": "viewport.png",
+  "created_at": "2026-08-30T20:07:24",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "advanced_physics/wind_incorporation",
+    "tailwind_consideration/turn_into_wind"
+  ],
+  "notes": "Number 4 is the correct option because it is an open field that is pointing into the wind, within glide distance."
+}

@@ -3,7 +3,7 @@ import math
 import pygame as pg
 
 # --- Visualization parameters ---
-WIDTH, HEIGHT = 900, 900  # square, matches SatelliteMap's square output
+WIDTH, HEIGHT = 800, 800  # square, matches SatelliteMap's square output
 MARGIN = 30  # pixels, ruler label spacing only
 
 # --- Utility for scaling positions: always centers (center_x, center_y) on screen ---
