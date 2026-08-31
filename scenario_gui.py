@@ -102,7 +102,6 @@ class ScenarioBuilderApp:
 
         self.text_boxes = {}
         text_box_specs = [
-            ("notes", "Explanation / Notes"),
             ("answer_explanation", "Answer Explanation"),
             ("prompt_additions", "Prompt Additions"),
         ]
@@ -506,7 +505,6 @@ class ScenarioBuilderApp:
                 for o in self.landing_options
             ],
             "ground_truth_index": ground_truth_index if ground_truth_index >= 0 else None,
-            "notes": self.text_boxes["notes"].get("1.0", "end-1c"),
             "answer_explanation": self.text_boxes["answer_explanation"].get("1.0", "end-1c"),
             "prompt_additions": self.text_boxes["prompt_additions"].get("1.0", "end-1c"),
             "image_file": "viewport.png",
