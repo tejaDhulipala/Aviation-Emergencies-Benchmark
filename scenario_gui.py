@@ -142,10 +142,13 @@ class ScenarioBuilderApp:
                 entry.bind("<FocusOut>", lambda e, idx=i: self.on_option_edited(idx))
                 entry.bind("<Return>", lambda e, idx=i: self.on_option_edited(idx))
             ttk.Radiobutton(frame, variable=self.ground_truth_index, value=i).grid(row=0, column=4)
-            ttk.Button(frame, text="✕", width=2, command=lambda idx=i: self.on_delete_option(idx)).grid(row=0, column=5)
+            small_var = tk.BooleanVar(value=option.get("small", False))
+            ttk.Checkbutton(frame, text="small", variable=small_var,
+                            command=lambda idx=i: self.on_toggle_small(idx)).grid(row=0, column=5)
+            ttk.Button(frame, text="✕", width=2, command=lambda idx=i: self.on_delete_option(idx)).grid(row=0, column=6)
 
             self.option_row_widgets.append({
-                "frame": frame, "rel_x": rel_x_var, "rel_y": rel_y_var, "heading": heading_var,
+                "frame": frame, "rel_x": rel_x_var, "rel_y": rel_y_var, "heading": heading_var, "small": small_var,
             })
 
     def on_option_edited(self, index):
@@ -162,6 +165,13 @@ class ScenarioBuilderApp:
             return
         option = self.landing_options[index]
         option["rel_x"], option["rel_y"], option["heading"] = rel_x, rel_y, heading
+        self.redraw_canvas()
+
+    def on_toggle_small(self, index):
+        if index >= len(self.landing_options):
+            return
+        small = self.option_row_widgets[index]["small"].get()
+        self.landing_options[index]["small"] = small
         self.redraw_canvas()
 
     def on_delete_option(self, index):
@@ -476,7 +486,10 @@ class ScenarioBuilderApp:
             "flaps_deg": 0,
             "bank_angle_deg": DEFAULT_BANK_ANGLE_DEG,
             "landing_options": [
-                {"number": o["number"], "rel_x_nm": o["rel_x"], "rel_y_nm": o["rel_y"], "heading_deg": o["heading"]}
+                {
+                    "number": o["number"], "rel_x_nm": o["rel_x"], "rel_y_nm": o["rel_y"], "heading_deg": o["heading"],
+                    **({"small": True} if o.get("small", False) else {}),
+                }
                 for o in self.landing_options
             ],
             "ground_truth_index": ground_truth_index if ground_truth_index >= 0 else None,

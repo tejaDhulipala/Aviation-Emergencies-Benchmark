@@ -115,19 +115,22 @@ class Plane:
         if heading is None:
             heading = self.heading
         pg.draw.circle(surface, color, (sx, sy), radius)
-        # Draw heading arrow
-        arrow_length = 40
+        # Draw heading arrow, sized proportionally to radius (radius=8 reproduces the
+        # original fixed arrow_length=40/head=15/width=4 exactly).
+        arrow_length = 5 * radius
+        head_length = 1.875 * radius
+        line_width = max(1, round(radius / 2))
         angle_rad = math.radians(heading)
         arrow_dx = arrow_length * math.sin(angle_rad)
         arrow_dy = -arrow_length * math.cos(angle_rad)
-        pg.draw.line(surface, color, (sx, sy), (sx + int(arrow_dx), sy + int(arrow_dy)), 4)
+        pg.draw.line(surface, color, (sx, sy), (sx + int(arrow_dx), sy + int(arrow_dy)), line_width)
         # Arrowhead
         head_angle1 = angle_rad + math.radians(150)
         head_angle2 = angle_rad - math.radians(150)
-        head1 = (sx + int(arrow_dx + 15 * math.sin(head_angle1)), sy + int(arrow_dy - 15 * math.cos(head_angle1)))
-        head2 = (sx + int(arrow_dx + 15 * math.sin(head_angle2)), sy + int(arrow_dy - 15 * math.cos(head_angle2)))
-        pg.draw.line(surface, color, (sx + int(arrow_dx), sy + int(arrow_dy)), head1, 4)
-        pg.draw.line(surface, color, (sx + int(arrow_dx), sy + int(arrow_dy)), head2, 4)
+        head1 = (sx + int(arrow_dx + head_length * math.sin(head_angle1)), sy + int(arrow_dy - head_length * math.cos(head_angle1)))
+        head2 = (sx + int(arrow_dx + head_length * math.sin(head_angle2)), sy + int(arrow_dy - head_length * math.cos(head_angle2)))
+        pg.draw.line(surface, color, (sx + int(arrow_dx), sy + int(arrow_dy)), head1, line_width)
+        pg.draw.line(surface, color, (sx + int(arrow_dx), sy + int(arrow_dy)), head2, line_width)
         # Draw landing path if landed
         if self.aircraft_condition == "landed" and self.landing is not None and scale is not None:
             x_start, y_start, x_end, y_end = self.landing

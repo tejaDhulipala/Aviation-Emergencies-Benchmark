@@ -13,6 +13,8 @@ from plane import Plane
 LANDING_OPTION_COLOR = (255, 255, 0)   # yellow
 LANDING_OPTION_RADIUS = 10             # px
 LANDING_OPTION_NUMBER_FONT_SIZE = 18
+SMALL_LANDING_OPTION_RADIUS = 5              # px, half of standard
+SMALL_LANDING_OPTION_NUMBER_FONT_SIZE = 10   # roughly half of standard
 PLANE_COLOR = (255, 0, 0)              # red, matches main.py's PLANE_COLOR
 PLANE_RADIUS = 8
 DEFAULT_BANK_ANGLE_DEG = 30            # fixed, non-editable bank angle used for the physics probe
@@ -46,13 +48,19 @@ def draw_plane(surface, heading_deg, sx, sy, radius=PLANE_RADIUS, color=PLANE_CO
 
 
 def draw_landing_option(surface, option, sx, sy):
-    """option: {"number": int, "rel_x": float, "rel_y": float, "heading": float | None}."""
-    if option["heading"] is None:
-        pg.draw.circle(surface, LANDING_OPTION_COLOR, (sx, sy), LANDING_OPTION_RADIUS)
+    """option: {"number": int, "rel_x": float, "rel_y": float, "heading": float | None,
+    "small": bool (optional, default False)}."""
+    if option.get("small", False):
+        radius, font_size = SMALL_LANDING_OPTION_RADIUS, SMALL_LANDING_OPTION_NUMBER_FONT_SIZE
     else:
-        draw_plane(surface, option["heading"], sx, sy, radius=LANDING_OPTION_RADIUS, color=LANDING_OPTION_COLOR)
+        radius, font_size = LANDING_OPTION_RADIUS, LANDING_OPTION_NUMBER_FONT_SIZE
 
-    font = pg.font.SysFont(None, LANDING_OPTION_NUMBER_FONT_SIZE, bold=True)
+    if option["heading"] is None:
+        pg.draw.circle(surface, LANDING_OPTION_COLOR, (sx, sy), radius)
+    else:
+        draw_plane(surface, option["heading"], sx, sy, radius=radius, color=LANDING_OPTION_COLOR)
+
+    font = pg.font.SysFont(None, font_size, bold=True)
     label = font.render(str(option["number"]), True, (0, 0, 0))
     surface.blit(label, (sx - label.get_width() // 2, sy - label.get_height() // 2))
 
