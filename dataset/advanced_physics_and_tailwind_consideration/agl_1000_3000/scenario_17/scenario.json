@@ -1,0 +1,61 @@
+{
+  "latitude": "34.4112381",
+  "longitude": "-90.5850305",
+  "heading_deg": 30.0,
+  "viewport_width_nm": 5.33,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1200.0,
+  "viewport:glide ratio": 1.4993388703703705,
+  "wind_speed_kt": 17.0,
+  "wind_direction_deg": 20.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 3,
+      "rel_x_nm": 0.1532375,
+      "rel_y_nm": 0.6595875,
+      "heading_deg": 8.583621480113948
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 1.3258375,
+      "rel_y_nm": 0.679575,
+      "heading_deg": 38.418055344821994
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 1.079325,
+      "rel_y_nm": -0.2465125,
+      "heading_deg": 180.0
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.8994375000000001,
+      "rel_y_nm": -1.5590249999999999,
+      "heading_deg": 227.91083782616772
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 1.5,
+      "rel_y_nm": -0.03,
+      "heading_deg": 229.1
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "1, 2, 3, & 5 are reachable via basic glide calculations. 1 and 2 are solid surfaces. 1 is into the wind to it's the better choice. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T03:24:47",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_physics",
+    "basic_surface_heuristic",
+    "tailwind_consideration/turn_into_wind"
+  ]
+}

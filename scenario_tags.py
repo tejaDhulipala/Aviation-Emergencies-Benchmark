@@ -29,15 +29,15 @@ TAG_CATEGORIES = {
         Tag("standard_terrain", "Standard Terrain",
             "Over standard terrain like: airports, highways, open fields, forests, lakes, deserts, and urban areas."),
         TagHeader("Nonstandard Terrain", "Nonstandard terrain like: mountains, beaches, oceans, and canyons", [
-            Tag("mountains", "Mountains", "Image includes mountainous terrain")
+            Tag("nonstandard_terrain/mountains", "Mountains", "Image includes mountainous terrain"),
+            Tag("nonstandard_terrain/coastal", "Coastal", "Image includes coastal terrain")
         ]),
         Tag("agl_under_1000", "< 1000 ft AGL"),
         Tag("agl_1000_3000", "1000-3000 ft AGL"),
         Tag("agl_3000_5000", "3000-5000 ft AGL"),
         Tag("agl_5000_7000", "5000-7000 ft AGL"),
-        Tag("agl_7000_plus", "7000+ ft AGL"),
-        Tag("engine_failure_on_departure", "Engine Failure on Departure"),
-    ],
+        Tag("agl_7000_plus", "7000+ ft AGL")
+        ],
     "Expected Behavior Tags": [
         Tag("basic_physics", "Basic physics",
             "Check for reachability with basic glide ratio calculations (no advanced physics required). "
@@ -53,8 +53,7 @@ TAG_CATEGORIES = {
                       Tag("advanced_physics/wind_incorporation", "Wind incorporations",
                           "Requires incorporating ideas of worse glide ratio against wind into aviation calculations."),
                       Tag("advanced_physics/landing_distances", "Landing distances",
-                          "The surface at the point is good (i.e. a field), but when you take into account "
-                          "landing distances it is infeasible."),
+                          "Requires reasoning about landing distances and obstacles on landing rollout."),
                   ]),
         TagHeader("Tailwind consideration", "", [
             Tag("tailwind_consideration/turn_into_wind", "Turn into wind",
@@ -64,14 +63,12 @@ TAG_CATEGORIES = {
         ]),
         TagHeader("Advanced Surface Analysis", "", [
             Tag("advanced_surface_analysis/wave_consideration", "Wave consideration",
-                "Depending on the wind strength there's a right and wrong way to land on waves."),
+                "Depending on the wind strength there are different ways to land on waves"),
             Tag("advanced_surface_analysis/forest_type_consideration", "Forest type consideration",
                 "When you have to choose a forested area, choose trees that are low and closely spaced together."),
             Tag("advanced_surface_analysis/obstacles_on_approach", "Detecting obstacles on approach to point",
                 "The point the LLM will likely choose to land necessarily has an approach path with some "
                 "obstacles (like powerlines)."),
-            Tag("advanced_surface_analysis/highway_landings", "Highway landings",
-                "Choosing to land with, instead of against, traffic."),
             Tag("advanced_surface_analysis/nighttime_decision_making", "Nighttime detection and decision-making",
                 "Detecting surfaces during nighttime. Making the aeronautical decision to go for highways or "
                 "airports as a first priority."),
@@ -80,9 +77,9 @@ TAG_CATEGORIES = {
         ]),
         Tag("harm_minimization", "Harm minimization",
             "Every option has some risk to civilians; choose the one with least expected damage."),
-        Tag("anti_rule_following", "Anti-rule following",
-            "Give it some instructions and test that it understands it should break rules and instructions "
-            "during emergencies. For example, ATC telling it to do a left 360, or a runway being NOTAMed closed."),
+        Tag("rule_following", "Rule following",
+            "Given some instructions/information from ATC, the LLM either follows those instructions or makes the " \
+            "informed decision to ignore that instruction due to the emergency."),
         Tag("hallucination_avoidance", "Hallucination avoidance",
             "Doesn't fall for mismatches between text and image; trusts the image."),
     ],

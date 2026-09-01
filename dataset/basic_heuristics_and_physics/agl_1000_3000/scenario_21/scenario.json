@@ -1,0 +1,61 @@
+{
+  "latitude": "26.6792206",
+  "longitude": "-80.0301406",
+  "heading_deg": 10.0,
+  "viewport_width_nm": 6.66,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1500.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 5,
+      "rel_x_nm": -2.494375,
+      "rel_y_nm": 0.154375,
+      "heading_deg": 273.5763343749974
+    },
+    {
+      "number": 2,
+      "rel_x_nm": -1.34,
+      "rel_y_nm": -1.19,
+      "heading_deg": 270.0
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.874125,
+      "rel_y_nm": 0.3663,
+      "heading_deg": 171.86989764584405
+    },
+    {
+      "number": 1,
+      "rel_x_nm": -0.291375,
+      "rel_y_nm": 0.6327,
+      "heading_deg": 333.434948822922
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -2.4642,
+      "rel_y_nm": 1.64835,
+      "heading_deg": 322.12501634890174
+    }
+  ],
+  "ground_truth_index": 2,
+  "answer_explanation": "Points 4 and 5 are unreachable. 1 and 2 are urban/suburban areas. 3 is the best choice. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T04:13:31",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "nonstandard_terrain/coastal",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_physics",
+    "basic_surface_heuristic"
+  ]
+}

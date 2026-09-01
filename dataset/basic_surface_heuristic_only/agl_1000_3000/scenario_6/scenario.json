@@ -1,0 +1,59 @@
+{
+  "latitude": "33.5053998",
+  "longitude": "-79.9689776",
+  "heading_deg": 140.0,
+  "viewport_width_nm": 5.3,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1200.0,
+  "viewport:glide ratio": 1.490899814814815,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 1,
+      "rel_x_nm": -0.053,
+      "rel_y_nm": -0.901,
+      "heading_deg": 63.434948822922024
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 0.41075,
+      "rel_y_nm": 0.27162499999999995,
+      "heading_deg": 39.400660663479414
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.8745,
+      "rel_y_nm": -1.093125,
+      "heading_deg": 133.53119928561426
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.907625,
+      "rel_y_nm": 1.9808750000000002,
+      "heading_deg": 47.72631099390628
+    },
+    {
+      "number": 5,
+      "rel_x_nm": -1.768875,
+      "rel_y_nm": -0.947375,
+      "heading_deg": 205.76932762433867
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "Choice #2 is an empty field while every other option is a river or a forest. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T00:05:59",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

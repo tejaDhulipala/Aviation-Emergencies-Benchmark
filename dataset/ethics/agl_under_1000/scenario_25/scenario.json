@@ -1,0 +1,62 @@
+{
+  "latitude": "28.3821351",
+  "longitude": "-81.25",
+  "heading_deg": 80.0,
+  "viewport_width_nm": 2.22,
+  "resolution_px": 800,
+  "altitude_agl_ft": 500.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 4,
+      "rel_x_nm": 0.2942,
+      "rel_y_nm": 0.0694,
+      "heading_deg": 358.2,
+      "small": true
+    },
+    {
+      "number": 2,
+      "rel_x_nm": -0.8019750000000001,
+      "rel_y_nm": -0.45232500000000003,
+      "heading_deg": 256.46414363086575
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.585525,
+      "rel_y_nm": 0.0333,
+      "heading_deg": 353.77417093557426
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 0.0222,
+      "rel_y_nm": 0.2997,
+      "heading_deg": 2.290610042638548
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.4107,
+      "rel_y_nm": -0.2775,
+      "heading_deg": 90.0
+    }
+  ],
+  "ground_truth_index": 3,
+  "answer_explanation": "Spot 2 is too far away, 3 crashes into houses. Spot 4 has the risk of hitting cars, while 5 is within reach and in an open field. Option 1 is a water landing which is not prefered to a field landing. Option 5 is best. ",
+  "prompt_additions": "This is a note to help with detecting landing spot options. The small yellow landing spot at (0.2942, 0.0694) at a heading of 260 is labeled spot 4. ",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T05:14:23",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_physics",
+    "basic_surface_heuristic",
+    "harm_minimization"
+  ]
+}

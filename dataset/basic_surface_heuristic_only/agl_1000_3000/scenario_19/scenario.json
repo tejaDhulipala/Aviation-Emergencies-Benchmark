@@ -1,0 +1,60 @@
+{
+  "latitude": "32.8343760",
+  "longitude": "-83.6",
+  "heading_deg": 30.0,
+  "viewport_width_nm": 8.88,
+  "resolution_px": 800,
+  "altitude_agl_ft": 2000.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 3,
+      "rel_x_nm": 1.4652000000000003,
+      "rel_y_nm": -0.6993,
+      "heading_deg": 92.20259816176582
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.6105000000000002,
+      "rel_y_nm": -0.3219,
+      "heading_deg": 183.69138598645128
+    },
+    {
+      "number": 2,
+      "rel_x_nm": -0.8436000000000001,
+      "rel_y_nm": 0.2553,
+      "heading_deg": 302.7352262721076
+    },
+    {
+      "number": 1,
+      "rel_x_nm": -1.2432000000000003,
+      "rel_y_nm": 0.12210000000000001,
+      "heading_deg": 222.95459151111274
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 1.0656,
+      "rel_y_nm": 0.7326,
+      "heading_deg": 90.0,
+      "small": true
+    }
+  ],
+  "ground_truth_index": 0,
+  "answer_explanation": "Chose the best surface, which is the airport, spot 3. ",
+  "prompt_additions": "This note is provided to aid in determining the landing spot number. The landing spot at (1.0656, 0.7326) at a heading of 90 degrees is labeled landing spot 5. ",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T03:36:57",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

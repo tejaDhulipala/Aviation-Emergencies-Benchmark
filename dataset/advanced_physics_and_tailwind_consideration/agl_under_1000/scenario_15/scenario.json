@@ -1,0 +1,61 @@
+{
+  "latitude": "28.0479032",
+  "longitude": "-80.76",
+  "heading_deg": 90.0,
+  "viewport_width_nm": 2.22,
+  "resolution_px": 800,
+  "altitude_agl_ft": 500.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 15.0,
+  "wind_direction_deg": 180.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 2,
+      "rel_x_nm": 0.3913,
+      "rel_y_nm": 0.06,
+      "heading_deg": 90.0
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.30802500000000005,
+      "rel_y_nm": -0.1998,
+      "heading_deg": 180.0
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.8186250000000002,
+      "rel_y_nm": 0.04995,
+      "heading_deg": 85.76360520094113
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.069375,
+      "rel_y_nm": -0.269175,
+      "heading_deg": 178.4088597288054
+    },
+    {
+      "number": 5,
+      "rel_x_nm": -0.20535,
+      "rel_y_nm": -0.28582500000000005,
+      "heading_deg": 90.0
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "1 and 5 are eliminated because you don't want to land in a swamp. 3 is eliminated because of glide distance. 4 is into the wind, so it's the better option. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T03:07:55",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_physics",
+    "basic_surface_heuristic",
+    "tailwind_consideration/turn_into_wind"
+  ]
+}

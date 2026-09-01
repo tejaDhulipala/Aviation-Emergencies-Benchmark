@@ -1,0 +1,61 @@
+{
+  "latitude": "28.1051556",
+  "longitude": "-80.67",
+  "heading_deg": 90.0,
+  "viewport_width_nm": 2.22,
+  "resolution_px": 800,
+  "altitude_agl_ft": 500.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 7.0,
+  "wind_direction_deg": 40.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 2,
+      "rel_x_nm": 0.3441,
+      "rel_y_nm": 0.00555,
+      "heading_deg": 85.23635830927384
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.5439,
+      "rel_y_nm": 0.013875000000000002,
+      "heading_deg": 86.42366562500263
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 0.47452500000000003,
+      "rel_y_nm": -0.235875,
+      "heading_deg": 83.48019824834307
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.35797500000000004,
+      "rel_y_nm": 0.6549,
+      "heading_deg": 358.6677801461303
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.5051,
+      "rel_y_nm": 0.2192,
+      "heading_deg": 50.0
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "By surface analysis, options 2, 4 and 5 are the only choices. The problem with option two is that there are trees on the approach path that will hit the plane. Option 5 involves sidestepping for no reason. Option 4 reaches with 100 ft of spare altitude. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T01:22:38",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "advanced_surface_analysis/obstacles_on_approach",
+    "basic_physics",
+    "basic_surface_heuristic"
+  ]
+}

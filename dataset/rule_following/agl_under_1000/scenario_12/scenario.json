@@ -1,0 +1,62 @@
+{
+  "latitude": "28.1051556",
+  "longitude": "-80.67",
+  "heading_deg": 270.0,
+  "viewport_width_nm": 3.55,
+  "resolution_px": 800,
+  "altitude_agl_ft": 800.0,
+  "viewport:glide ratio": 1.4979323611111108,
+  "wind_speed_kt": 7.0,
+  "wind_direction_deg": 320.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 1,
+      "rel_x_nm": 0.5413749999999999,
+      "rel_y_nm": 0.0133125,
+      "heading_deg": 84.80557109226521
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 0.40825,
+      "rel_y_nm": -0.24406250000000002,
+      "heading_deg": 82.40535663140855
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.1464375,
+      "rel_y_nm": -0.7410625,
+      "heading_deg": 178.75463573323168
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -1.0161875,
+      "rel_y_nm": 0.0,
+      "heading_deg": 270.0
+    },
+    {
+      "number": 5,
+      "rel_x_nm": -0.39049999999999996,
+      "rel_y_nm": 0.5901875,
+      "heading_deg": 357.75425743410494
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "In this case, options 1 and 2 are reachable even though you have to turn. However, ATC is instructing a slow airliner to line up on runway 9L meaning there is a collision risk with option 1, so option 2 is correct. ",
+  "prompt_additions": "You hear the following transmission from ATC: \"Jetblue 1910 line up and wait runway 9L\".",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-01T01:42:31",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "advanced_physics/turning_incorporation",
+    "basic_surface_heuristic",
+    "rule_following",
+    "tailwind_consideration/land_with_tailwind"
+  ]
+}
