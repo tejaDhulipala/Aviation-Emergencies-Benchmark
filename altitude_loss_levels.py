@@ -53,12 +53,11 @@ def altitude_loss_full_physics(x_cur, y_cur, heading_cur, x_goal, y_goal, altitu
     path; integrates altitude loss over both turn arcs the same way the old model
     integrated over its single turn arc.
 
-    Returns (loss, reachable). `loss` is -1 whenever `reachable` is False -- either no
-    bank angle in bank_angles_deg has a geometrically valid path (the turn is impossible),
-    or the cheapest valid path costs more altitude than is available -- `reachable` is the
-    authoritative signal, exactly as plane.py's Plane.follow_instruction treats the
-    (loss, landing_info) pair from utils.paths.altitude_loss (never comparing the loss
-    value itself).
+    Returns (loss, reachable). `loss` is the real cost of the cheapest valid path even when
+    `reachable` is False (over budget) -- matching levels 1/2's behavior -- except when no
+    bank angle in bank_angles_deg has a geometrically valid path at all (the turn is
+    impossible), in which case there's no cost to report and `loss` is -1. `reachable` is
+    always the authoritative feasibility signal regardless.
     """
     with warnings.catch_warnings():
         # altitude_agl_ft != 0 means density != RHO_0, which triggers cessna_glide_ratio's

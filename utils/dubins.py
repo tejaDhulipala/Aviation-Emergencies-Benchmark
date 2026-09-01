@@ -218,10 +218,15 @@ def dubins_altitude_loss(plane, target_pos, heading_goal, obstacle_clearance_ft,
 
     Returns (loss, reachable):
       - (-1, False) if no bank angle in bank_angles_deg has a geometrically valid
-        Dubins path to (target_pos, heading_goal) -- the turn is impossible.
-      - (-1, False) if a path exists but its cost exceeds what's available
-        (plane.alt - obstacle_clearance_ft).
+        Dubins path to (target_pos, heading_goal) -- the turn is impossible, so there's
+        no loss figure to report at all.
+      - (loss_ft, False) if a geometrically valid path exists but its cost exceeds what's
+        available (plane.alt - obstacle_clearance_ft) -- loss_ft is still the real cost of
+        the cheapest valid path, just more than the plane has to spend.
       - (loss_ft, True) otherwise, loss_ft being the cheapest valid path found.
+
+    `reachable` is always the authoritative feasibility signal; `loss_ft` is only ever the
+    -1 placeholder when no path exists to measure in the first place.
 
     Pure function: does not mutate `plane`.
     """
@@ -232,10 +237,7 @@ def dubins_altitude_loss(plane, target_pos, heading_goal, obstacle_clearance_ft,
         return -1, False
 
     available = plane.alt - obstacle_clearance_ft
-    if best_loss > available:
-        return -1, False
-
-    return best_loss, True
+    return best_loss, best_loss <= available
 
 
 if __name__ == "__main__":
@@ -346,10 +348,12 @@ if __name__ == "__main__":
         print(f"dubins_altitude_loss_does_not_mutate_plane: {passed}")
 
     def test_dubins_altitude_loss_unreachable_when_short_on_altitude():
+        # loss should still be the real (over-budget) cost, not the -1 placeholder --
+        # that's reserved for when no geometrically valid path exists at all.
         plane = _make_fake_plane(heading=0.0, alt=10)
         loss, reachable = dubins_altitude_loss(plane, (0.0, 10.0), 0.0, obstacle_clearance_ft=0)
-        passed = loss == -1 and not reachable
-        print(f"dubins_altitude_loss_unreachable_when_short_on_altitude: {passed}")
+        passed = loss > 0 and not reachable
+        print(f"dubins_altitude_loss_unreachable_when_short_on_altitude: {passed} (loss={loss})")
 
     def test_dubins_altitude_loss_impossible_geometry_returns_minus_one():
         # Goal pose identical to the start pose: every CSC combination degenerates to a
