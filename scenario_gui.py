@@ -8,7 +8,7 @@ import os
 import random
 import time
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import filedialog, messagebox, ttk
 
 import pygame as pg
 from PIL import ImageTk
@@ -94,6 +94,8 @@ class ScenarioBuilderApp:
 
         ttk.Button(setup, text="Render / Refresh Map", command=self.on_render_map).grid(
             row=len(field_specs), column=0, columnspan=2, sticky="ew", pady=(6, 0))
+        ttk.Button(setup, text="Load Scenario from JSON...", command=self.on_load_scenario).grid(
+            row=len(field_specs) + 1, column=0, columnspan=2, sticky="ew", pady=(4, 0))
 
         options_frame = ttk.LabelFrame(left, text="Landing Options", padding=6)
         options_frame.grid(row=1, column=0, sticky="ew", pady=(8, 0))
@@ -454,6 +456,54 @@ class ScenarioBuilderApp:
         button_bar.pack(fill="x", pady=6)
         ttk.Button(button_bar, text="Done", command=on_done).pack()
         dialog.protocol("WM_DELETE_WINDOW", on_done)
+
+    def on_load_scenario(self):
+        path = filedialog.askopenfilename(
+            title="Load Scenario from JSON", initialdir=DATASET_DIR, filetypes=[("Scenario JSON", "*.json")])
+        if not path:
+            return
+        try:
+            with open(path) as f:
+                scenario = json.load(f)
+        except (OSError, json.JSONDecodeError) as e:
+            messagebox.showerror("Load failed", f"Could not read {path}:\n{e}")
+            return
+
+        try:
+            self.fields["latitude"].set(str(scenario["latitude"]))
+            self.fields["longitude"].set(str(scenario["longitude"]))
+            self.fields["heading_deg"].set(str(scenario["heading_deg"]))
+            self.fields["viewport_width_nm"].set(str(scenario["viewport_width_nm"]))
+            self.fields["resolution_px"].set(str(scenario["resolution_px"]))
+            self.fields["altitude_agl_ft"].set(str(scenario["altitude_agl_ft"]))
+            self.fields["wind_speed_kt"].set(str(scenario["wind_speed_kt"]))
+            self.fields["wind_direction_deg"].set(str(scenario["wind_direction_deg"]))
+
+            self.landing_options = [
+                {
+                    "number": o["number"], "rel_x": o["rel_x_nm"], "rel_y": o["rel_y_nm"],
+                    "heading": o["heading_deg"], "small": o.get("small", False),
+                }
+                for o in scenario.get("landing_options", [])
+            ]
+            self.pending_point_index = None
+
+            gt_index = scenario.get("ground_truth_index")
+            self.ground_truth_index.set(gt_index if gt_index is not None else -1)
+
+            for key in ("answer_explanation", "prompt_additions"):
+                self.text_boxes[key].delete("1.0", "end")
+                self.text_boxes[key].insert("1.0", scenario.get(key, ""))
+
+            self.selected_tags = set(scenario.get("starting_condition_tags", [])) | set(
+                scenario.get("expected_behavior_tags", []))
+        except KeyError as e:
+            messagebox.showerror("Load failed", f"Scenario JSON is missing expected field: {e}")
+            return
+
+        self._rebuild_option_rows()
+        self.status_var.set(f"Loaded {path}. Rendering map...")
+        self.on_render_map()
 
     # ------------------------------------------------------------------ export
 
