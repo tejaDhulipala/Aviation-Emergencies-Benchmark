@@ -1,0 +1,61 @@
+{
+  "latitude": "28.4176964",
+  "longitude": "-80.8671895",
+  "heading_deg": 65.0,
+  "viewport_width_nm": 1.77,
+  "resolution_px": 800,
+  "altitude_agl_ft": 400.0,
+  "viewport:glide ratio": 1.4937128333333332,
+  "wind_speed_kt": 8.0,
+  "wind_direction_deg": 90.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 2,
+      "rel_x_nm": 0.38055,
+      "rel_y_nm": -0.030975000000000003,
+      "heading_deg": 97.1250163489018
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.1106,
+      "rel_y_nm": 0.1482,
+      "heading_deg": 340.0
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.261075,
+      "rel_y_nm": -0.0531,
+      "heading_deg": 135.0
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 0.21461249999999998,
+      "rel_y_nm": 0.1172625,
+      "heading_deg": 91.6365770416167
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.039825,
+      "rel_y_nm": 0.1039875,
+      "heading_deg": 278.13010235415595
+    }
+  ],
+  "ground_truth_index": 3,
+  "answer_explanation": "2 and 4 don't have enough landing distance before hitting trees. 1 and 3 aren't pointing close to the wind direction. 5 is the best. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T04:25:26",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "advanced_physics/landing_distances",
+    "basic_surface_heuristic",
+    "tailwind_consideration/turn_into_wind"
+  ]
+}

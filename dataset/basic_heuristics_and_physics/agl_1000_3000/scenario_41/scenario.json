@@ -1,0 +1,60 @@
+{
+  "latitude": "30.4847619",
+  "longitude": "-81.765",
+  "heading_deg": 90.0,
+  "viewport_width_nm": 8.44,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1900.0,
+  "viewport:glide ratio": 1.499486923976608,
+  "wind_speed_kt": 3.0,
+  "wind_direction_deg": 130.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 1,
+      "rel_x_nm": 3.3548999999999998,
+      "rel_y_nm": 0.6752,
+      "heading_deg": 68.7494944928668
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 3.2704999999999997,
+      "rel_y_nm": 0.45364999999999994,
+      "heading_deg": 131.82016988013572
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 2.92235,
+      "rel_y_nm": -0.6963,
+      "heading_deg": 93.30186567443496
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 2.5,
+      "rel_y_nm": 0.0,
+      "heading_deg": 58.7
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 0.37979999999999997,
+      "rel_y_nm": 1.17105,
+      "heading_deg": 324.4623222080256
+    }
+  ],
+  "ground_truth_index": 4,
+  "answer_explanation": "1 and 2 are not reachable despite being an airport. 3 and 4 are dense forests. 5 is a field and is reachable. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T03:05:29",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_physics",
+    "basic_surface_heuristic"
+  ]
+}
