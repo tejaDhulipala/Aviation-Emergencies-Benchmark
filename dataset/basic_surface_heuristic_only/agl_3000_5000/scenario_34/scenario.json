@@ -1,0 +1,59 @@
+{
+  "latitude": "41.2943704",
+  "longitude": "-92.6497682",
+  "heading_deg": 160.0,
+  "viewport_width_nm": 15.55,
+  "resolution_px": 800,
+  "altitude_agl_ft": 3500.0,
+  "viewport:glide ratio": 1.49974073015873,
+  "wind_speed_kt": 2.0,
+  "wind_direction_deg": 170.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 2,
+      "rel_x_nm": 0.622,
+      "rel_y_nm": -0.27212500000000006,
+      "heading_deg": 126.86989764584405
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 3.4404375000000003,
+      "rel_y_nm": -2.4296875,
+      "heading_deg": 90.0
+    },
+    {
+      "number": 1,
+      "rel_x_nm": -4.859375,
+      "rel_y_nm": -3.1683125,
+      "heading_deg": 104.7435628364708
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.38875000000000004,
+      "rel_y_nm": -7.483437500000001,
+      "heading_deg": 0.0
+    },
+    {
+      "number": 5,
+      "rel_x_nm": -0.19437500000000002,
+      "rel_y_nm": 0.7580625000000001,
+      "heading_deg": 105.2551187030578
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "4 is a field, so it is the best choice. 1 and 3 is a river. They are also out of reach. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T01:51:50",
+  "starting_condition_tags": [
+    "agl_3000_5000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

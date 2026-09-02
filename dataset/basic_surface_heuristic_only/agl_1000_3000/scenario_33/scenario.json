@@ -1,0 +1,65 @@
+{
+  "latitude": "29.78",
+  "longitude": "-94.685",
+  "heading_deg": 160.0,
+  "viewport_width_nm": 5.33,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1200.0,
+  "viewport:glide ratio": 1.4993388703703705,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 5,
+      "rel_x_nm": 0.93275,
+      "rel_y_nm": -0.4064125,
+      "heading_deg": 130.81508387488157
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -0.333125,
+      "rel_y_nm": -0.8794500000000001,
+      "heading_deg": 200.55604521958347
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.333125,
+      "rel_y_nm": -0.039975,
+      "heading_deg": 37.99873244250466
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 1.1193,
+      "rel_y_nm": 0.11326250000000002,
+      "heading_deg": 88.0908475670036
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.13325,
+      "rel_y_nm": -0.5529875,
+      "heading_deg": 143.13010235415607
+    },
+    {
+      "number": 6,
+      "rel_x_nm": 1.292525,
+      "rel_y_nm": -0.93275,
+      "heading_deg": 90.0
+    }
+  ],
+  "ground_truth_index": 0,
+  "answer_explanation": "Option 5 is a runway. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T01:43:16",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

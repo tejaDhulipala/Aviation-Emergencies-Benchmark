@@ -1,0 +1,61 @@
+{
+  "latitude": "35.58",
+  "longitude": "-97.66",
+  "heading_deg": 270.0,
+  "viewport_width_nm": 13.33,
+  "resolution_px": 800,
+  "altitude_agl_ft": 3000.0,
+  "viewport:glide ratio": 1.4999014740740741,
+  "wind_speed_kt": 0.0,
+  "wind_direction_deg": 0.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 1,
+      "rel_x_nm": 0.6998,
+      "rel_y_nm": -2.0328,
+      "heading_deg": 180.0,
+      "small": true
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -1.5829,
+      "rel_y_nm": -1.383,
+      "heading_deg": 268.1,
+      "small": true
+    },
+    {
+      "number": 2,
+      "rel_x_nm": -1.4496375,
+      "rel_y_nm": -0.5165375,
+      "heading_deg": 177.95459151111277
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.6831625,
+      "rel_y_nm": -1.0830625,
+      "heading_deg": 120.25643716352926
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 2.1827875,
+      "rel_y_nm": -0.5498625,
+      "heading_deg": 90.0
+    }
+  ],
+  "ground_truth_index": 0,
+  "answer_explanation": "1 is an airport, which is the best surface. ",
+  "prompt_additions": "This note is provided to aid in determining landing spot numbers. The small landing spot marker at (0.6998, -2.0328) at a heading of 180 degrees is labeled landing spot 1. The small landing spot marker at (-1.5829, -1.3830) at a heading of 270 degrees is labeled landing spot 4.",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T01:14:15",
+  "starting_condition_tags": [
+    "agl_3000_5000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

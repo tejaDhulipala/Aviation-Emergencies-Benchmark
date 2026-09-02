@@ -1,0 +1,59 @@
+{
+  "latitude": "34.5940887",
+  "longitude": "-92.5247992",
+  "heading_deg": 180.0,
+  "viewport_width_nm": 13.33,
+  "resolution_px": 800,
+  "altitude_agl_ft": 3000.0,
+  "viewport:glide ratio": 1.4999014740740741,
+  "wind_speed_kt": 2.0,
+  "wind_direction_deg": 170.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 3,
+      "rel_x_nm": -0.2166125,
+      "rel_y_nm": -1.53295,
+      "heading_deg": 92.12109639666147
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 1.1330500000000001,
+      "rel_y_nm": -1.099725,
+      "heading_deg": 191.30993247402023
+    },
+    {
+      "number": 5,
+      "rel_x_nm": -0.9830875,
+      "rel_y_nm": 0.4832125,
+      "heading_deg": 59.53445508054011
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 2.99925,
+      "rel_y_nm": -0.19995,
+      "heading_deg": 110.55604521958344
+    },
+    {
+      "number": 2,
+      "rel_x_nm": -1.6829125,
+      "rel_y_nm": -1.0497375,
+      "heading_deg": 226.1691393279074
+    }
+  ],
+  "ground_truth_index": 0,
+  "answer_explanation": "1 is a forest, 2 is a suburbance area, 3 is an open field, 4 is a forest, and 5 is an urban area. 3 is best. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T02:03:42",
+  "starting_condition_tags": [
+    "agl_3000_5000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "latitude": "32.79",
+  "longitude": "-79.9360738",
+  "heading_deg": 330.0,
+  "viewport_width_nm": 6.66,
+  "resolution_px": 800,
+  "altitude_agl_ft": 1500.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 7.0,
+  "wind_direction_deg": 30.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 2,
+      "rel_x_nm": -0.124875,
+      "rel_y_nm": 1.073925,
+      "heading_deg": 24.443954780416504
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.7409250000000001,
+      "rel_y_nm": 0.9324000000000001,
+      "heading_deg": 320.59933933652053
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.18315,
+      "rel_y_nm": 0.507825,
+      "heading_deg": 142.5238204386386
+    },
+    {
+      "number": 5,
+      "rel_x_nm": -1.6566750000000001,
+      "rel_y_nm": 1.04895,
+      "heading_deg": 29.538782259558104
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -2.422575,
+      "rel_y_nm": 0.78255,
+      "heading_deg": 337.5205656028969
+    }
+  ],
+  "ground_truth_index": 0,
+  "answer_explanation": "2 is an open field, everything else is urban, trees, or water. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T02:18:00",
+  "starting_condition_tags": [
+    "agl_1000_3000",
+    "nonstandard_terrain/coastal"
+  ],
+  "expected_behavior_tags": [
+    "basic_surface_heuristic"
+  ]
+}

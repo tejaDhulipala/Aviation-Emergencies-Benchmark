@@ -1,0 +1,60 @@
+{
+  "latitude": "25.4256942",
+  "longitude": "-80.3021693",
+  "heading_deg": 180.0,
+  "viewport_width_nm": 15.55,
+  "resolution_px": 800,
+  "altitude_agl_ft": 3500.0,
+  "viewport:glide ratio": 1.49974073015873,
+  "wind_speed_kt": 2.0,
+  "wind_direction_deg": 170.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 1,
+      "rel_x_nm": -5.131500000000001,
+      "rel_y_nm": 3.2071875,
+      "heading_deg": 52.125016348901795
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -2.293625,
+      "rel_y_nm": -1.6910625000000001,
+      "heading_deg": 180.0
+    },
+    {
+      "number": 5,
+      "rel_x_nm": 2.8184375,
+      "rel_y_nm": -2.5657500000000004,
+      "heading_deg": 149.7435628364707
+    },
+    {
+      "number": 2,
+      "rel_x_nm": -1.01075,
+      "rel_y_nm": -1.360625,
+      "heading_deg": 358.45184230102205
+    },
+    {
+      "number": 4,
+      "rel_x_nm": -5.4619375,
+      "rel_y_nm": -3.770875,
+      "heading_deg": 272.3859440303888
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "1 and 4 are unreachable. 2 is into water, and 5 is into an island with trees. 3 is a field. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-02T01:57:28",
+  "starting_condition_tags": [
+    "agl_3000_5000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "basic_physics",
+    "basic_surface_heuristic"
+  ]
+}
