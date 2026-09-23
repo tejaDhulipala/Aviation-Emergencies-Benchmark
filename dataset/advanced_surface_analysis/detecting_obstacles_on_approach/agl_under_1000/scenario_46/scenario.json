@@ -1,0 +1,62 @@
+{
+  "latitude": "40.492",
+  "longitude": "-75.77",
+  "heading_deg": 90.0,
+  "viewport_width_nm": 0.88,
+  "resolution_px": 800,
+  "altitude_agl_ft": 200.0,
+  "viewport:glide ratio": 1.4852737777777776,
+  "wind_speed_kt": 15.0,
+  "wind_direction_deg": 20.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 5,
+      "rel_x_nm": 0.1309,
+      "rel_y_nm": 0.11220000000000001,
+      "heading_deg": 52.125016348901795
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.1133,
+      "rel_y_nm": 0.015400000000000002,
+      "heading_deg": 65.5560452195835
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 0.06269999999999999,
+      "rel_y_nm": -0.007700000000000001,
+      "heading_deg": 154.17900802581073
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.2541,
+      "rel_y_nm": 0.2728,
+      "heading_deg": 338.45902408146156
+    },
+    {
+      "number": 3,
+      "rel_x_nm": -0.022000000000000002,
+      "rel_y_nm": 0.0638,
+      "heading_deg": 60.10109816138544
+    }
+  ],
+  "ground_truth_index": 1,
+  "answer_explanation": "Choice 1 is parallel to the furrows, within reach, and into the wind. 3 is against the furrows. 2 has a strong cross/tail. 5 has obstacles on approach. 4 is unreachable. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-22T16:53:41",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "advanced_surface_analysis/farm_furrows",
+    "advanced_surface_analysis/obstacles_on_approach",
+    "basic_physics",
+    "tailwind_consideration/turn_into_wind"
+  ]
+}

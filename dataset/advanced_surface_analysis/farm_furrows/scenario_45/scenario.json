@@ -1,0 +1,61 @@
+{
+  "latitude": "27.4729807",
+  "longitude": "-80.9227102",
+  "heading_deg": 90.0,
+  "viewport_width_nm": 2.22,
+  "resolution_px": 800,
+  "altitude_agl_ft": 500.0,
+  "viewport:glide ratio": 1.4987762666666669,
+  "wind_speed_kt": 5.0,
+  "wind_direction_deg": 45.0,
+  "airspeed_kt": 65,
+  "weight_lbs": 2400,
+  "flaps_deg": 0,
+  "bank_angle_deg": 30,
+  "landing_options": [
+    {
+      "number": 5,
+      "rel_x_nm": 0.41902500000000004,
+      "rel_y_nm": -0.147075,
+      "heading_deg": 88.66778014613038
+    },
+    {
+      "number": 4,
+      "rel_x_nm": 0.2969,
+      "rel_y_nm": -0.1055,
+      "heading_deg": 34.4
+    },
+    {
+      "number": 1,
+      "rel_x_nm": 0.6382,
+      "rel_y_nm": -0.1249,
+      "heading_deg": 180.0
+    },
+    {
+      "number": 3,
+      "rel_x_nm": 0.1499,
+      "rel_y_nm": 0.1193,
+      "heading_deg": 270.0
+    },
+    {
+      "number": 2,
+      "rel_x_nm": 0.2803,
+      "rel_y_nm": 0.0777,
+      "heading_deg": 360.0
+    }
+  ],
+  "ground_truth_index": 4,
+  "answer_explanation": "You want to land parallel to furrows, which eliminates 3, 4, and 5. 1 is a tailwind. Thus, the right answer is 2. ",
+  "prompt_additions": "",
+  "image_file": "viewport.png",
+  "created_at": "2026-09-22T16:34:06",
+  "starting_condition_tags": [
+    "agl_under_1000",
+    "standard_terrain"
+  ],
+  "expected_behavior_tags": [
+    "advanced_surface_analysis/farm_furrows",
+    "basic_surface_heuristic",
+    "tailwind_consideration/land_with_tailwind"
+  ]
+}
