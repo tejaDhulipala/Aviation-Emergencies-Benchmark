@@ -18,6 +18,7 @@ containing:
 Usage:
     python3 llm_run.py                      # full run, default model
     python3 llm_run.py --model openai/gpt-4o-mini --runs 1
+    python3 llm_run.py --reasoning-effort high  # explicit reasoning effort instead of the model's own default
     python3 llm_run.py --limit 2 --dry-run  # print the prompt for the first 2 scenarios, no API calls
 """
 
@@ -45,6 +46,7 @@ OPENROUTER_KEY_NAME = "OPENROUTER-KEY"
 RUNS_PER_SCENARIO = 3
 DEFAULT_MODEL = "google/gemma-4-31b-it"
 DEFAULT_WORKERS = 8  # concurrent in-flight API requests
+VALID_REASONING_EFFORTS = ["low", "medium", "high"]  # OpenRouter's unified reasoning.effort enum
 REQUEST_TIMEOUT_S = 120
 
 # Bucket widths for treating the continuous viewport:glide ratio / viewport_width_nm
@@ -149,11 +151,14 @@ def build_messages(scenario, image_path):
     ]
 
 
-def call_openrouter(model, messages, api_key):
+def call_openrouter(model, messages, api_key, reasoning_effort=None):
+    payload = {"model": model, "messages": messages}
+    if reasoning_effort is not None:
+        payload["reasoning"] = {"effort": reasoning_effort}
     response = requests.post(
         OPENROUTER_URL,
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        json={"model": model, "messages": messages},
+        json=payload,
         timeout=REQUEST_TIMEOUT_S,
     )
     response.raise_for_status()
@@ -161,12 +166,12 @@ def call_openrouter(model, messages, api_key):
     return data["choices"][0]["message"]["content"]
 
 
-def call_openrouter_safe(model, messages, api_key):
+def call_openrouter_safe(model, messages, api_key, reasoning_effort=None):
     """Wraps call_openrouter for use from a worker thread: returns (response_text, error)
     instead of raising, so a single failed request doesn't need special handling to avoid
     tearing down the whole thread pool."""
     try:
-        return call_openrouter(model, messages, api_key), None
+        return call_openrouter(model, messages, api_key, reasoning_effort=reasoning_effort), None
     except requests.RequestException as e:
         return None, e
 
@@ -241,14 +246,15 @@ def majority_is_correct(outcomes):
     return outcomes.count("correct") > len(outcomes) / 2
 
 
-def write_summary_file(path, model, runs_per_scenario, timestamp, examples, tag_results, tag_majority,
-                        total_correct, total_wrong, total_unparseable, skipped_count):
+def write_summary_file(path, model, reasoning_effort, runs_per_scenario, timestamp, examples, tag_results,
+                        tag_majority, total_correct, total_wrong, total_unparseable, skipped_count):
     total_runs = total_correct + total_wrong + total_unparseable
     overall_majority_correct = sum(1 for ex in examples if majority_is_correct(ex["outcomes"]))
 
     lines = [
         "LLM Benchmark Run Summary",
         f"Model: {model}",
+        f"Reasoning effort: {reasoning_effort if reasoning_effort is not None else '(model default)'}",
         f"Runs per scenario: {runs_per_scenario}",
         f"Timestamp: {timestamp}",
         f"Scenarios graded: {len(examples)} (skipped: {skipped_count})",
@@ -316,6 +322,8 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Print the prompt for each scenario instead of calling the API")
     parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
                          help=f"Concurrent in-flight API requests (default: {DEFAULT_WORKERS})")
+    parser.add_argument("--reasoning-effort", choices=VALID_REASONING_EFFORTS, default=None,
+                         help="Reasoning effort level (low/medium/high). Omit to use the model's own default.")
     args = parser.parse_args()
 
     scenario_paths = find_scenarios(args.dataset_dir)
@@ -369,7 +377,8 @@ def main():
     completed_count = 0
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         future_to_item = {
-            executor.submit(call_openrouter_safe, args.model, item["messages"], api_key): (scenario_idx, run_idx)
+            executor.submit(call_openrouter_safe, args.model, item["messages"], api_key,
+                             args.reasoning_effort): (scenario_idx, run_idx)
             for scenario_idx, item in enumerate(graded)
             for run_idx in range(args.runs)
         }
@@ -466,7 +475,7 @@ def main():
 
     run_dir = RESULTS_DIR / f"{slugify_model(args.model)}_{args.runs}runs_{timestamp}"
     run_dir.mkdir(parents=True, exist_ok=True)
-    write_summary_file(run_dir / "summary.txt", args.model, args.runs, timestamp, examples,
+    write_summary_file(run_dir / "summary.txt", args.model, args.reasoning_effort, args.runs, timestamp, examples,
                         tag_results, tag_majority, total_correct, total_wrong, total_unparseable, skipped_count)
     write_responses_file(run_dir / "responses.txt", examples)
     print(f"\nWrote {run_dir}/summary.txt and {run_dir}/responses.txt")
