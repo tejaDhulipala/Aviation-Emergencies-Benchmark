@@ -1,10 +1,19 @@
 """Runs an LLM (via OpenRouter) on every scenario in the dataset/ tree, RUNS_PER_SCENARIO
 times each, and reports per-run correctness plus aggregate accuracy (overall, per scenario,
-and per tag).
+and per tag) to the terminal.
 
 Scenarios are discovered by recursively walking dataset/ for scenario.json files, wherever
 they live in the class-organization folder tree -- so the folder structure itself is never
 interpreted, only used to locate samples.
+
+Each real (non-dry-run) run also writes evaluation/results/<model>_<runs>runs_<timestamp>/,
+containing:
+  - summary.txt: overall/per-tag/per-example accuracy, each two ways -- averaged (every run
+    counts once) and majority vote (each example counts once, by its majority outcome).
+    viewport:glide ratio and viewport_width_nm are bucketed and reported as extra tags
+    alongside the real ones.
+  - responses.txt: every example's tags (plus that same bucketed metadata) and every run's
+    full raw model response with its right/wrong verdict.
 
 Usage:
     python3 llm_run.py                      # full run, default model
@@ -17,18 +26,31 @@ import base64
 import json
 import re
 import sys
+import time
 from collections import defaultdict
 from pathlib import Path
 
 import requests
 
-DATASET_DIR = "dataset"
-ENV_FILE = ".env"
+# Resolved from this file's own location rather than the working directory, so the script
+# behaves the same whether it's run as `python3 evaluation/llm_run.py` from the repo root,
+# `python3 llm_run.py` from inside evaluation/, or anything else.
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATASET_DIR = REPO_ROOT / "dataset"
+ENV_FILE = REPO_ROOT / ".env"
+RESULTS_DIR = REPO_ROOT / "evaluation" / "results"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_KEY_NAME = "OPENROUTER-KEY"
 RUNS_PER_SCENARIO = 3
 DEFAULT_MODEL = "google/gemma-4-31b-it"
 REQUEST_TIMEOUT_S = 120
+
+# Bucket widths for treating the continuous viewport:glide ratio / viewport_width_nm
+# metadata as extra "tags" in the per-tag accuracy breakdown, alongside the real tags.
+GLIDE_RATIO_BUCKET_RESOLUTION = 0.25
+VIEWPORT_WIDTH_BUCKET_RESOLUTION_NM = 1.0
+
+OUTCOME_LABELS = {"correct": "CORRECT", "wrong": "WRONG", "unparseable": "UNPARSEABLE", "error": "ERROR"}
 
 SYSTEM_PROMPT = """You are assisting a general aviation pilot flying a Cessna 172 whose engine \
 has just failed. You must choose the single best place to attempt an emergency landing. 
@@ -68,7 +90,7 @@ JSON_FENCE_RE = re.compile(r"```(?:json)?\s*(\{.*?\})\s*```", re.DOTALL | re.IGN
 
 
 def load_api_key():
-    env_path = Path(ENV_FILE)
+    env_path = ENV_FILE
     if not env_path.exists():
         sys.exit(f"Missing {ENV_FILE} -- expected a line like {OPENROUTER_KEY_NAME}=sk-or-...")
     for line in env_path.read_text().splitlines():
@@ -158,6 +180,110 @@ def correct_option_number(scenario):
     return scenario["landing_options"][gt_index]["number"]
 
 
+def slugify_model(model):
+    """'google/gemma-4-31b-it' -> 'google-gemma-4-31b-it', safe for a folder name."""
+    return re.sub(r"[^A-Za-z0-9._-]+", "-", model).strip("-")
+
+
+def example_label(scenario_path, fallback_index):
+    """'dataset/example_7/scenario.json' -> 'example_7' (also recognizes the older
+    'scenario_7' folder-naming convention); falls back to a sequential label if the
+    containing folder isn't named either way."""
+    folder_name = scenario_path.parent.name
+    if re.fullmatch(r"(example|scenario)_\d+", folder_name):
+        return folder_name
+    return f"example_{fallback_index}"
+
+
+def bucket_value(value, resolution):
+    return round(value / resolution) * resolution
+
+
+def metadata_pseudo_tags(scenario):
+    """viewport:glide ratio and viewport_width_nm, bucketed and treated as extra tags
+    wherever tags are reported (per-tag accuracy breakdown, responses.txt tag listings)."""
+    tags = []
+    glide_ratio = scenario.get("viewport:glide ratio")
+    if glide_ratio is not None:
+        tags.append(f"viewport_glide_ratio~{bucket_value(glide_ratio, GLIDE_RATIO_BUCKET_RESOLUTION):.2f}")
+    viewport_width = scenario.get("viewport_width_nm")
+    if viewport_width is not None:
+        tags.append(f"viewport_width_nm~{bucket_value(viewport_width, VIEWPORT_WIDTH_BUCKET_RESOLUTION_NM):.0f}")
+    return tags
+
+
+def majority_is_correct(outcomes):
+    """Strict majority of 'correct' outcomes among a scenario's runs; ties count as not
+    correct (e.g. 1/2 correct is not a majority)."""
+    return outcomes.count("correct") > len(outcomes) / 2
+
+
+def write_summary_file(path, model, runs_per_scenario, timestamp, examples, tag_results, tag_majority,
+                        total_correct, total_wrong, total_unparseable, skipped_count):
+    total_runs = total_correct + total_wrong + total_unparseable
+    overall_majority_correct = sum(1 for ex in examples if majority_is_correct(ex["outcomes"]))
+
+    lines = [
+        "LLM Benchmark Run Summary",
+        f"Model: {model}",
+        f"Runs per scenario: {runs_per_scenario}",
+        f"Timestamp: {timestamp}",
+        f"Scenarios graded: {len(examples)} (skipped: {skipped_count})",
+        "",
+        "=== Overall ===",
+    ]
+    if total_runs:
+        lines.append(f"Averaged (every run counts once):  {total_correct}/{total_runs} correct "
+                      f"({100 * total_correct / total_runs:.1f}%)")
+    if examples:
+        lines.append(f"Majority vote (per example):       {overall_majority_correct}/{len(examples)} correct "
+                      f"({100 * overall_majority_correct / len(examples):.1f}%)")
+    lines.append("")
+
+    lines.append("=== By tag ===")
+    for tag in sorted(tag_results):
+        avg_correct, avg_total = tag_results[tag]
+        maj_correct, maj_total = tag_majority[tag]
+        avg_pct = 100 * avg_correct / avg_total if avg_total else 0.0
+        maj_pct = 100 * maj_correct / maj_total if maj_total else 0.0
+        lines.append(tag)
+        lines.append(f"    averaged: {avg_correct}/{avg_total} ({avg_pct:.1f}%)   "
+                      f"majority: {maj_correct}/{maj_total} ({maj_pct:.1f}%)")
+    lines.append("")
+
+    lines.append("=== By example ===")
+    for ex in examples:
+        correct_count = ex["outcomes"].count("correct")
+        total_count = len(ex["outcomes"])
+        avg_pct = 100 * correct_count / total_count if total_count else 0.0
+        verdict = "CORRECT" if majority_is_correct(ex["outcomes"]) else "WRONG"
+        lines.append(f"{ex['label']}: averaged {correct_count}/{total_count} ({avg_pct:.1f}%)   majority: {verdict}")
+
+    path.write_text("\n".join(lines) + "\n")
+
+
+def write_responses_file(path, examples):
+    lines = []
+    for ex in examples:
+        lines.append(f"=== {ex['label']} ===")
+        lines.append(f"Path: {ex['path']}")
+        lines.append(f"Tags: {', '.join(ex['tags'])}")
+        lines.append(f"Correct answer: #{ex['correct_number']}")
+        lines.append("")
+        for i, run in enumerate(ex["runs"], start=1):
+            outcome_label = OUTCOME_LABELS[run["outcome"]]
+            if run["chosen_number"] is not None:
+                header = f"--- run {i}/{len(ex['runs'])}: {outcome_label} (chose #{run['chosen_number']}) ---"
+            else:
+                header = f"--- run {i}/{len(ex['runs'])}: {outcome_label} ---"
+            lines.append(header)
+            lines.append(run["response_text"])
+            lines.append("")
+        lines.append("")
+
+    path.write_text("\n".join(lines) + "\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--model", default=DEFAULT_MODEL, help=f"OpenRouter model id (default: {DEFAULT_MODEL})")
@@ -174,21 +300,26 @@ def main():
         sys.exit(f"No scenario.json files found under {args.dataset_dir}/")
 
     api_key = None if args.dry_run else load_api_key()
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
 
     total_correct = total_wrong = total_unparseable = 0
-    per_scenario_results = []  # (path, [outcome, ...])
-    tag_results = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total]
+    skipped_count = 0
+    examples = []  # list of {label, path, tags, correct_number, runs, outcomes}
+    tag_results = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total] (averaged, per run)
+    tag_majority = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total] (majority vote, per example)
 
-    for scenario_path in scenario_paths:
+    for index, scenario_path in enumerate(scenario_paths):
         scenario = json.loads(scenario_path.read_text())
         image_path = scenario_path.parent / scenario["image_file"]
         correct_number = correct_option_number(scenario)
         if correct_number is None:
             print(f"[{scenario_path}] SKIPPED: no ground_truth_index set")
+            skipped_count += 1
             continue
 
         messages = build_messages(scenario, image_path)
-        tags = scenario.get("starting_condition_tags", []) + scenario.get("expected_behavior_tags", [])
+        tags = (scenario.get("starting_condition_tags", []) + scenario.get("expected_behavior_tags", [])
+                + metadata_pseudo_tags(scenario))
 
         if args.dry_run:
             print(f"=== {scenario_path} ===")
@@ -198,51 +329,66 @@ def main():
             print(f"[CORRECT ANSWER] {correct_number}\n")
             continue
 
-        outcomes = []
+        runs = []  # list of {response_text, chosen_number, outcome}
         for run_index in range(1, args.runs + 1):
             label = f"[{scenario_path}] run {run_index}/{args.runs}"
             try:
                 response_text = call_openrouter(args.model, messages, api_key)
             except requests.RequestException as e:
                 print(f"{label}: REQUEST FAILED ({e})")
-                outcomes.append("error")
+                runs.append({"response_text": f"REQUEST FAILED: {e}", "chosen_number": None, "outcome": "error"})
                 continue
 
             chosen_number = parse_answer(response_text)
             if chosen_number is None:
                 print(f"{label}: UNPARSEABLE (no integer \"answer\" field found in JSON response)")
-                outcomes.append("unparseable")
+                runs.append({"response_text": response_text, "chosen_number": None, "outcome": "unparseable"})
                 total_unparseable += 1
                 continue
 
             if chosen_number == correct_number:
                 print(f"{label}: chose #{chosen_number}, correct #{correct_number} -> CORRECT")
-                outcomes.append("correct")
+                outcome = "correct"
                 total_correct += 1
             else:
                 print(f"{label}: chose #{chosen_number}, correct #{correct_number} -> WRONG")
-                outcomes.append("wrong")
+                outcome = "wrong"
                 total_wrong += 1
+            runs.append({"response_text": response_text, "chosen_number": chosen_number, "outcome": outcome})
 
             for tag in tags:
                 tag_results[tag][1] += 1
-                if outcomes[-1] == "correct":
+                if outcome == "correct":
                     tag_results[tag][0] += 1
 
-        per_scenario_results.append((scenario_path, outcomes))
+        outcomes = [r["outcome"] for r in runs]
+        is_majority_correct = majority_is_correct(outcomes)
+        for tag in tags:
+            tag_majority[tag][1] += 1
+            if is_majority_correct:
+                tag_majority[tag][0] += 1
+
+        examples.append({
+            "label": example_label(scenario_path, index),
+            "path": scenario_path,
+            "tags": tags,
+            "correct_number": correct_number,
+            "runs": runs,
+            "outcomes": outcomes,
+        })
 
     if args.dry_run:
         return
 
     total_runs = total_correct + total_wrong + total_unparseable
     print("\n=== Per-scenario results ===")
-    for path, outcomes in per_scenario_results:
-        summary = "/".join(o[0].upper() for o in outcomes)
-        print(f"{path}: {summary}")
+    for ex in examples:
+        summary = "/".join(o[0].upper() for o in ex["outcomes"])
+        print(f"{ex['path']}: {summary}")
 
     print("\n=== Aggregate results ===")
     print(f"Model: {args.model}")
-    print(f"Scenarios: {len(per_scenario_results)}, runs per scenario: {args.runs}, total runs: {total_runs}")
+    print(f"Scenarios: {len(examples)}, runs per scenario: {args.runs}, total runs: {total_runs}")
     if total_runs:
         print(f"Correct:     {total_correct:3d} ({100 * total_correct / total_runs:.1f}%)")
         print(f"Wrong:       {total_wrong:3d} ({100 * total_wrong / total_runs:.1f}%)")
@@ -253,6 +399,13 @@ def main():
         for tag in sorted(tag_results):
             correct, total = tag_results[tag]
             print(f"{tag}: {correct}/{total} ({100 * correct / total:.1f}%)")
+
+    run_dir = RESULTS_DIR / f"{slugify_model(args.model)}_{args.runs}runs_{timestamp}"
+    run_dir.mkdir(parents=True, exist_ok=True)
+    write_summary_file(run_dir / "summary.txt", args.model, args.runs, timestamp, examples,
+                        tag_results, tag_majority, total_correct, total_wrong, total_unparseable, skipped_count)
+    write_responses_file(run_dir / "responses.txt", examples)
+    print(f"\nWrote {run_dir}/summary.txt and {run_dir}/responses.txt")
 
 
 if __name__ == "__main__":
