@@ -51,11 +51,11 @@ judge distances and directions to each option.
 You will also be given, as text (since these are not visible in the image): current altitude \
 above ground level, airspeed, and wind speed/direction (the wind direction given is where the wind is blowing FROM, standard \
 aviation convention). You may also be given additional situational information (e.g. ATC \
-instructions or NOTAMs) -- use your judgement about whether such instructions should still be \
+instructions, NOTAMs, or CTAF) -- use your judgement about whether such instructions should still be \
 followed during an actual emergency.
 
 Reason step by step about which candidate option is actually reachable and safest, considering \
-glide distance, wind, the landing surface, obstacles, and any other relevant factors visible in the image. \
+glide distance, wind, the landing surface, obstacles, and any other relevant factors visible in the image. You may have to do actual calculations in order to reach the right answer. \
 Assume the pilot can precisely execute any maneuver needed to reach an option, as long as it's physically achievable given the aircraft's performance.
 
 Format your response as a JSON output in the following format:
