@@ -365,15 +365,25 @@ def main():
     # Raw results are just stashed by position; no aggregation happens on worker threads, so
     # there's nothing here that needs a lock.
     raw_results = [[None] * args.runs for _ in graded]  # [scenario_idx][run_idx] = (text, error)
+    total_work_items = len(graded) * args.runs
+    completed_count = 0
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         future_to_item = {
             executor.submit(call_openrouter_safe, args.model, item["messages"], api_key): (scenario_idx, run_idx)
             for scenario_idx, item in enumerate(graded)
             for run_idx in range(args.runs)
         }
+        # Live progress, in completion order (not scenario/run order -- that ordered detail,
+        # CORRECT/WRONG/etc., is printed in Phase 3 once every result is in).
         for future in as_completed(future_to_item):
             scenario_idx, run_idx = future_to_item[future]
-            raw_results[scenario_idx][run_idx] = future.result()
+            response_text, error = future.result()
+            raw_results[scenario_idx][run_idx] = (response_text, error)
+            completed_count += 1
+            item = graded[scenario_idx]
+            scenario_label = example_label(item["scenario_path"], item["index"])
+            status = f"ERROR ({error})" if error is not None else "done"
+            print(f"[{completed_count}/{total_work_items}] {scenario_label} run {run_idx + 1}/{args.runs}: {status}")
 
     # Phase 3: walk results in scenario/run order (not completion order) so output and
     # per-example aggregation read the same as the old sequential version.
