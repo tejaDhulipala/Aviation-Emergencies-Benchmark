@@ -28,6 +28,7 @@ import re
 import sys
 import time
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
@@ -43,6 +44,7 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_KEY_NAME = "OPENROUTER-KEY"
 RUNS_PER_SCENARIO = 3
 DEFAULT_MODEL = "google/gemma-4-31b-it"
+DEFAULT_WORKERS = 8  # concurrent in-flight API requests
 REQUEST_TIMEOUT_S = 120
 
 # Bucket widths for treating the continuous viewport:glide ratio / viewport_width_nm
@@ -157,6 +159,16 @@ def call_openrouter(model, messages, api_key):
     response.raise_for_status()
     data = response.json()
     return data["choices"][0]["message"]["content"]
+
+
+def call_openrouter_safe(model, messages, api_key):
+    """Wraps call_openrouter for use from a worker thread: returns (response_text, error)
+    instead of raising, so a single failed request doesn't need special handling to avoid
+    tearing down the whole thread pool."""
+    try:
+        return call_openrouter(model, messages, api_key), None
+    except requests.RequestException as e:
+        return None, e
 
 
 def parse_answer(response_text):
@@ -302,6 +314,8 @@ def main():
     parser.add_argument("--dataset-dir", default=DATASET_DIR, help=f"Root to search for scenario.json (default: {DATASET_DIR})")
     parser.add_argument("--limit", type=int, default=None, help="Only run the first N scenarios found")
     parser.add_argument("--dry-run", action="store_true", help="Print the prompt for each scenario instead of calling the API")
+    parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
+                         help=f"Concurrent in-flight API requests (default: {DEFAULT_WORKERS})")
     args = parser.parse_args()
 
     scenario_paths = find_scenarios(args.dataset_dir)
@@ -313,12 +327,10 @@ def main():
     api_key = None if args.dry_run else load_api_key()
     timestamp = time.strftime("%Y%m%d_%H%M%S")
 
-    total_correct = total_wrong = total_unparseable = 0
+    # Phase 1: figure out which scenarios are actually gradeable (skipping/dry-run-printing
+    # as before) and build each one's messages up front, without calling the API yet.
+    graded = []  # list of {index, scenario_path, correct_number, tags, messages}
     skipped_count = 0
-    examples = []  # list of {label, path, tags, correct_number, runs, outcomes}
-    tag_results = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total] (averaged, per run)
-    tag_majority = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total] (majority vote, per example)
-
     for index, scenario_path in enumerate(scenario_paths):
         scenario = json.loads(scenario_path.read_text())
         image_path = scenario_path.parent / scenario["image_file"]
@@ -340,14 +352,48 @@ def main():
             print(f"[CORRECT ANSWER] {correct_number}\n")
             continue
 
+        graded.append({
+            "index": index, "scenario_path": scenario_path, "correct_number": correct_number,
+            "tags": tags, "messages": messages,
+        })
+
+    if args.dry_run:
+        return
+
+    # Phase 2: fire every (scenario, run) request concurrently -- each is I/O-bound (network
+    # + generation time), so a thread pool cuts wall-clock time roughly by the worker count.
+    # Raw results are just stashed by position; no aggregation happens on worker threads, so
+    # there's nothing here that needs a lock.
+    raw_results = [[None] * args.runs for _ in graded]  # [scenario_idx][run_idx] = (text, error)
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        future_to_item = {
+            executor.submit(call_openrouter_safe, args.model, item["messages"], api_key): (scenario_idx, run_idx)
+            for scenario_idx, item in enumerate(graded)
+            for run_idx in range(args.runs)
+        }
+        for future in as_completed(future_to_item):
+            scenario_idx, run_idx = future_to_item[future]
+            raw_results[scenario_idx][run_idx] = future.result()
+
+    # Phase 3: walk results in scenario/run order (not completion order) so output and
+    # per-example aggregation read the same as the old sequential version.
+    total_correct = total_wrong = total_unparseable = 0
+    examples = []  # list of {label, path, tags, correct_number, runs, outcomes}
+    tag_results = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total] (averaged, per run)
+    tag_majority = defaultdict(lambda: [0, 0])  # tag_id -> [correct, total] (majority vote, per example)
+
+    for scenario_idx, item in enumerate(graded):
+        scenario_path = item["scenario_path"]
+        correct_number = item["correct_number"]
+        tags = item["tags"]
+
         runs = []  # list of {response_text, chosen_number, outcome}
-        for run_index in range(1, args.runs + 1):
-            label = f"[{scenario_path}] run {run_index}/{args.runs}"
-            try:
-                response_text = call_openrouter(args.model, messages, api_key)
-            except requests.RequestException as e:
-                print(f"{label}: REQUEST FAILED ({e})")
-                runs.append({"response_text": f"REQUEST FAILED: {e}", "chosen_number": None, "outcome": "error"})
+        for run_idx in range(args.runs):
+            label = f"[{scenario_path}] run {run_idx + 1}/{args.runs}"
+            response_text, error = raw_results[scenario_idx][run_idx]
+            if error is not None:
+                print(f"{label}: REQUEST FAILED ({error})")
+                runs.append({"response_text": f"REQUEST FAILED: {error}", "chosen_number": None, "outcome": "error"})
                 continue
 
             chosen_number = parse_answer(response_text)
@@ -380,16 +426,13 @@ def main():
                 tag_majority[tag][0] += 1
 
         examples.append({
-            "label": example_label(scenario_path, index),
+            "label": example_label(scenario_path, item["index"]),
             "path": scenario_path,
             "tags": tags,
             "correct_number": correct_number,
             "runs": runs,
             "outcomes": outcomes,
         })
-
-    if args.dry_run:
-        return
 
     total_runs = total_correct + total_wrong + total_unparseable
     print("\n=== Per-scenario results ===")
