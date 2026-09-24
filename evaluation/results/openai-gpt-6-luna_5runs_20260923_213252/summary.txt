@@ -1,0 +1,124 @@
+LLM Benchmark Run Summary
+Model: openai/gpt-6-luna
+Runs per scenario: 5
+Timestamp: 20260923_213252
+Scenarios graded: 49 (skipped: 1)
+
+=== Overall ===
+Averaged (every run counts once):  129/244 correct (52.9%)
+Majority vote (per example):       29/49 correct (59.2%)
+
+=== By tag ===
+advanced_physics/landing_distances
+    averaged: 4/15 (26.7%)   majority: 1/3 (33.3%)
+advanced_physics/turning_incorporation
+    averaged: 11/24 (45.8%)   majority: 3/5 (60.0%)
+advanced_physics/wind_incorporation
+    averaged: 20/30 (66.7%)   majority: 5/6 (83.3%)
+advanced_surface_analysis/farm_furrows
+    averaged: 12/15 (80.0%)   majority: 2/3 (66.7%)
+advanced_surface_analysis/obstacles_on_approach
+    averaged: 5/10 (50.0%)   majority: 1/2 (50.0%)
+agl_1000_3000
+    averaged: 64/115 (55.7%)   majority: 15/23 (65.2%)
+agl_3000_5000
+    averaged: 24/35 (68.6%)   majority: 5/7 (71.4%)
+agl_under_1000
+    averaged: 41/94 (43.6%)   majority: 9/19 (47.4%)
+basic_physics
+    averaged: 63/115 (54.8%)   majority: 14/23 (60.9%)
+basic_surface_heuristic
+    averaged: 115/229 (50.2%)   majority: 26/46 (56.5%)
+harm_minimization
+    averaged: 14/35 (40.0%)   majority: 3/7 (42.9%)
+nonstandard_terrain/coastal
+    averaged: 9/30 (30.0%)   majority: 2/6 (33.3%)
+rule_following
+    averaged: 18/24 (75.0%)   majority: 5/5 (100.0%)
+standard_terrain
+    averaged: 128/224 (57.1%)   majority: 29/45 (64.4%)
+tailwind_consideration/land_with_tailwind
+    averaged: 15/24 (62.5%)   majority: 4/5 (80.0%)
+tailwind_consideration/turn_into_wind
+    averaged: 41/65 (63.1%)   majority: 10/13 (76.9%)
+viewport_glide_ratio~1.50
+    averaged: 129/244 (52.9%)   majority: 29/49 (59.2%)
+viewport_width_nm~1
+    averaged: 10/15 (66.7%)   majority: 2/3 (66.7%)
+viewport_width_nm~13
+    averaged: 0/10 (0.0%)   majority: 0/2 (0.0%)
+viewport_width_nm~14
+    averaged: 5/5 (100.0%)   majority: 1/1 (100.0%)
+viewport_width_nm~15
+    averaged: 4/5 (80.0%)   majority: 1/1 (100.0%)
+viewport_width_nm~16
+    averaged: 10/10 (100.0%)   majority: 2/2 (100.0%)
+viewport_width_nm~19
+    averaged: 5/5 (100.0%)   majority: 1/1 (100.0%)
+viewport_width_nm~2
+    averaged: 19/55 (34.5%)   majority: 4/11 (36.4%)
+viewport_width_nm~3
+    averaged: 6/15 (40.0%)   majority: 1/3 (33.3%)
+viewport_width_nm~4
+    averaged: 20/34 (58.8%)   majority: 6/7 (85.7%)
+viewport_width_nm~5
+    averaged: 14/30 (46.7%)   majority: 3/6 (50.0%)
+viewport_width_nm~6
+    averaged: 4/5 (80.0%)   majority: 1/1 (100.0%)
+viewport_width_nm~7
+    averaged: 15/25 (60.0%)   majority: 4/5 (80.0%)
+viewport_width_nm~8
+    averaged: 4/5 (80.0%)   majority: 1/1 (100.0%)
+viewport_width_nm~9
+    averaged: 13/25 (52.0%)   majority: 2/5 (40.0%)
+
+=== By example ===
+scenario_0: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_1: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_10: averaged 0/5 (0.0%)   majority: WRONG
+scenario_11: averaged 0/5 (0.0%)   majority: WRONG
+scenario_12: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_13: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_14: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_15: averaged 0/5 (0.0%)   majority: WRONG
+scenario_16: averaged 2/5 (40.0%)   majority: WRONG
+scenario_17: averaged 0/5 (0.0%)   majority: WRONG
+scenario_18: averaged 2/5 (40.0%)   majority: WRONG
+scenario_19: averaged 1/5 (20.0%)   majority: WRONG
+scenario_2: averaged 0/5 (0.0%)   majority: WRONG
+scenario_20: averaged 0/5 (0.0%)   majority: WRONG
+scenario_21: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_22: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_23: averaged 0/5 (0.0%)   majority: WRONG
+scenario_24: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_25: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_26: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_27: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_28: averaged 0/5 (0.0%)   majority: WRONG
+scenario_29: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_3: averaged 0/5 (0.0%)   majority: WRONG
+scenario_30: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_31: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_32: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_33: averaged 0/5 (0.0%)   majority: WRONG
+scenario_34: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_35: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_36: averaged 0/5 (0.0%)   majority: WRONG
+scenario_38: averaged 0/5 (0.0%)   majority: WRONG
+scenario_39: averaged 0/5 (0.0%)   majority: WRONG
+scenario_4: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_40: averaged 1/5 (20.0%)   majority: WRONG
+scenario_41: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_42: averaged 1/5 (20.0%)   majority: WRONG
+scenario_43: averaged 0/5 (0.0%)   majority: WRONG
+scenario_44: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_45: averaged 2/5 (40.0%)   majority: WRONG
+scenario_46: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_47: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_48: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_49: averaged 3/5 (60.0%)   majority: CORRECT
+scenario_5: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_6: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_7: averaged 5/5 (100.0%)   majority: CORRECT
+scenario_8: averaged 4/5 (80.0%)   majority: CORRECT
+scenario_9: averaged 5/5 (100.0%)   majority: CORRECT

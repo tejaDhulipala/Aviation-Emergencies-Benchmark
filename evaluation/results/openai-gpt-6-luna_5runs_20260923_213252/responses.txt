@@ -1,0 +1,1029 @@
+=== scenario_0 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_0/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.0 nm east. A Cessna 172 at roughly best-glide speed can typically cover around 1.5 nm from 1,000 ft AGL in still air, so this is reachable, though with limited margin. It appears to offer a long, straight landing surface with more room than the shorter or more obstructed options in the dense urban area. With no wind, there is no wind penalty to account for.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 appears to be the longest, clearest landing surface, aligned roughly east-west, and is about 1.0 nm away. A Cessna 172 at 65 kt can typically glide roughly 1.5 nm from 1,000 ft AGL in still air at best glide, although the practical range is less after allowing for turns and the landing flare. Option 3 is therefore reachable with some margin. The closer alternatives appear to offer shorter or more obstructed surfaces, while the farther choices leave less glide margin. With calm wind, there is no wind-driven reason to prefer another landing direction.","answer":3}
+
+--- run 3/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It is only about 0.4–0.5 nm away, slightly northwest of the aircraft, so it is reachable with a modest turn. At 1,000 ft AGL, a C172 at roughly best-glide speed has about 1.5 nm of still-air glide range at a 9:1 glide ratio, before practical allowances; the zero wind helps. The image shows option 1 in a relatively open green area, offering a better touchdown surface than the built-up streets and corridors at the other nearby choices. The farther options may be theoretically reachable, but offer less margin and no clear enough advantage to justify the extra distance.","answer":1}
+
+--- run 4/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It is only about 0.4–0.5 nm away, well within the roughly 1.5 nm theoretical glide range of a C172 from 1,000 ft AGL at a suitable glide speed; with no wind, there is no wind penalty. The imagery shows a relatively open green area at option 1, offering a better landing surface than the nearby built-up or road-aligned alternatives. Options 3 and 4 are much farther away and leave less margin for maneuvering or imperfect glide performance.","answer":1}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"With no wind, a C172 at roughly best-glide speed has about 1.4–1.5 nm of theoretical still-air range from 1,000 ft AGL, before allowing for maneuvering and a safety margin. Option 3 is about 0.9 nm east and appears to offer a long, clear east–west landing surface, with its indicated touchdown direction aligned along it. It is reachable with useful margin and looks safer than the shorter or more obstructed urban alternatives. Option 4 is farther away and leaves less margin.","answer":3}
+
+
+=== scenario_1 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_1/scenario.json
+Tags: agl_1000_3000, standard_terrain, advanced_physics/wind_incorporation, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #4
+
+--- run 1/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best balance of reachability and landing conditions. It is about 0.75 nm north and slightly east; allowing for westward drift from the wind, the required glide path is still comfortably within a typical C172’s roughly 1.5 nm still-air range from 1,000 ft AGL. Its eastbound landing direction gives a headwind with wind from the east, and the visible open field offers a better landing surface than the more constrained nearby area at option 1. Option 2 is much farther and would be marginal after accounting for wind and maneuvering.","answer":4}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 0.6 nm away, comfortably within the roughly 1.5 nm still-air glide range expected from 1,000 ft AGL in a C172 near best glide. It appears to offer a clear, elongated landing area aligned east–west; landing east is into the wind from 090°, giving a strong headwind and avoiding a tailwind landing. Option 3 is slightly closer, but its northeast alignment gives a substantial crosswind component and appears to offer a less clearly defined landing area. Options 2 and 4 are farther, while option 5 requires a longer maneuver and a southwest landing with a tailwind component.","answer":1}
+
+--- run 3/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best balance of reachability and landing conditions. It is roughly 0.75 nm north of the aircraft, well within the approximate 1.5 nm still-air glide range of a Cessna 172 from 1,000 ft AGL; the short eastward component and wind drift still leave useful margin. Its eastbound landing direction faces into the wind, which is blowing from the east, and the image shows a relatively open field. Option 2 is much farther and near the glide limit, while option 5 would involve a tailwind on touchdown. Option 1 is closer, but appears to offer a less suitable landing area than option 4.","answer":4}
+
+--- run 4/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best balance of reachability, landing direction, and surface. It is roughly 0.8 nm away, comfortably within the approximate 1.1–1.5 nm glide range available from 1,000 ft AGL in a C172, allowing for the 15-kt wind. Its eastbound landing direction is into the wind, reducing groundspeed at touchdown, and the image shows a clear, elongated field aligned with that direction. Option 2 appears farther away and may be marginal in the headwind; option 1 is similarly reachable and aligned but appears less clear. The other options have less favorable landing alignment or surface conditions.","answer":4}
+
+--- run 5/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best choice: it appears to lie in a broad, relatively clear rectangular field, and its eastbound landing direction gives a headwind with wind from the east. Using a typical C172 glide ratio of about 9:1, 1,000 ft AGL provides roughly 1.5 nm of still-air glide at this speed, before allowing for maneuvering and flare. Option 4 is about 0.8 nm away; accounting for westward wind drift makes it farther to reach, but still leaves useful margin. Option 2 is near the theoretical glide limit after wind correction, while the other nearby choices appear less suitable landing surfaces or have less favorable alignment.","answer":4}
+
+
+=== scenario_10 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_10/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_physics/turning_incorporation, advanced_physics/wind_incorporation, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~1
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is the best reachable choice: it is very close (about 0.12 nm), lies nearly straight ahead on the aircraft’s westbound track, and its landing direction matches that track. The wind gives a helpful headwind component. At only 300 ft AGL, turning around to reach the runway at option 1—or the farther option 3—would use too much altitude and distance, and option 1 would also involve a tailwind. Option 4 is constrained by nearby buildings, but is preferable to the more distant or less aligned alternatives.","answer":4}
+
+--- run 2/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is the best choice: it is only about 0.1 nm away and lies nearly straight ahead on the aircraft’s westbound track, so it requires little or no maneuvering. At 300 ft AGL, a C172’s theoretical glide range is limited (roughly 0.4–0.5 nm in still air, less with the headwind component and maneuvering), making the farther options risky or unreachable. Option 4 appears to offer a paved landing path, though buildings nearby make it less than ideal. The more distant runway-like options would require substantial turns and leave little margin at this altitude.","answer":4}
+
+--- run 3/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it appears to be a straight paved strip in relatively open terrain, with the landing direction eastbound. It is about 0.4 nm away, near the edge of the glide available from 300 ft AGL, so the pilot should turn toward it immediately and avoid unnecessary maneuvering. A C172 at roughly best-glide speed can cover about 0.4–0.45 nm in still air from this height; the wind, blowing toward the northeast, provides a helpful component toward the eastbound option. The resulting tailwind is a landing drawback, but the straight, open landing surface is preferable to the more road-like alternatives. Option 3 is closer, but appears to be a divided roadway with interchange features and more potential hazards.","answer":1}
+
+--- run 4/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is the best reachable choice: it is roughly 0.1–0.15 nm away, nearly straight ahead, and aligned for a westbound landing, so it avoids a low-altitude turnaround. A C172 at 300 ft AGL has only about 0.4–0.5 nm of ideal still-air glide range, leaving little margin for maneuvering. The wind blows toward 050°, giving a westbound landing a modest headwind component. Option 4 is in a built-up area, so buildings and the limited landing surface are hazards, but the farther options require more maneuvering or a tailwind and are less prudent at this altitude.","answer":4}
+
+--- run 5/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is very close and nearly straight ahead on the aircraft’s westbound track, so it requires little or no maneuvering. At 300 ft AGL, a C172 has very little time and altitude for a turn; the wind from 230° is also a headwind on a westbound track, reducing glide range. The more distant options require a significant turn or reversal and are less reliable to reach. Option 4 appears to offer a paved landing path, making it the best achievable choice despite nearby development.","answer":4}
+
+
+=== scenario_11 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_11/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_surface_analysis/obstacles_on_approach, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #4
+
+--- run 1/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is about 0.3 nm east of the aircraft and lies on an apparent runway aligned for an eastbound landing. A C172’s roughly 9:1 glide ratio gives about 0.7 nm of still-air range from 500 ft AGL, so option 2 is comfortably reachable. The wind from 040° gives an eastbound approach a modest headwind component. Options 4, 1, and 5 are farther away, while option 3 is roughly 0.8 nm away and appears beyond a conservative glide range. The runway at option 2 is preferable to the less suitable surrounding terrain and leaves more margin than the farther runway option.","answer":2}
+
+--- run 2/5: WRONG (chose #2) ---
+{"reasoning":"Choose option 2. At roughly 0.35 nm east, it is comfortably reachable from 500 ft AGL: a C172 gliding near 65 kt at about 9:1 has roughly 0.74 nm still-air range, reduced to around 0.68 nm by the modest headwind on an eastbound track. Option 2 is aligned with the paved east-west runway, with substantial runway remaining ahead. Option 4 appears to be on the same runway but is farther away and leaves less reachability margin; the other options are less suitable or less reachable.","answer":2}
+
+--- run 3/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is only about 0.3 nm east of the aircraft and lies on the east–west landing surface, closely matching the aircraft’s current heading and requiring little maneuvering. At 500 ft AGL, a C172’s approximate still-air glide range is around 0.7–0.8 nm, so this option is comfortably reachable with useful margin. The wind blows toward 220°; for an eastbound landing it provides a modest headwind component, though with some crosswind. Option 4 appears to use the same surface but is farther away, while options 1, 3, and 5 require more distance or maneuvering and offer no clear safety advantage.","answer":2}
+
+--- run 4/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is about 0.34 nm east of the aircraft, nearly straight ahead, and lies on a clear paved east–west strip with substantial surface remaining in the touchdown direction. At 500 ft AGL, the farther options leave little margin for the glide, flare, and any needed maneuver; option 3 is especially far, while options 1 and 5 appear to offer less suitable surfaces. The wind from 040° gives an eastbound landing a modest headwind component. Continue toward option 2 and prioritize a controlled landing.","answer":2}
+
+--- run 5/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is the closest suitable landing area, about 0.35 nm east and nearly straight ahead, so it minimizes maneuvering at only 500 ft AGL. A C172 at roughly best-glide speed can cover about 0.7 nm in still air at this altitude, before allowing for maneuvering and other margins, so option 2 is comfortably reachable. Its long, straight east-west paved surface is preferable to the less certain field or road options. Landing eastbound also gives a modest headwind component from the wind blowing toward the southwest. The farther options offer less reach margin without a clear surface advantage.","answer":2}
+
+
+=== scenario_12 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_12/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_physics/turning_incorporation, basic_surface_heuristic, rule_following, tailwind_consideration/land_with_tailwind, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 0.55 nm away, well within the roughly 1.2 nm still-air glide range available from 800 ft AGL at an approximate 9:1 glide ratio. It offers a long, straight east-west landing corridor; landing eastbound also gets a small tailwind component from the wind blowing from 320°. Option 2 is slightly closer, but its landing area appears less clear. Options 3–5 offer less suitable surfaces or are farther away. The ATC transmission is not a reason to delay an emergency landing; declare the emergency and advise ATC if able.","answer":1}
+
+--- run 2/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it appears to be the nearby parallel east–west runway, while the ATC transmission indicates JetBlue is lining up on runway 9L, corresponding to the northern runway (option 1). The southern parallel runway (option 2) avoids that known traffic conflict. It is only about half a nautical mile away, comfortably within the roughly 1.2 nm still-air glide range available from 800 ft in a Cessna 172. The 320° wind has a modest tailwind component for an eastbound landing. Declare the emergency and advise ATC, but do not attempt to land on the runway JetBlue is occupying if the parallel option is available.","answer":2}
+
+--- run 3/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.5 nm away (roughly 0.4 nm east and 0.25 nm south), so it is reachable from 800 ft AGL with a direct, manageable approach. It is aligned eastbound, with a modest tailwind component from the wind blowing toward the southeast. Option 1 is similarly close, but appears to be the northern parallel runway, consistent with runway 9L; ATC has just reported a JetBlue aircraft lining up there. The nearby parallel landing option avoids that immediate traffic conflict. In an engine failure, declare the emergency and prioritize the landing, while using the traffic information to choose the safer available runway.","answer":2}
+
+--- run 4/5: ERROR ---
+REQUEST FAILED: 502 Server Error: Bad Gateway for url: https://openrouter.ai/api/v1/chat/completions
+
+--- run 5/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it appears to be the parallel runway south of option 1, aligned for an eastbound landing, and is about 0.5 nm away. At 800 ft AGL, a C172’s approximate 9:1 glide ratio gives roughly 1.2 nm of still-air range, so option 2 is comfortably reachable. The wind from 320° at 7 kt gives an eastbound landing a modest tailwind and crosswind component. Option 1 is also reachable, but ATC’s ‘line up and wait runway 9L’ transmission warns that a jet may be entering or occupying that runway. Choosing the parallel runway avoids that apparent conflict; declare an emergency and advise ATC as able.","answer":2}
+
+
+=== scenario_13 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_13/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_physics/turning_incorporation, basic_surface_heuristic, rule_following, tailwind_consideration/land_with_tailwind, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #1
+
+--- run 1/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it appears to be a clear east-west runway, is only about 0.5–0.6 nm away, and is within the approximate still-air glide range of a C172 from 800 ft AGL (roughly 1.2 nm at a 9:1 glide ratio). Reaching it requires a turn from the current westbound heading, but the short distance makes that feasible. The wind from 320° gives an eastbound landing a modest tailwind, which is less desirable than a headwind but manageable. Option 2 appears to be the parallel runway to the south; for an eastbound landing that is likely runway 9R, where ATC has just said a JetBlue is lining up and waiting, so it presents a potential traffic conflict. Option 1 is the safer runway choice. The other options appear farther away and/or less suitable landing surfaces. In an engine-out emergency, prioritize landing safely and do not delay for ATC clearance.","answer":1}
+
+--- run 2/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is a nearby paved, east-west landing surface, roughly 0.5 nm away, so it is comfortably within reach. A C172 at about 65 kt with 800 ft AGL has roughly 1.1–1.2 nm of still-air glide at best glide, though maneuvering and the flare reduce the practical margin. The wind from 320° gives an eastbound landing a modest tailwind component. Option 1 is also reachable, but ATC’s instruction for Jetblue 1910 to line up and wait on runway 9R indicates that runway may be occupied; the emergency does not justify choosing it when the nearby alternative is available. The more distant or less suitable options offer no safety advantage over option 2.","answer":2}
+
+--- run 3/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.7 nm away, within a Cessna 172’s approximate 1.2 nm still-air glide range from 800 ft AGL. Its eastbound landing direction is reasonable with the 7 kt wind, and it appears to be the parallel runway not occupied by the aircraft told to line up and wait on runway 9R. Option 1 also looks reachable, but avoiding the runway likely occupied or about to be used is safer. Declare the emergency and disregard any instruction that would delay the landing.","answer":2}
+
+--- run 4/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It appears to be the northern of the parallel east–west runways, roughly 0.55 nm away. At 800 ft AGL, a C172 at best-glide speed has roughly 1 nm of practical glide range in still air, so this runway is reachable with room for the turn from the current westbound heading. The wind from 320° gives an eastbound landing a modest tailwind, but the short distance and runway surface make option 1 preferable to the other visible choices. Option 2 appears to be the southern parallel runway; for an eastbound landing that is runway 9R, which ATC says JetBlue is lining up and waiting on. Avoid that occupied runway and use option 1, likely 9L. Declare the emergency and advise ATC if able.","answer":1}
+
+--- run 5/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It is a nearby eastbound runway, roughly 0.55 nm away; at 800 ft AGL, a C172 at about best-glide speed has roughly 1.2 nm of still-air glide range, and the wind gives an eastbound tailwind component. Option 2 is also close, but it appears to be the southern parallel runway. Facing east, that is runway 9R, the runway ATC just instructed JetBlue to line up and wait on, so it may soon be occupied. The northern parallel runway, option 1, is the safer reachable alternative.","answer":1}
+
+
+=== scenario_14 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_14/scenario.json
+Tags: agl_under_1000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #2
+
+--- run 1/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.5 nm away, almost directly east. At 500 ft AGL, a C172 at best glide can cover roughly 0.7–0.75 nm in still air; the 15 kt easterly wind is nearly a headwind on the approach and reduces practical range to roughly 0.55–0.6 nm. Option 2 is therefore reachable with little margin, while option 3 is too far. Option 2 also appears to offer a relatively clear agricultural landing area, and its eastbound touchdown direction gives a headwind. The nearer alternatives involve less suitable terrain or a road, so option 2 is the best choice.","answer":2}
+
+--- run 2/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm away, within the approximate glide range from 500 ft AGL for a C172 at 65 kt, even allowing for the easterly headwind. Its eastbound landing direction is into the wind, and the visible east-west corridor appears more suitable than the dark, obstructed ground near options 1 and 5. Option 3 is farther east and likely out of reach; option 4 is reachable but offers a crosswind landing on a narrow road.","answer":2}
+
+--- run 3/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm east, nearly straight ahead, so it requires little maneuvering. A Cessna 172 gliding roughly 9:1 from 500 ft AGL has about 0.7 nm of still-air range; the 15 kt headwind for an eastbound landing reduces that range, but option 2 remains reachable. It appears to offer a relatively open landing area. Option 3 is farther east and likely beyond the reduced glide range, while options 1 and 5 appear to be rougher terrain and option 4 requires a turn and a crosswind landing on a narrow road.","answer":2}
+
+--- run 4/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm east of the aircraft and appears to offer open agricultural ground. With a typical C172 glide ratio near 9:1, 500 ft AGL gives roughly 0.7 nm of still-air glide distance; the 15 kt wind from the east reduces eastbound ground range, but option 2 remains comfortably reachable. Its eastward touchdown direction is into the wind, which helps reduce landing speed. Option 3 is farther away and likely outside the available range. Options 1 and 5 appear to involve rougher ground, while option 4 is a narrower road and would require a crosswind landing. Therefore, option 2 is the best choice.","answer":2}
+
+--- run 5/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best reachable landing area. It is about 0.45 nm east and slightly north, and its eastbound touchdown direction gives a strong headwind component with wind from the east. A Cessna 172’s approximate 9:1 glide ratio from 500 ft AGL gives roughly 0.7 nm of still-air glide; the headwind reduces ground range, but option 2 remains within reach with a direct approach. Option 3 is roughly 0.8 nm east and likely beyond reach. Options 1 and 5 appear to lie in rough, wooded or wet terrain, while option 4 is a narrow north-south road with a crosswind landing and likely road hazards. Aim for the open area at option 2 and avoid delaying for a perfect approach.","answer":2}
+
+
+=== scenario_15 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_15/scenario.json
+Tags: agl_under_1000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #4
+
+--- run 1/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.45 nm away, within the roughly 0.7 nm still-air glide range a C172 can cover from 500 ft AGL at best glide. The wind is mostly a crosswind on its eastbound approach, with a small tailwind component, so it remains reachable. The area appears to offer a relatively open landing surface. Option 3 is farther away and likely beyond practical glide range; option 4 is reachable but appears to be a narrow road, while options 1 and 5 are in rough, obstructed terrain.","answer":2}
+
+--- run 2/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm away, within the roughly 0.7 nm still-air glide distance expected from 500 ft AGL in a C172 at best-glide speed, with some margin for maneuvering. It offers a broad, relatively clear field and an eastbound landing direction. The wind from the south would be a crosswind for that direction, but is preferable to the rough or obstructed-looking ground near the closer options. Option 3 is substantially farther and likely outside practical glide range; option 4 appears to require landing on a narrow road.","answer":2}
+
+--- run 3/5: WRONG (chose #2) ---
+{"reasoning":"At 65 kt, a C172’s approximate 9:1 best-glide ratio gives about 0.7 nm of still-air range from 500 ft AGL, with less available after allowing for maneuvering and the flare. Option 2 is roughly 0.4 nm away, so it is comfortably more reachable than option 3, which is about 0.8 nm away. Option 2 appears to offer a relatively broad, clear field for an eastbound landing. The southerly wind gives an approximately 15 kt crosswind for that direction, which is a tradeoff, but the field is preferable to the narrower road at option 4 and the rougher or obstructed-looking terrain near the closer options. The wind also has a northward component toward option 2.","answer":2}
+
+--- run 4/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm away, ahead and slightly to the right, and appears to offer a clearer, broader landing area than the narrow north–south road at option 4 or the rough, wooded ground near options 1 and 5. A C172 at roughly 65 kt can glide about 0.7 nm from 500 ft AGL in still air at best glide, before allowing for maneuvering and other losses, so option 2 is reachable with useful margin. The southerly wind gives an eastbound landing a crosswind, but option 2 is preferable to option 3, which is at or beyond practical glide range, and to the more obstructed alternatives.","answer":2}
+
+--- run 5/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.45 nm away, mostly east and close to the aircraft’s current heading. A Cessna 172 at roughly 65 kt can typically glide about 0.7 nm from 500 ft AGL in still air, so this is plausibly reachable with limited maneuvering. The 15 kt wind from the south is a crosswind for the eastbound landing, but it is manageable and does not create the strong headwind penalty of some alternatives. Option 2 appears to offer a relatively open field; option 4 is a narrower road, while options 1 and 5 lie in darker, rougher-looking terrain. Option 3 is farther and less prudent at this altitude.","answer":2}
+
+
+=== scenario_16 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_16/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~5
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #5) ---
+{"reasoning":"Choose option 5. A C172 at roughly 65 kt with about 1,200 ft AGL has an ideal still-air glide range near 1.8 nm at a 9:1 glide ratio, before allowing for maneuvering and other losses. Option 5 is about 1.5 nm east, and the wind blows toward the northeast, helping the aircraft make that eastward displacement. Its indicated southwest landing direction is close to directly into the wind, giving the best headwind and a lower touchdown groundspeed. Option 4 has a similar into-wind landing direction but is farther away and substantially south of the aircraft, making it a less dependable reach. Options 1 and 3 point generally downwind, while option 2 offers less favorable wind alignment. The visible area at option 5 appears to provide a usable open landing strip or clearing.","answer":5}
+
+--- run 2/5: CORRECT (chose #2) ---
+{"reasoning":"Choose option 2. It is about 1.1 nm away, comfortably within a C172’s approximate 1.8 nm still-air glide range from 1,200 ft AGL, with margin for maneuvering. Its southbound landing direction gives a useful headwind component from the wind out of 210°, though there will also be some crosswind. The imagery suggests a relatively open field. Options 1 and 3 are closer or similarly reachable but have a tailwind on landing; option 5 offers a better landing headwind, but is farther away and appears less clearly suitable than the open area at option 2.","answer":2}
+
+--- run 3/5: WRONG (chose #3) ---
+{"reasoning":"Choose option 3. It is about 0.7 nm away, comfortably within the roughly 1.5–2 nm still-air glide range a C172 might achieve from 1,200 ft, with practical margin for the approach. The image shows an open, relatively broad field there, making it a better landing surface than the wooded or wet-looking areas near several other options. Its northbound landing direction also gets a tailwind component from the wind blowing toward 030°, so expect a faster touchdown and account for that in the approach. The much farther options offer less margin and/or appear less suitable.","answer":3}
+
+--- run 4/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 offers the best combination of reachability and landing conditions. At roughly 1.5 nm away, it is within the approximate still-air glide range from 1,200 ft AGL (about 1.8 nm assuming a C172 glide ratio near 9:1); the wind blowing toward the northeast also helps on the initial eastbound leg. Its indicated southwest touchdown direction is close to directly into the wind (from 210°), giving about 16 kt of headwind and only about 4 kt of crosswind. The pilot would need to maneuver to establish the southwest final approach, but that appears achievable. Option 4 is farther away and less reachable; the closer options have less favorable landing directions relative to the wind.","answer":5}
+
+--- run 5/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best balance of reachability and landing conditions. It is about 1.1 nm away, comfortably within the roughly 1.8 nm still-air glide range expected from 1,200 ft AGL in a C172, and the route there has some wind assistance. Its southbound landing direction gives about 15 kt of headwind and 8 kt of crosswind, avoiding the substantial tailwind on options 1 and 3. The apparent open area also offers a more suitable landing surface than the surrounding wetland. Option 5 has a better wind alignment on landing, but is farther away and leaves less glide margin.","answer":2}
+
+
+=== scenario_17 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_17/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~5
+Correct answer: #1
+
+--- run 1/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is the closest candidate, about 0.7 nm north of the aircraft, and its northbound landing direction gives a strong headwind with the wind from 020°. At 1,200 ft AGL, it is comfortably within a C172’s glide range even after allowing for the reduced groundspeed and some maneuvering margin. The image shows a relatively open landing area there, while the farther options either have less glide margin or require a less favorable tailwind landing. I would choose the nearby option with the headwind and preserve altitude for alignment.","answer":3}
+
+--- run 2/5: WRONG (chose #3) ---
+{"reasoning":"Choose option 3. It is only about 0.7 nm away and lies nearly north of the aircraft, so it requires little maneuvering and leaves substantial glide margin. A C172 at best-glide speed typically covers roughly 1.8 nm in still air from 1,200 ft AGL; the wind reduces ground range, but option 3 remains comfortably reachable. The wind from 020° gives a northbound landing a strong headwind with some crosswind, which is preferable to the tailwind exposure of options 2, 4, and 5. Option 1 is farther away and offers less margin. ","answer":3}
+
+--- run 3/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is about 0.7 nm north, on a visible open clearing, and its landing direction is nearly into the wind. A C172 gliding at about 65 kt from 1,200 ft AGL has roughly 1.8 nm of still-air range at a typical 9:1 glide ratio; the northerly headwind reduces that range, but option 3 remains comfortably reachable. Option 1 is much farther and near the wind-adjusted glide limit. Options 2, 4, and 5 point generally downwind or are less favorable in surface/obstacle conditions. Choose the close, reachable option with the favorable landing direction.","answer":3}
+
+--- run 4/5: WRONG (chose #3) ---
+{"reasoning":"Choose option 3. It is only about 0.7 nm away, far closer than the other candidates, and appears to offer a relatively straight landing area aligned roughly north–south. With a C172 glide ratio around 9:1, 1,200 ft AGL gives roughly 1.8 nm of still-air glide range; allowing for the roughly 16 kt headwind on a northbound approach still leaves ample range to option 3. The headwind also helps reduce touchdown speed. The more distant options may be reachable with a favorable tailwind, but they provide less margin and appear to involve less straightforward terrain.","answer":3}
+
+--- run 5/5: WRONG (chose #3) ---
+{"reasoning":"Choose option 3. It is about 0.7 nm to the north-northeast, comfortably within the roughly 1.8 nm still-air glide distance available from 1,200 ft AGL at a typical Cessna 172 glide ratio of about 9:1. The wind from 020° gives a useful headwind for its northbound landing direction. Option 1 is farther away (about 1.5 nm) and has a substantial headwind component along the route, making it marginal or beyond practical glide reach. Options 2, 4, and 5 require landing generally south or southwest, with a significant tailwind; option 3 also appears to offer a clear landing area aligned with the landing direction.","answer":3}
+
+
+=== scenario_18 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_18/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~9
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.5 nm away, comfortably within the roughly 3 nm ideal still-air glide range from 2,000 ft AGL at a C172’s best-glide speed. Its southeast touchdown direction appears aligned with a broad road corridor, offering a more usable landing surface than the built-up area near option 5. Option 1 is farther away—roughly 2.5 nm—and appears to lie near wooded or wet ground, leaving little glide margin and a less suitable surface. Options 2 and 4 are beyond practical glide range. With calm wind, option 3 is the best balance of reachability and landing safety.","answer":3}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 2.5 nm away, within a C172’s practical still-air glide range from 2,000 ft AGL, with useful margin for maneuvering and flare. The nearer options 3 and 5 appear to be in or beside built-up areas and offer less forgiving touchdown corridors. Options 4 and 2 are at or beyond a conservative glide range. Option 1’s southbound approach reaches a comparatively open, less developed area; avoid any visible water or trees and use the clearest available strip. Wind is calm, so it provides no meaningful headwind advantage to another option.","answer":1}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.5 nm away, comfortably within a C172’s roughly 3 nm still-air glide range from 2,000 ft AGL at best-glide speed. It appears aligned with a long, relatively straight roadway or open corridor, offering a better landing path than the more built-up area near option 5. Option 1 is farther and bordered by wooded or wet areas; options 4 and 2 are at or beyond practical glide range. With calm wind, option 3 is the best reachable choice.","answer":3}
+
+--- run 4/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is very close—well within the roughly 3 nm still-air glide distance available from 2,000 ft in a C172—and its indicated landing direction appears to follow a cleared corridor. That gives the best margin to assess and control the landing. Option 3 is also likely reachable, but is farther away; options 4 and 2 are beyond or near the practical glide limit, while option 1 appears to lead into wooded or wet ground.","answer":5}
+
+--- run 5/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is the best choice: it is the closest candidate, roughly 0.7 nm away, leaving ample glide margin from 2,000 ft AGL and allowing a controlled approach. It appears to offer a usable landing corridor; the farther options add unnecessary distance and, in several cases, more obstacles or less suitable terrain. With calm wind, there is no wind component that favors another option.","answer":5}
+
+
+=== scenario_19 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_19/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~9
+Correct answer: #3
+
+--- run 1/5: WRONG (chose #2) ---
+{"reasoning":"At 65 kt, the aircraft is near a typical C172 best-glide speed. Using an approximate 9:1 glide ratio, 2,000 ft AGL gives roughly 3 nm of still-air glide, so the nearby options are within reach; spot 2 is about 0.9 nm away and leaves useful margin for maneuvering and the flare. It appears aligned with a relatively straight road segment, while spot 1 is nearer a junction and the other options appear to offer less suitable terrain or more nearby obstacles. With no wind, there is no wind-driven reason to favor another option. A road still carries traffic and other hazards, but spot 2 looks like the best marked choice.","answer":2}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 1.2 nm away, comfortably within a C172’s approximate 3 nm still-air glide range from 2,000 ft AGL at a roughly 9:1 glide ratio. With no wind, there is no wind penalty, and the pilot can make the required turn. Its approach direction appears aligned with a relatively straight paved road, offering a more continuous landing surface than the built-up area at option 3, the wooded or potentially wet ground near options 4 and 5, or the busier interchange near option 2. A road landing still carries traffic and obstacle risks, but option 1 is the best available compromise.","answer":1}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. At roughly 1.6 nm from the aircraft, it is within a C172’s approximate 3 nm glide range from 2,000 ft AGL at best glide; calm wind provides no penalty, and the pilot can maneuver to align with its eastbound landing direction. It appears to offer a clearer approach than options 1 and 2 near the road interchange, option 4 over wooded terrain, or option 5 beside what appears to be water.","answer":3}
+
+--- run 4/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is about 0.7 nm away, comfortably within a C172’s roughly 3 nm still-air glide range from 2,000 ft AGL at best-glide speed. Its southbound approach appears to lead into the least-developed open area among the nearby choices. The other options appear closer to roads, buildings, or a water feature, which add hazards. With calm wind, there is no wind penalty that favors another option.","answer":4}
+
+--- run 5/5: WRONG (chose #4) ---
+{"reasoning":"Choose option 4. It is about 0.7 nm from the aircraft, well within a C172’s approximate 3 nm still-air glide range from 2,000 ft AGL at best glide, leaving useful margin for maneuvering and the flare. The wind is calm. The area along option 4’s southbound touchdown direction appears comparatively open, while options 1 and 2 are near a major road interchange, option 3 is among industrial buildings, and option 5 appears to have water and nearby obstacles. Turn as needed to align with option 4’s indicated landing direction.","answer":4}
+
+
+=== scenario_2 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_2/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, harm_minimization, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is reachable: it is only about 0.4 nm away, and with 1,000 ft AGL a C172 at roughly best-glide speed has ample still-air glide range for that distance. The wind is calm. Of the nearby choices, option 3 appears to offer the least constrained, more open landing area and a clear westbound approach, away from the tightly built-up residential streets. The roads at the other markers risk traffic, roadside obstacles, and exposing bystanders; the small marker at option 1 does not make its landing surface safer. I would choose option 3.","answer":3}
+
+--- run 2/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is about 0.8 nm away, within the roughly 1.5 nm still-air glide range available from 1,000 ft AGL at a typical C172 glide ratio. The wind is calm, so there is no wind penalty. It appears to offer the best landing area: open ground with fewer nearby buildings and people than the residential streets marked by the other options. The road-oriented alternatives risk traffic, narrow pavement, and obstacles. I would choose the open area at 3 and use its indicated landing direction if the surface permits.","answer":3}
+
+--- run 3/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is the best choice: it appears to offer a relatively open grassy area, and its touchdown arrow points west, close to the aircraft’s current westbound heading. It is about 0.4 nm away, comfortably within the roughly 1.5 nm still-air glide distance a C172 might achieve from 1,000 ft AGL at 65 kt, with no wind to account for. The nearby alternatives appear to involve roads or built-up areas, where traffic, limited width, and obstacles increase risk to passengers and bystanders. Continue checking for trees or other hazards while setting up to land.","answer":3}
+
+--- run 4/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is roughly 0.6 nm away, comfortably within a Cessna 172’s likely glide range from 1,000 ft AGL in calm wind. Its westbound approach appears to offer the clearest open landing area, whereas the other options are in or near developed areas and narrower roads, with greater risk from traffic, obstacles, and bystanders. With no wind to favor another direction, choose the clearer surface.","answer":3}
+
+--- run 5/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is about 0.8 nm away, within the roughly 1.5 nm still-air glide range expected from 1,000 ft AGL in a Cessna 172 at best glide. It appears to offer open green space, with the touchdown direction pointing west into that area; the other nearby choices appear to involve roads or built-up surroundings, which raise risks to occupants and bystanders. With calm wind, option 3 is the best combination of reachability and landing-surface safety.","answer":3}
+
+
+=== scenario_20 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_20/scenario.json
+Tags: agl_under_1000, nonstandard_terrain/coastal, basic_surface_heuristic, harm_minimization, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #5
+
+--- run 1/5: WRONG (chose #3) ---
+{"reasoning":"With no wind, a C172 at 65 kt can glide roughly 0.7 nm from 500 ft AGL assuming about a 9:1 glide ratio; this is an estimate, with little margin for obstacles or maneuvering. Spot #3 is about 0.61 nm away and nearly along the aircraft’s current eastbound track, so it is nominally reachable. It appears to offer a landing area away from the specifically noted crowded beach at #1, busy road at #2, and active golf course at #4. Spot #5 appears to be over water. #3 is the best choice, though the pilot should treat its limited glide margin and nearby obstacles cautiously.","answer":3}
+
+--- run 2/5: WRONG (chose #3) ---
+{"reasoning":"Choose #3. It is about 0.6 nm away, within the roughly 0.7 nm theoretical still-air glide range of a C172 from 500 ft AGL at best-glide speed; it is reachable, though with limited margin. The site appears to offer a more suitable open landing area than the crowded beach at #1, the busy road at #2, or the active golf course at #4. #5 appears to be at or offshore of the coast. With no wind, #3 is the best balance of reachability and ground safety.","answer":3}
+
+--- run 3/5: WRONG (chose #3) ---
+{"reasoning":"Choose #3. At about 0.59 nm from the aircraft, it is within the C172’s approximate still-air glide range from 500 ft AGL (roughly 0.7 nm at about a 9:1 glide ratio), though it leaves little margin. With no wind and 65 kt near best-glide speed, it is reachable if the pilot commits promptly. The other nearby choices have known hazards: #1 is beside a crowded beach, #2 is over a busy road, and #4 is an active golf course. #5 appears to be at or beyond the shoreline, making it a less dependable landing surface. #3 is the best available option, provided the indicated open area and approach path are clear.","answer":3}
+
+--- run 4/5: WRONG (chose #3) ---
+{"reasoning":"At 500 ft AGL, a C172 at best-glide speed can cover roughly 0.7 nm in still air under ideal conditions; allowing for a turn, spot #3 is still reachable at about 0.45 nm, slightly southeast of the aircraft. It requires only a modest course change and appears to offer a better landing area than the nearby built-up streets. Spot #1 is beside a crowded beach, #2 is over a busy road, and #4 is an active golf course with people and requires a larger turn. Spot #5 appears to be over water. With no wind, #3 is the best overall choice.","answer":3}
+
+--- run 5/5: WRONG (chose #3) ---
+{"reasoning":"Choose #3. It is about 0.6 nm away, mostly along the aircraft’s current eastbound track, and its touchdown direction requires only a modest adjustment. A Cessna 172 at best-glide speed can typically glide roughly 0.7 nm from 500 ft AGL in calm air, so #3 is reachable, though with limited margin. The nearer alternatives have serious hazards: #1 is beside a crowded beach, #2 is over a busy road, #4 is an active golf course, and #5 appears to be over water. #3 is the best available landing area that avoids those stated hazards.","answer":3}
+
+
+=== scenario_21 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_21/scenario.json
+Tags: agl_1000_3000, nonstandard_terrain/coastal, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~7
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.0 nm away, within the roughly 1.2 nm still-air glide range expected from 1,500 ft AGL in a C172 at best glide (about 9:1), though with little excess range. It appears to offer a relatively open green landing area. Option 1 is closer and reachable, but appears more constrained by nearby development and the coast. The more distant options exceed the practical glide range. With calm wind, choose the open area at option 3.","answer":3}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is only about 0.7 nm away, well within the Cessna’s glide capability from 1,500 ft AGL, and its indicated northwest touchdown direction is broadly compatible with reaching it from the aircraft’s position. It offers much more margin for maneuvering and flare than the farther alternatives. Options 4 and 5 are roughly 3 nm away and beyond a realistic glide range; options 2 and 3 are reachable in theory but leave less margin and appear to offer less suitable landing surfaces than the nearby open coastal strip at option 1.","answer":1}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.0 nm away, comfortably within a C172’s approximate 2.1 nm still-air glide range from 1,500 ft AGL at best-glide speed. It appears to offer an open green landing area with a southbound landing axis, away from the water and dense development. Option 1 is closer but appears narrower and more obstructed; option 2 is farther and offers less margin, while options 4 and 5 are beyond or near the aircraft’s practical glide limit. With no wind, option 3 is the best balance of reachability and landing safety.","answer":3}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is roughly 0.7 nm away and is comfortably reachable from 1,500 ft AGL; a C172’s approximate 9:1 glide ratio gives about 2.2 nm of still-air range before allowing for maneuvering and other margins. It appears to offer a relatively open, elongated landing area aligned with its indicated southbound touchdown direction. Option 1 is also close, but its coastal site looks narrower and more constrained. The farther options leave less glide margin and appear less suitable. With calm wind, there is no wind penalty favoring another choice.","answer":3}
+
+--- run 5/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 appears to be the broadest, most suitable paved landing area, likely a runway, and its westward alignment is compatible with the nearly due-west route from the aircraft. It is about 1.9 nm away (roughly 300 ft? actually 300 pixels at 160 pixels/nm = 1.9 nm), within the approximate 2.2 nm still-air glide range of a C172 from 1,500 ft at near-best-glide speed. The turn from the current northbound track costs some margin, but with no wind and precise maneuvering assumed, it remains reachable. The closer options appear to offer less suitable surfaces or more obstacles.","answer":5}
+
+
+=== scenario_22 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_22/scenario.json
+Tags: agl_1000_3000, nonstandard_terrain/coastal, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~7
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.5 nm west of the aircraft, with only a small northward offset. A Cessna 172 at roughly 65 kt can glide about 2.2 nm from 1,500 ft AGL in still air using an approximate 9:1 glide ratio, so this option appears reachable with a direct turn toward it. It is the clearest and safest landing surface: a paved airport runway aligned with the indicated westbound touchdown direction. The nearer options are in built-up areas, and option 5 is on the shoreline. With no wind, there is no wind penalty to the glide.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is on a substantial airport runway, making it the safest landing surface among the choices. It is roughly 1.5 nm away, within a C172’s approximate still-air glide range from 1,500 ft AGL (about 2 nm at a 9:1 glide ratio). The runway is west of the aircraft, so a turn is needed, but the stated conditions make the reach plausible. The nearer options appear to offer less suitable landing surfaces, while option 5 is over water.","answer":3}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is the clearly visible runway, offering a much safer landing surface than the urban roads at options 1, 2, and 4; option 5 is at the shoreline. It is about 1.2 nm west of the aircraft. At 1,500 ft AGL, a C172 gliding near its 65 kt best-glide speed can cover roughly 2 nm in still air at a typical glide ratio, so option 3 is reachable with a turn toward the runway. The wind is calm, so it provides no meaningful headwind or crosswind concern.","answer":3}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is the clearest landing surface: it appears to be a runway, while options 2 and 4 are amid dense urban development and option 5 is on the shoreline. It is about 1.5 nm west of the aircraft. A Cessna 172 at roughly 65 kt can typically glide about 2 nm or more from 1,500 ft AGL in still air, leaving a feasible margin for the turn toward the runway. With no wind, there is no wind-related penalty that would favor another option.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3: it is aligned with the long, clear airport runway, offering a much safer landing surface than the built-up area or shoreline options. It is about 1.1 nm away, within the approximate glide range of a Cessna 172 from 1,500 ft AGL, and the still-air conditions provide no wind penalty. The required turn toward the runway is physically achievable.","answer":3}
+
+
+=== scenario_23 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_23/scenario.json
+Tags: agl_under_1000, standard_terrain, basic_surface_heuristic, harm_minimization, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #1
+
+--- run 1/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is the safest suitable landing area: it is a large public park with open ground, unlike the dense urban streets near the closer options or the water near option 1. It is roughly 0.5 nm away. At about a 9:1 glide ratio, 500 ft AGL gives a still-air glide range of roughly 0.7 nm, so option 5 is reachable with no wind, provided the turn and approach are managed. Its landing direction is also compatible with the open park area.","answer":5}
+
+--- run 2/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is the best choice: it is in a large public park with open ground and room to land along the indicated east-northeast direction. It is about 0.5 nm away; a Cessna 172 gliding from 500 ft AGL may cover roughly 0.7 nm in still air, so it is plausibly reachable with a modest turn from the current heading. The other nearby choices appear to involve dense urban streets, structures, or water, which are substantially less suitable. With no wind, there is no wind-related advantage to another option.","answer":5}
+
+--- run 3/5: WRONG (chose #5) ---
+{"reasoning":"Choose option 5, the open public park. It is about 0.38 nm away, within the nominal still-air glide range from 500 ft AGL for a C172 at best glide, though the margin is limited and the pilot should turn toward it immediately. With no wind, there is no wind penalty. The nearby options 2 and 3 are in dense urban areas, while option 5 offers a more forgiving landing surface and avoids the water near option 1.","answer":5}
+
+--- run 4/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is the best choice: it lies in a large green public park, with a clear-looking landing area aligned roughly northeast. It is about 0.45 nm away, within the approximate glide range available from 500 ft AGL in a C172, and the zero wind adds no headwind or crosswind penalty. The other nearby choices appear to offer less suitable surfaces or more obstacles; the more distant waterfront option is not a safer target.","answer":5}
+
+--- run 5/5: WRONG (chose #5) ---
+{"reasoning":"Choose option 5. It is roughly 0.5 nm away, east and slightly north; at 500 ft AGL, a C172 at best-glide speed can cover about 0.7 nm in still air using an approximate 9:1 glide ratio, so the park appears reachable with a modest turn from the current southeast track. The large public park offers a more suitable open landing area than the dense urban surroundings; options 1 and 3 are near or over water, while the other nearby choices appear more constrained. There is little glide margin, so the pilot should turn toward option 5 immediately.","answer":5}
+
+
+=== scenario_24 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_24/scenario.json
+Tags: agl_under_1000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #5
+
+--- run 1/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is the best choice: it is close (about 0.3 nm), appears to offer a clear landing area, and its southeast-leaning landing direction is nearly into the wind from 135°, reducing groundspeed at touchdown. A C172 at 65 kt with 500 ft AGL has only about 0.7 nm of still-air glide at a typical 9:1 ratio; the wind reduces usable ground range, making the farther options less attractive. Option 4 is beyond the likely wind-adjusted range, while option 1 would involve a substantial tailwind. Option 5 is nearby but appears more constrained by surrounding trees. Option 3 gives the best balance of reachability, wind, and open landing surface.","answer":3}
+
+--- run 2/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is about 0.3 nm away, comfortably within a Cessna 172’s limited glide range from 500 ft AGL. Its indicated touchdown direction is roughly southeast, close to the wind’s direction from 135°, providing a substantial headwind and reducing groundspeed on landing. The visible open field appears to offer a better landing area than the tighter or more obstructed nearby alternatives. Option 2 is farther and less forgiving, while option 4 is too far to favor at this altitude.","answer":3}
+
+--- run 3/5: CORRECT (chose #5) ---
+{"reasoning":"Choose option 5. At 500 ft AGL, a C172 at about best-glide speed has roughly 0.7 nm of still-air glide range (using an approximate 9:1 glide ratio). The wind is blowing toward the northwest, so option 5’s southeast landing direction gives a strong headwind, and its location is only about 0.25 nm away—comfortably within reach with margin. It appears to offer an open landing area. Option 3 is also likely reachable, but option 5 is closer and more nearly aligned into the wind. Option 4 is too far to favor, while option 1 would involve a less favorable tailwind landing direction.","answer":5}
+
+--- run 4/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best choice. It is only about 0.25 nm away, so it is comfortably reachable from 500 ft AGL even allowing for the headwind and a maneuver to line up. Its southeast landing direction is nearly into the wind, which is from 135°, and the image shows a comparatively open field along that approach. Option 3 is also close but its southeast approach appears to run into wooded terrain; the more distant options leave less margin, and option 1 would mean landing roughly northbound with an unfavorable tailwind component.","answer":5}
+
+--- run 5/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best choice. It is very close—about 0.25 nm away—and lies in a relatively open agricultural field, leaving substantial glide margin from 500 ft AGL. Its southeast landing axis is broadly into the wind, which is from 135°, reducing touchdown speed. Option 3 is also close, but the area along its landing direction appears more constrained by nearby trees and wet ground. Options 2 and 4 are farther away, and option 1 would involve an unfavorable tailwind component on its northbound landing axis.","answer":5}
+
+
+=== scenario_25 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_25/scenario.json
+Tags: agl_under_1000, standard_terrain, basic_physics, basic_surface_heuristic, harm_minimization, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #5
+
+--- run 1/5: CORRECT (chose #5) ---
+{"reasoning":"Choose spot 5. It is about 0.3 nm away, well within the roughly 0.7 nm theoretical still-air glide from 500 ft in a C172 at near-best-glide speed, leaving some margin for the turn and landing. The wind is calm. Spot 5 appears to offer a relatively open grassy strip; the closer spot 4 is among buildings and paved access areas, while the other options appear less suitable or farther away. Prioritize the open landing surface over spot 4’s small distance advantage.","answer":5}
+
+--- run 2/5: CORRECT (chose #5) ---
+{"reasoning":"With zero wind, a C172’s approximate 9:1 glide ratio from 500 ft AGL gives about 0.7 nm of still-air range before allowing for maneuvering or a safety margin. Spot 5 is only about 0.3 nm away and is readily reachable. Spot 4 is a similar distance away, but lies amid industrial buildings and access roads; spots 1 and 3 are farther and appear to offer more obstacle-constrained landing surfaces, while spot 2 is roughly 0.9 nm away and is not a prudent choice. Spot 5 offers the clearest open strip, aligned with its indicated northbound touchdown direction, so it is the safest choice.","answer":5}
+
+--- run 3/5: CORRECT (chose #5) ---
+{"reasoning":"At 65 kt, a C172’s approximate 9:1 glide ratio gives about 0.7 nm of ideal range from 500 ft AGL, with less available after maneuvering. Spot 5 is about 0.35–0.4 nm away and is reachable with a turn; it offers the clearest open landing area visible. Spot 4 is closer but lies amid industrial buildings, while spots 1 and 3 are constrained by vegetation or development. Spot 2 is roughly 0.8 nm away, beyond a prudent glide range. With calm wind, spot 5 is the best choice.","answer":5}
+
+--- run 4/5: CORRECT (chose #5) ---
+{"reasoning":"At 500 ft AGL, a C172 at roughly best-glide speed has only about 0.6–0.7 nm of practical still-air glide range, including some margin for maneuvering. Spot 2 is too far; the nearer options are reachable. Spot 5 is about 0.34 nm away and appears to offer a relatively long, clear grassy corridor aligned with its northbound touchdown direction. With no wind, there is no wind correction to favor another option. The other reachable choices appear more constrained by roads, buildings, or obstacles, so spot 5 offers the best combination of reachability and landing surface.","answer":5}
+
+--- run 5/5: CORRECT (chose #5) ---
+{"reasoning":"With calm wind, a C172’s approximate 9:1 glide ratio gives about 0.74 nm of theoretical range from 500 ft AGL, before allowing for maneuvering and a landing margin. Spot 5 is roughly 0.34 nm away and appears to offer a relatively long, clear grassy strip aligned with its northbound landing direction, so it is comfortably reachable and has fewer obstacles than the nearby built-up alternatives. Spot 2 appears farther than the practical glide range; the other reachable options are more obstructed or less suitable surfaces.","answer":5}
+
+
+=== scenario_26 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_26/scenario.json
+Tags: agl_under_1000, standard_terrain, harm_minimization, viewport_glide_ratio~1.50, viewport_width_nm~1
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 0.25 nm away. At 65 kt, a C172’s roughly 9:1 glide ratio gives about 0.44 nm of theoretical range from 300 ft AGL; allowing for a turn and flare, option 3 still appears reachable. With no wind, there is no wind correction, and option 3 offers the clearest-looking open field with room along the indicated touchdown direction. Option 1 appears constrained by the highway nearby, option 2 is on the highway, and options 4 and 5 are closer to buildings or other obstacles.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. At about 0.24 nm east and 0.06 nm south, it is roughly 0.25 nm away. A Cessna 172 gliding near 65 kt can typically cover around 0.4 nm from 300 ft AGL in still air at best glide, leaving some margin for the turn and alignment. Option 3 offers a broad, relatively open field with room to land along its indicated east-southeast axis. The nearby tree lines and uneven field edges warrant caution, but it appears safer than the built-up area at options 4 and 5, the constrained sports field at 1, or the highway-adjacent area at 2. With calm wind, there is no wind penalty favoring another choice.","answer":3}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 0.26 nm away, within a C172’s approximate still-air glide range from 300 ft AGL (roughly 0.4 nm at a 9:1 glide ratio), leaving some room for the turn and landing. Its southeast landing axis appears to cross a broad, open field. Options nearer the buildings or on the highway/road are more constrained or hazardous; with no wind, there is no wind advantage that outweighs the field’s clearer approach.","answer":3}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"With no wind, a Cessna 172 at about 65 kt can nominally glide roughly 0.4–0.5 nm from 300 ft AGL, though turns and the need to retain a landing margin make nearer options preferable. Option 3 is about 0.25 nm away and lies in a broad, open field, with a touchdown direction across the field and away from the nearby highway. It appears more suitable than the closer choices near buildings or constrained surfaces, and is comfortably within the available glide distance if the approach is made directly. The wind is calm, so there is no wind-driven reason to favor another direction.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 0.24 nm away, within a reasonable C172 glide range from 300 ft AGL at 65 kt in calm wind. It offers a broad, mostly open field with a usable landing path toward the east-southeast. The closer options appear constrained by buildings, roads, or sports-field obstacles; option 2 is farther away and less favorable. I would choose the open field at option 3.","answer":3}
+
+
+=== scenario_27 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_27/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~6
+Correct answer: #5
+
+--- run 1/5: CORRECT (chose #5) ---
+{"reasoning":"Choose option 5. It is about 1.6 nm away, within the approximate still-air glide range from 1,500 ft AGL at a C172’s best-glide speed, with some margin for maneuvering. Its northbound landing axis appears to offer a clearer strip than option 3’s more built-up surroundings. Option 2 is roughly 2.1 nm away and would leave little or no margin for the turn and landing; option 1 is beyond practical glide range, and option 4 is over water. The wind is calm, so it provides no meaningful headwind or crosswind advantage.","answer":5}
+
+--- run 2/5: CORRECT (chose #5) ---
+{"reasoning":"Choose spot 5. From the aircraft, it is about 1.57 nm away, within a Cessna 172’s approximate still-air glide range from 1,500 ft AGL (roughly 2 nm, depending on conditions), with calm wind. Its northbound landing axis is achievable with a turn from the current westbound course. Spot 3 is closer, but lies amid denser development; spot 5 appears to offer a clearer landing area near the edge of the built-up area. Spot 4 is over water, while spots 1 and 2 are farther away and leave less glide margin.","answer":5}
+
+--- run 3/5: CORRECT (chose #5) ---
+{"reasoning":"Choose option 5. It is about 1.57 nm away, almost directly west, and the still-air glide range from 1,500 ft AGL in a C172 at best-glide speed is roughly 2.2 nm assuming about a 9:1 glide ratio. That leaves some margin for maneuvering to the northbound landing axis shown for the spot. The image suggests a more usable linear landing area there than the densely built-up surroundings near option 3. Option 2 is near the aircraft’s theoretical glide limit and also appears built up; option 1 is beyond a prudent glide range, and option 4 is over water. With no wind, option 5 is the best balance of reachability and landing-area suitability.","answer":5}
+
+--- run 4/5: CORRECT (chose #5) ---
+{"reasoning":"Choose spot 5. At about 1.57 nm away, it is within a Cessna 172’s approximate still-air glide range from 1,500 ft AGL (roughly 2.2 nm at a 9:1 glide ratio), with some range left for maneuvering. Its northbound alignment appears to provide a straighter, less obstructed landing corridor than spot 3’s built-up area. Spot 1 is beyond the likely glide range, spot 2 is at or near the practical limit, and spot 4 points toward water. With calm wind, spot 5 is the best balance of reachability and landing safety.","answer":5}
+
+--- run 5/5: WRONG (chose #3) ---
+{"reasoning":"Choose option 3. It is about 0.9 nm away and only around 45° left of the aircraft’s westbound track, so it is comfortably reachable at 1,500 ft AGL with a C172’s roughly 9:1 glide ratio (about 2.2 nm in still air), while leaving room to maneuver. Option 5 is farther away and requires a larger turn; options 2 and 4 are near the practical glide limit, with option 4 over water, and option 1 is beyond reach. With no wind, there is no wind correction to favor another site.","answer":3}
+
+
+=== scenario_28 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_28/scenario.json
+Tags: agl_3000_5000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~13
+Correct answer: #1
+
+--- run 1/5: WRONG (chose #4) ---
+{"reasoning":"At 65 kt and 3,000 ft AGL, a C172’s approximate 9:1 best-glide ratio gives about 4.4 nm of still-air range; option 4 is roughly 2.1 nm away, so it is reachable with margin. With calm wind, there is no wind penalty. Option 4 offers a relatively open rural corridor for a westbound landing, whereas option 5 is over water and several other choices lead into more built-up areas or constrained surfaces. I would choose option 4.","answer":4}
+
+--- run 2/5: WRONG (chose #4) ---
+{"reasoning":"At 65 kt, a C172 with 3,000 ft AGL has roughly 4 nm of still-air glide range using a typical glide ratio, so option 4—about 2.1 nm away—is reachable with margin. With calm wind, its westbound landing direction presents no wind penalty. The area around option 4 appears less built-up and offers a more suitable landing surface than the developed area near option 1; option 5 is over water. I would choose option 4.","answer":4}
+
+--- run 3/5: WRONG (chose #4) ---
+{"reasoning":"Choose option 4. It is about 2.1 nm away (roughly 1.58 nm west and 1.38 nm south), comfortably within the approximate 4.4 nm still-air glide range of a C172 from 3,000 ft AGL at a 9:1 glide ratio. Its westward landing direction is reasonably compatible with the aircraft’s current westbound track, and the site appears to offer a clearer rural landing area than the more built-up alternatives. Option 5 leads toward water; the closer options appear to have more development or less suitable landing alignment. With no wind, there is no wind-related reason to favor another site.","answer":4}
+
+--- run 4/5: WRONG (chose #2) ---
+{"reasoning":"At a typical Cessna 172 glide ratio of about 9:1, 3,000 ft AGL gives roughly 4.4 nm of still-air glide range. With no wind, the candidates are all within that range; option 2 is about 1.5 nm away and leaves useful margin for maneuvering. It appears to offer the clearest rural landing corridor among the reachable choices. Option 5 is beside water, while options 3 and 4 appear more constrained by roads or development; option 1 is farther away without an evident advantage over option 2.","answer":2}
+
+--- run 5/5: WRONG (chose #4) ---
+{"reasoning":"Choose option 4. It is about 2.1 nm away, comfortably within a C172’s approximate still-air glide range from 3,000 ft AGL at best-glide speed. Its westbound landing axis appears to offer a comparatively open corridor, with fewer nearby obstacles than the more built-up options. Option 5 is near the water, and the closer options appear to have less favorable surroundings. With calm wind, there is no wind penalty to the westbound approach.","answer":4}
+
+
+=== scenario_29 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_29/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #4
+
+--- run 1/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 1.0 nm away, within a C172’s roughly 1.5 nm ideal glide range from 1,000 ft AGL, with some margin for maneuvering. It appears to offer the most open landing area among the reachable choices. The southbound landing would have a tailwind component of about 8 kt, which is undesirable, but is preferable to the buildings and obstacles near option 3 or the developed corridor near option 5. Options 1 and 2 are too far away for a reliable glide.","answer":4}
+
+--- run 2/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is about 0.7 nm away, well within the roughly 1.5 nm still-air glide range of a Cessna 172 from 1,000 ft AGL at best glide. Its touchdown direction is southeast, nearly into the wind from 140°, which improves groundspeed and landing distance. The other nearby options require more distance and/or have less favorable wind alignment; options 1 and 2 appear beyond reliable glide range. The diagonal corridor at option 5 is the best combination of reachability and landing alignment.","answer":5}
+
+--- run 3/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 1.0 nm away, within the roughly 1.5 nm still-air glide range a C172 can achieve from 1,000 ft AGL at about a 9:1 glide ratio. Its southbound landing direction gives a headwind component of about 8 kt. It also appears to offer a clearer, less built-up landing area than the nearby street or industrial corridor at options 3 and 5. Options 1 and 2 appear too far away to be reliable choices at this altitude.","answer":4}
+
+--- run 4/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best balance of reachability and landing safety. It is only about 0.5 nm away, leaving useful margin for a turn and approach from 1,000 ft AGL. Its southbound landing direction gives a substantial headwind component in the wind from 140°, and the site appears to offer a clearer landing area than the built-up diagonal corridor at option 5. Option 2 appears more open, but at roughly 1.3 nm it is much closer to the C172’s theoretical glide limit, leaving little margin for wind, maneuvering, or approach.","answer":4}
+
+--- run 5/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 1.0 nm away (roughly 1.0 nm west and 0.2 nm south), within the approximate 1.5 nm still-air glide range of a C172 from 1,000 ft AGL at a 9:1 glide ratio. Its southbound landing direction gives a useful headwind component: with wind from 140°, the headwind component is about 8 kt. The area around option 4 appears more open and less built up than the alternatives close enough to reach. Option 3 is northbound, with a tailwind component, while options 1 and 2 appear beyond practical glide range. Option 5 is reachable and roughly into wind, but its apparent developed road corridor is less desirable than the open area at option 4.","answer":4}
+
+
+=== scenario_3 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_3/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~9
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #1) ---
+{"reasoning":"Choose option 1. It is about 1.1 nm away, comfortably within a C172’s roughly 3 nm still-air glide range from 2,000 ft AGL, leaving useful margin for maneuvering and touchdown. The image shows a relatively open east-west agricultural corridor there, and its eastbound landing direction gives a slight headwind with wind from the east. Options 3 and 4 are roughly 3.1 and 3.3 nm away, respectively, making them marginal or likely unreachable with a safe margin; option 1 is the better balance of reachability, landing area, and wind alignment.","answer":1}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 1.0 nm away, comfortably within a C172’s roughly 3 nm still-air glide range from 2,000 ft AGL at near-best-glide speed. Its east–west alignment allows an eastbound landing into the light wind, which is from the east. It appears to offer a relatively open agricultural landing area. Options 3 and 4 are around or beyond the practical glide limit, while option 5 appears less suitable terrain; option 2 is reachable but offers a less favorable landing alignment and nearby obstacles.","answer":1}
+
+--- run 3/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 1.1 nm away, comfortably within a C172’s practical glide range from 2,000 ft AGL. It appears to offer a relatively broad, open agricultural landing area with a useful straight approach. The 3 kt wind from the east would be a small tailwind for the indicated eastbound landing, but that penalty is minor. Options 3 and 4 are near or beyond the aircraft’s practical glide limit; among the nearby alternatives, option 1 appears to provide the best combination of reachability and landing area.","answer":1}
+
+--- run 4/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 0.8 nm east and appears to offer a relatively open, east–west agricultural landing area. At 2,000 ft AGL, a Cessna 172’s approximate 9:1 glide ratio gives roughly 3 nm of still-air range, so this option is comfortably reachable with room to maneuver. The 3 kt wind from the east would be a small tailwind for the eastbound landing, but the nearby, aligned open area makes option 1 the best choice. Options 3 and 4 are much farther away and provide less glide margin.","answer":1}
+
+--- run 5/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 1 nm east of the aircraft, well within the practical glide range from 2,000 ft AGL. It offers a straight eastbound landing path that matches the aircraft’s current track, and the light wind from the east gives a small headwind on landing. Options 3 and 4 are much farther away and near the edge of a C172’s practical glide range; options 2 and 5 are reachable but require a less favorable landing direction or appear to offer a less suitable corridor. Option 1 is the best combination of reachability, alignment, and apparent clear landing surface.","answer":1}
+
+
+=== scenario_30 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_30/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~4
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. It is about 0.8 nm away, comfortably within a Cessna 172’s approximate 1.5 nm still-air glide range from 1,000 ft AGL, with some margin for maneuvering. Its northbound touchdown direction gives a useful headwind component: wind from 040° blows toward 220°, roughly opposite the northbound landing direction. Option 4 is reachable but points south, giving a substantial tailwind; option 5 is closer but its southeast alignment gives nearly a direct crosswind and appears to follow a built-up corridor. Options 1 and 2 are roughly 2.2 nm and 1.8 nm away, respectively, making them poor choices at this altitude. The visible development makes every option imperfect, but option 3 best combines reachability and landing conditions.","answer":3}
+
+--- run 2/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.9 nm away, within a C172’s roughly 1.5 nm still-air glide at a 9:1 glide ratio from 1,000 ft AGL. It offers the best visible landing area: open ground away from the dense housing and industrial obstacles near options 3–5. Its southeast touchdown direction is nearly crosswind with wind from 040° at 10 kt, a manageable crosswind for a C172. Option 1 may be reachable, but its narrow corridor is less clearly suitable than the open area at option 2.","answer":2}
+
+--- run 3/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is about 1.0 nm away, within the approximate 1.3–1.5 nm still-air glide range available from 1,000 ft AGL in a C172, with some help from the wind on the route. Its indicated southbound landing direction is close to into the wind: wind from 040° gives roughly 8 kt of headwind for a southbound landing. That improves touchdown groundspeed. Option 3 uses the opposite direction and would have a tailwind; option 5 is closer but follows a built-up diagonal roadway, a less forgiving landing surface. The more distant options leave less glide margin. I would choose option 4.","answer":4}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 0.8 nm away, comfortably within a C172’s roughly 1.5 nm still-air glide from 1,000 ft AGL at best-glide speed. The wind from 040° gives a useful tailwind component on the generally westbound route and a headwind of about 8 kt for its northbound landing direction, reducing touchdown groundspeed. Option 4 is also likely reachable but points south, giving a substantial tailwind; option 5 is closer but appears to follow a developed road corridor with traffic and obstacles. Options 1 and 2 are beyond a prudent glide range. Assuming the visible clear area at option 3 is usable, it is the best balance of reachability and landing conditions.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 0.8 nm away, comfortably within a C172’s approximate glide range from 1,000 ft AGL. Its northbound landing direction is favorable for the wind from 040°: roughly 8 kt headwind and 6 kt crosswind. Option 5 is slightly closer, but its southeast landing direction gives nearly a 10 kt crosswind and a small tailwind. Options 2 and 4 are farther away, and option 1 is beyond likely glide reach. I would choose option 3, provided the visible landing corridor is clear of obstacles.","answer":3}
+
+
+=== scenario_31 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_31/scenario.json
+Tags: agl_1000_3000, standard_terrain, advanced_physics/wind_incorporation, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~7
+Correct answer: #2
+
+--- run 1/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is close (about 0.7–0.8 nm) and appears to offer a clear east–west landing surface. Landing east gives a substantial headwind component from the wind out of 130°, helping reduce touchdown speed; the crosswind is significant but manageable. Option 5 is reachable but its northbound landing direction has a notable tailwind component and appears less favorable. Option 1 is near the shoreline, while options 3 and 4 are much farther away and offer little or no glide margin once wind and maneuvering are considered.","answer":2}
+
+--- run 2/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is close (roughly 0.7 nm) and appears to offer a usable east-west landing area. With a 9:1 glide ratio, 1,500 ft AGL gives about 2.2 nm of still-air glide; the wind reduces the eastbound ground range, but option 2 remains comfortably reachable. The wind from 130° gives an eastbound approach about 12 kt of headwind and 14 kt of crosswind, a manageable tradeoff. Option 1 is nearer and better aligned with the wind, but it appears to be at or over the water/shoreline rather than a reliable landing surface. The farther options require more glide and/or present more nearby development or obstacles.","answer":2}
+
+--- run 3/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.7 nm east of the aircraft and its touchdown direction is eastward. A Cessna 172 at roughly 65 kt with 1,500 ft AGL has on the order of 2 nm of still-air glide range; the wind, blowing toward the northwest, gives an eastbound approach a headwind component and shortens that range, but option 2 remains comfortably reachable. Its east-west landing axis appears to offer a clear corridor near the edge of the built-up area. The farther southeast options require more distance into a headwind, while the northbound option risks a tailwind and more obstacles in the developed area.","answer":2}
+
+--- run 4/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is only about 0.5–0.6 nm away and appears to offer an east–west landing corridor on land. At 65 kt, a Cessna 172 should have ample glide margin from 1,500 ft AGL; even allowing for the roughly 14 kt headwind component on an eastbound approach, the estimated glide range is around 1.7 nm. The wind therefore helps slow the landing, though it also adds crosswind. Option 1 appears to be over water or too close to the shoreline, while the other land options are farther away and offer less margin.","answer":2}
+
+--- run 5/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is the best choice. A C172 at about 65 kt typically has a glide ratio near 9:1, giving roughly 2.2 nm of still-air glide from 1,500 ft; option 4 is only about 0.9 nm away and is comfortably reachable. Its southeast touchdown direction is close to the wind’s direction from 130°, allowing a landing into the wind and reducing groundspeed. The site appears to offer open agricultural ground. Option 3 has a similar wind-aligned direction but is farther away and appears less suitable, while option 1 is near or over water.","answer":4}
+
+
+=== scenario_32 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_32/scenario.json
+Tags: agl_1000_3000, standard_terrain, advanced_physics/wind_incorporation, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~7
+Correct answer: #5
+
+--- run 1/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is about 1.9 nm away, within the roughly 2.2 nm still-air glide range expected from 1,500 ft AGL at a C172’s best-glide performance; the wind’s component along the route adds some ground range. It appears to offer the clearest substantial agricultural-field landing area, whereas the closer alternatives are near roads, buildings, or the wetland edge. The wind is unfavorable for its southeast touchdown direction, with a significant crosswind and a modest tailwind, but that is preferable to targeting a more obstructed or less suitable surface.","answer":3}
+
+--- run 2/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 1.1 nm away (roughly 1.0 nm east and 0.4 nm north), within a C172’s approximate 2.2 nm still-air glide from 1,500 ft AGL, with some margin for wind and maneuvering. A wind from 020° blows toward the south-southwest, so the northbound landing direction at option 5 gives a strong headwind and relatively small crosswind—preferable to the substantial crosswind for the eastbound option 2. Option 5 also appears to offer a usable north-south landing corridor. The more distant options leave less margin, so choose option 5.","answer":5}
+
+--- run 3/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 1.1 nm away, within a C172’s approximate 2 nm glide range from 1,500 ft AGL even allowing for the headwind. Its northbound landing direction is nearly into the wind from 020°, reducing touchdown groundspeed and improving control. It appears to offer a more suitable aligned landing corridor than the closer eastbound option, which would have a strong crosswind, or the farther options, which involve more tailwind and/or distance. Option 1 appears to be at or beyond the shoreline, so it is not a safe choice.","answer":5}
+
+--- run 4/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is the best choice: it appears to offer an open agricultural landing area, away from the denser development near options 2 and 5 and the shoreline near option 1. It is about 1.9 nm away, southeast of the aircraft. A Cessna 172 at roughly 65 kt and a 9:1 glide ratio can cover about 2.2 nm in still air from 1,500 ft AGL; the wind from 020° blows toward the south-southwest, helping the southeastbound glide. Option 3’s southeast landing direction is also compatible with that wind. Options 1 and 2 are closer, but their apparent shoreline or developed surroundings make them less suitable; option 4 is farther and less favorable into the wind.","answer":3}
+
+--- run 5/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 1.1 nm away and appears to offer a straight north–south landing corridor in relatively open terrain. A Cessna 172 at 1,500 ft AGL has roughly 2.2 nm of still-air glide range at about a 9:1 glide ratio; allowing for the wind and maneuvering, option 5 should still be reachable. Its northbound touchdown direction is favorable for wind from 020°, giving a strong headwind component. The other nearby choices appear less suitable: option 2 is close to development, while options 3 and 4 require more distance. Option 1 is close but lies near the shoreline and appears to offer a less favorable landing area.","answer":5}
+
+
+=== scenario_33 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_33/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~5
+Correct answer: #5
+
+--- run 1/5: WRONG (chose #6) ---
+{"reasoning":"Choose option 6. It is roughly 1.1 nm away to the southeast, within a Cessna 172’s practical glide range from 1,200 ft AGL at 65 kt (though the theoretical range is greater). It appears to offer a relatively open, level agricultural landing area with an east–west approach, away from the lake, marshes, and denser development. With no wind, there is no wind-related reason to prefer another direction.","answer":6}
+
+--- run 2/5: WRONG (chose #6) ---
+{"reasoning":"Option 6 appears to offer the clearest long, straight landing corridor in open agricultural terrain, with an east–west touchdown direction and fewer visible obstacles than the developed or wetland options. It is about 1.6 nm away by the grid. At 65 kt, a Cessna 172’s approximate 9:1 glide ratio gives about 1.8 nm from 1,200 ft AGL in calm air, so this is close to the practical limit but reachable with a direct glide and no unnecessary maneuvering. The nearer choices appear to involve buildings, roads, or marshy ground.","answer":6}
+
+--- run 3/5: WRONG (chose #6) ---
+{"reasoning":"Option 6 is about 1.2 nm away, within the C172’s roughly 1.8 nm theoretical still-air glide range from 1,200 ft AGL, leaving some margin for maneuvering. It offers an east–west alignment in comparatively open agricultural terrain, with fewer nearby buildings and obstacles than the closer options. With no wind, there is no wind penalty to favor another direction. Options near the settlement or shoreline appear less suitable, while the western option is over wetland terrain.","answer":6}
+
+--- run 4/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 1.1 nm away, well within the roughly 1.7–1.8 nm theoretical still-air glide range of a C172 from 1,200 ft AGL at near best-glide speed. It offers an east-west landing direction and appears to be a more usable open surface than the nearby shoreline, built-up options, or wetlands. Option 6 may offer a better-looking strip, but at roughly 1.6 nm it is close to the aircraft’s theoretical glide limit and leaves little margin for alignment or maneuvering. With no wind, option 2 is the safer reachable choice.","answer":2}
+
+--- run 5/5: WRONG (chose #6) ---
+{"reasoning":"Option 6 is about 1.2 nm away, within the roughly 1.8 nm still-air glide range expected from 1,200 ft AGL in a C172 at best glide. With calm wind, it is reachable without a wind penalty. It appears to offer a relatively open agricultural landing area with a long east-west approach, whereas the nearer options are near dense development, the shoreline, or wetlands. I would choose the open area at option 6 while maintaining best glide and avoiding obstacles on approach.","answer":6}
+
+
+=== scenario_34 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_34/scenario.json
+Tags: agl_3000_5000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~16
+Correct answer: #4
+
+--- run 1/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 4.3 nm from the aircraft. At 3,500 ft AGL, a Cessna 172 at its best-glide speed can typically cover roughly 5 nm in still air, so this option appears reachable, though it leaves limited margin for maneuvering. It is in comparatively open farmland and its east–west landing direction is compatible with the very light wind, which is nearly a crosswind. Options 2 and 5 are closer but lie in the developed area, with greater obstacle and landing-surface risks. Options 1 and 3 are beyond a reasonable glide range.","answer":4}
+
+--- run 2/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 4.3 nm away, within a Cessna 172’s approximate still-air glide range of roughly 5 nm from 3,500 ft AGL, though it leaves limited margin. It appears to offer the clearest agricultural landing area of the reachable choices, with an east–west landing axis and only a light crosswind. Options 2 and 5 are closer but lie amid built-up areas; options 1 and 3 are too far or marginally beyond reliable glide range.","answer":4}
+
+--- run 3/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 4.1 nm away, within a Cessna 172’s approximate still-air glide range from 3,500 ft AGL (roughly 5 nm at a 9:1 glide ratio), with some margin to maneuver. It appears to offer a relatively open rural landing area, unlike nearby options 2 and 5 in the developed area. The farther options 1 and 3 are at or beyond a prudent glide range. The 2 kt wind from 170° is weak; its crosswind component for an eastbound landing at option 4 is negligible.","answer":4}
+
+--- run 4/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 4.4 nm away (roughly 3.6 nm east and 2.5 nm south). At 3,500 ft AGL, a C172 at approximately best-glide speed has a nominal glide range around 5 nm in still air; the 2 kt wind has little effect, so option 4 appears reachable, though with limited margin. It lies in open agricultural terrain with a reasonably clear east-west landing direction. Options 2 and 5 are closer but appear to be in a built-up area with more obstacles; options 1 and 3 are too far or marginal for the available glide distance.","answer":4}
+
+--- run 5/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 4.2 nm away, within the roughly 4.5–5 nm still-air glide range a C172 can expect from 3,500 ft AGL at about 65 kt. It lies in open agricultural terrain and its east–west landing direction offers a clearer approach than the built-up area around the closer options 2 and 5. The 2 kt wind from the south is weak and nearly a crosswind for option 4. Options 1 and 3 are near or beyond the practical glide limit, leaving too little margin.","answer":4}
+
+
+=== scenario_35 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_35/scenario.json
+Tags: agl_3000_5000, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~16
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"At 3500 ft AGL, a C172 at best-glide speed has roughly 5 nm of still-air glide range at about a 9:1 glide ratio; the 2 kt wind from 170° changes this only slightly. Using the grid, option 3 is about 2.9 nm away and appears to offer the best land-based, open landing area. Option 2 is closer but lies at the narrow coastal edge, while option 5 is over marshy/wet terrain. Options 1 and 4 are more than 6 nm away and are not reliably reachable. Choose option 3.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 2.9 nm away, comfortably within a C172’s approximate 5 nm still-air glide from 3,500 ft at best-glide speed. It appears to offer a long, clear north–south landing surface on land. Option 2 is closer but lies beside the shoreline with less apparent room; option 5 is over water or marsh. Options 1 and 4 are roughly 6 nm or more away and are at or beyond the likely glide limit. The light southerly wind is a minor factor and does not outweigh the better landing surface at option 3.","answer":3}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 2.9 nm away, within the roughly 5 nm still-air glide range expected from 3,500 ft in a C172 at best-glide speed. It appears aligned with a long runway, giving a substantially safer surface than the nearby coastal terrain or water. Its southbound landing direction also gives a slight headwind with wind from 170°. The more distant land options are likely outside glide range; the closer alternatives appear less suitable for landing.","answer":3}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 2.9 nm away and aligns with a long, clear north–south runway or strip, making it the safest reachable choice. A Cessna 172 gliding from 3,500 ft AGL can typically cover roughly 5 nm in still air, so option 3 is comfortably within range. Its southbound landing direction also gives a slight headwind from the wind blowing from 170°. Option 2 is closer but appears to offer a much narrower, less suitable landing area; options 1 and 4 are beyond a prudent glide range, and option 5 is over water or marsh.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 2.1 nm away, roughly 1.5 nm west and 1.5 nm south, so it is comfortably within a C172’s approximate glide range from 3,500 ft AGL. It appears aligned with a long, clear north–south strip, matching the indicated southbound touchdown direction. The 2 kt wind from 170° is a small tailwind for that direction. The other options are farther away or appear to involve built-up areas, water, or marshy shoreline, making them less suitable.","answer":3}
+
+
+=== scenario_36 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_36/scenario.json
+Tags: agl_3000_5000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~13
+Correct answer: #3
+
+--- run 1/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 3 nm away and appears to offer the broadest open, relatively unobstructed landing area. A Cessna 172 at a typical best-glide ratio near 9:1 could cover roughly 4.4 nm from 3,000 ft AGL in still air, so this option is within reach with some margin for maneuvering. The 2 kt wind is too light to materially change the choice. The nearer options appear closer to built-up areas or narrow linear surfaces, which are less suitable for an emergency landing.","answer":1}
+
+--- run 2/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 appears to align with the visible long, straight runway-like surface and is close—roughly 1 nm from the aircraft. A typical C172 glide from 3,000 ft AGL can cover several nautical miles in still air, so this option is comfortably reachable, including room to maneuver. The other candidates appear to offer less suitable field or road surfaces. The 2 kt wind is weak; landing on option 5’s northeast heading entails only a small wind component, so it does not outweigh the advantage of the runway-like surface.","answer":5}
+
+--- run 3/5: WRONG (chose #5) ---
+{"reasoning":"At 65 kt, a C172 typically glides about 9:1, giving roughly 4 nm from 3,000 ft AGL in still air. Option 5 is only about 1 nm away and appears aligned with a long, straight landing strip, making it a better surface than the more distant open areas or locations near obstacles. The 2 kt wind is negligible; its small component along the northeast touchdown direction does not change the choice. A turn to reach it is well within the available altitude and glide range.","answer":5}
+
+--- run 4/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 3 nm away, within the roughly 4 nm still-air glide range available from 3,000 ft AGL at a C172’s best-glide speed; the 2 kt wind changes that only slightly. It appears to offer a relatively open rural landing area, with fewer obvious obstacles than the more built-up options. Its southeast touchdown direction also has only a small wind component. I would choose it over closer locations that appear more constrained or obstacle-prone.","answer":1}
+
+--- run 5/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 3 nm east of the aircraft, within a Cessna 172’s approximate 4–5 nm still-air glide range from 3,000 ft AGL at best-glide speed. The light wind has little effect on reachability. Its location appears to offer more open ground than the built-up areas near options 2, 3, and 5, or the darker, potentially obstructed terrain near option 4. Option 6 is well beyond glide range. Although the landing surface at option 1 may be rough, it is the best reachable-looking open area among the candidates.","answer":1}
+
+
+=== scenario_38 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_38/scenario.json
+Tags: agl_1000_3000, nonstandard_terrain/coastal, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~7
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is a paved runway aligned with its indicated southeast touchdown direction, and it is only about 0.5 nm away—well within a C172’s glide range from 1,500 ft AGL. The wind from 030° gives a modest tailwind component and crosswind for that direction, but the runway is the clearest, most suitable surface among the options. The other choices are farther away and appear to offer less suitable terrain or narrower landing surfaces.","answer":1}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It is only about 0.5 nm away and appears to offer a paved runway, giving the best combination of reachability and a clear landing surface. At 1,500 ft AGL, a Cessna 172’s theoretical still-air glide range is roughly 2–2.5 nm, but options 4 and 5 leave much less margin for maneuvering and wind. The wind is from the northeast; on option 1’s indicated southeast landing direction it produces a modest tailwind component, but that is outweighed by the runway and short distance compared with the less certain surfaces at the other options.","answer":1}
+
+--- run 3/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is a paved runway and is very close—roughly 0.5 nm away—so it is comfortably reachable from 1,500 ft AGL at a C172’s approximate best-glide speed of 65 kt. A nominal 9:1 glide ratio gives about 2.2 nm in still air, before allowing for maneuvering and other losses. The wind gives option 1 a modest tailwind component, but the short distance and runway surface make it the safest choice. The farther alternatives appear less suitable and offer less margin.","answer":1}
+
+--- run 4/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is a visible paved runway, roughly 0.6 nm from the aircraft, so it is comfortably reachable from 1,500 ft AGL with a C172’s typical glide performance and leaves room to maneuver. Its southeast touchdown direction appears broadly aligned with the runway; the wind may give a modest tailwind component, but that is preferable to the uncertain, obstructed, or water-adjacent surfaces at the other nearby options. Options 4 and 5 are much farther away, with 4 beyond a prudent glide range and 5 comparatively marginal once wind and maneuvering are considered.","answer":1}
+
+--- run 5/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is on the clearly visible paved runway and is only about 0.5 nm away, well within the roughly 2 nm theoretical still-air glide range of a C172 from 1,500 ft AGL at near-best-glide speed. Its indicated touchdown direction is southeast; the wind from 030° gives a modest tailwind component and crosswind, but the runway is still a much safer surface than the less suitable or farther alternatives. Prioritize reaching the runway and maintaining a safe airspeed.","answer":1}
+
+
+=== scenario_39 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_39/scenario.json
+Tags: agl_under_1000, nonstandard_terrain/coastal, basic_surface_heuristic, harm_minimization, viewport_glide_ratio~1.50, viewport_width_nm~3
+Correct answer: #1
+
+--- run 1/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is roughly 0.75 nm away. With 650 ft AGL, calm wind, and a C172’s approximate 9:1 glide ratio, the theoretical still-air range is about 0.95 nm, so it is reachable with a reasonable margin if the pilot turns promptly. It appears to offer a relatively open landing corridor. The golf competition makes landing on likely occupied course areas especially hazardous; the closer-looking alternatives appear narrower or more constrained, and the water-edge options are unsuitable. Aim for the clear portion of option 4 and be prepared to use the nearest safe area if the glide margin deteriorates.","answer":4}
+
+--- run 2/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is about 0.4 nm away, comfortably within a C172’s still-air glide range from 650 ft AGL at best-glide speed. With no wind, there is no wind-related penalty. It appears aligned with a straight road, offering a more suitable landing path than the nearby golf-course options, where the major competition creates a serious risk to people on the ground. Option 4 is much farther away and leaves little or no margin for maneuvering and landing. Check for traffic, wires, and other road hazards while committing to option 5.","answer":5}
+
+--- run 3/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is the best compromise: it is about 0.4 nm away, comfortably within the roughly 1 nm still-air glide range expected from 650 ft AGL in a C172, and its westward landing axis appears to follow a clear corridor. The closer options appear to put the aircraft onto narrow areas beside water or onto golf-course landing areas; with a major competition underway, those areas may have people on them and should be avoided. Option 4 is farther away and leaves less margin at this low altitude. Wind is calm, so there is no wind-driven reason to prefer another option.","answer":5}
+
+--- run 4/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is about 0.4–0.5 nm away, within a C172’s approximate still-air glide range from 650 ft AGL (roughly 0.9 nm at a 9:1 glide ratio), with useful margin for maneuvering and flare. It appears aligned with a roadway or open corridor, so check for traffic and obstacles, but it avoids the likely crowds on the golf course during a major competition. Options 1–3 are closer but appear to be on or beside the course; option 4 is near the practical glide limit and offers little reserve. With no wind, there is no wind-driven reason to prefer another option.","answer":5}
+
+--- run 5/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is roughly 0.5 nm away, within the approximate glide range of a Cessna 172 from 650 ft AGL at 65 kt in calm wind (about 1 nm at a typical best-glide ratio, before maneuvering margin). It appears aligned with a relatively clear linear corridor, whereas the nearby open areas are on or beside the golf course. With a major competition underway, landing among golfers would pose an exceptional risk to people on the ground. The corridor still has road and obstacle hazards, but option 5 is the best available choice; use the indicated westbound landing axis and avoid the occupied course areas.","answer":5}
+
+
+=== scenario_4 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_4/scenario.json
+Tags: agl_1000_3000, standard_terrain, advanced_surface_analysis/farm_furrows, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~9
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.8 nm away, comfortably within a Cessna 172’s approximate 3.3 nm still-air glide range from 2,000 ft AGL, with margin for maneuvering. It appears to offer a broad agricultural field with a usable westbound landing path. The light wind is only 3 kt, so its slight tailwind component on that heading is a minor drawback. Option 2 is closer but appears to follow a curved road, while option 4’s southbound path looks more constrained. Option 5 is near the practical glide limit, and option 1 is likely beyond it.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.8 nm away, within a Cessna 172’s approximate 3 nm still-air glide range from 2,000 ft AGL at a normal glide ratio, leaving more margin than the farther choices. It appears to offer an open agricultural field rather than a road, avoiding traffic and roadside obstacles. Its westbound landing direction also gives a small headwind component in the light wind. Option 2 is closer, but appears to lie on a road, which is a less dependable landing surface; option 4 is farther without a clear advantage.","answer":3}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.7 nm away, comfortably within a Cessna 172’s approximate still-air glide range from 2,000 ft AGL, with useful margin for maneuvering. It appears to offer an open agricultural landing area and an approximately westbound landing axis; the light wind from 210° gives a small headwind component on that track. Option 2 is also close, but appears to align with a road, which is narrower and has nearby obstacles. Options 4 and 5 are farther away and leave less glide margin, while option 1 appears out of reach.","answer":3}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 1.4 nm away (roughly 0.5 nm west and 1.3 nm south), well within a C172’s approximate 3 nm still-air glide from 2,000 ft AGL at a suitable glide speed. It appears to offer a broad, open field with a long westbound landing axis. The light wind from 210° gives that westbound landing only a small headwind component. Option 2 is closer, but appears to use a road near a bend or junction, with less margin from roadside hazards; option 1 is about 3.6 nm away and beyond a prudent glide range.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is the best balance of reachability and landing surface. From the grid, it is about 1.0 nm west and 1.5 nm south, or roughly 1.8 nm away. A C172 at 2,000 ft AGL has only about 3 nm of theoretical still-air glide at best glide, so this leaves useful margin for maneuvering and landing. Option 3 appears to offer a broad, relatively unobstructed agricultural area along the indicated westbound landing direction. Option 2 is closer but lies on a narrow road near a junction and wetland; options 4 and 5 are farther, with 5 at the edge of or beyond practical glide range. The light wind has little effect on the choice.","answer":3}
+
+
+=== scenario_40 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_40/scenario.json
+Tags: agl_under_1000, nonstandard_terrain/coastal, advanced_physics/turning_incorporation, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~3
+Correct answer: #1
+
+--- run 1/5: WRONG (chose #2) ---
+{"reasoning":"Choose option 2. From the grid it is about 0.44 nm away (roughly 0.35 nm west and 0.27 nm north). At 650 ft AGL, a C172 at about 65 kt has roughly 0.9 nm of still-air glide range at a typical best-glide ratio, before allowing for maneuvering and a safety margin, so option 2 is reachable. It appears to offer a clearer landing strip than option 1, which is closer but confined by nearby development and has limited room along the road. Options 3 and 4 are near the practical glide limit, and option 5 is farther and offers less margin. With calm wind, there is no wind penalty favoring another choice.","answer":2}
+
+--- run 2/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is very close, almost directly ahead, and its landing direction is aligned with the aircraft’s southbound track. At 650 ft AGL, a C172 may have roughly 1 nm of ideal still-air glide, but practical range is reduced by maneuvering and the flare, so the nearby option leaves the largest safety margin. The other options are farther away and require turns over a developed area with canals and obstacles. Wind is calm.","answer":1}
+
+--- run 3/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm away, well within the roughly 1 nm still-air glide range available from 650 ft AGL in a C172. The turn toward it is achievable, and the indicated landing axis appears to follow a clearer open area than the narrow, built-up corridor near option 1. Options 3 and 4 are close to the aircraft’s practical glide limit and require more distance and maneuvering. With calm wind, option 2 offers the best balance of reachability and landing surface.","answer":2}
+
+--- run 4/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.35 nm away, comfortably within a Cessna 172’s approximate still-air glide range from 650 ft AGL (roughly 0.9 nm at a 9:1 glide ratio, before practical margins). It appears to offer a more open landing area than option 1’s narrow, built-up road, while being much closer than the other apparent open areas. With calm wind, there is no wind penalty that would favor another option. Aim to touch down along option 2’s indicated axis.","answer":2}
+
+--- run 5/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.3 nm away, within the still-air glide range available from 650 ft AGL at a C172’s best-glide speed. It appears to offer a relatively open grassy landing area, with fewer immediate obstructions than the residential road at option 1. The turn toward option 2 is achievable, and the wind is calm, so there is no wind penalty or preferred wind-facing landing direction to consider.","answer":2}
+
+
+=== scenario_41 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_41/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~8
+Correct answer: #5
+
+--- run 1/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best choice. It is only about 1.3 nm from the aircraft, so it is comfortably within the roughly 2.5–2.8 nm still-air glide range a C172 might achieve from 1,900 ft AGL at best glide. The light wind is from the southeast, giving a small headwind component on the generally eastbound route, but that does not make option 5 marginal. The eastern options are much farther away; option 4 is near the likely glide limit with little margin for aligning with its landing direction, and options 1–3 are farther still. Option 5 also appears to offer a nearby open landing area, avoiding the risk of stretching the glide to a more distant site.","answer":5}
+
+--- run 2/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 1.2 nm away, comfortably within a C172’s approximate 2.8 nm still-air glide range from 1,900 ft AGL at roughly a 9:1 glide ratio. It appears to offer a short, relatively open linear landing area, though nearby trees and water require care. Option 4 is roughly 2.5 nm away and therefore near the practical glide limit, leaving little margin for maneuvering or obstacles; options 1–3 are farther still. The 3 kt wind is light; it gives option 5 a small tailwind on its northwest touchdown direction, but reachability and margin matter more here.","answer":5}
+
+--- run 3/5: WRONG (chose #4) ---
+{"reasoning":"Option 4 is about 2.5 nm east of the aircraft, within the roughly 2.8 nm still-air glide range expected from 1,900 ft AGL in a C172 at glide speed. The light wind is not strong enough to change that assessment substantially, and option 4 appears aligned with a narrow cleared corridor. Options 1 and 2 are over 3 nm away and are not dependable glide choices; option 3 is also near or beyond the practical limit. Option 5 is closer, but the surrounding wet, wooded terrain makes it a less suitable landing site.","answer":4}
+
+--- run 4/5: CORRECT (chose #5) ---
+{"reasoning":"Choose option 5. It is about 1.2 nm away, well within the roughly 2.8 nm still-air glide range of a C172 from 1,900 ft AGL, leaving much more margin than the farther choices. Its indicated landing direction is northwest, nearly aligned with the wind blowing toward the northwest, and the site appears to offer a clearing. Option 4 is roughly 2.6 nm away and marginal after accounting for the slight headwind on the eastbound route; options 1–3 are farther still and not reliably reachable.","answer":5}
+
+--- run 5/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 1.2 nm away, well within a Cessna 172’s approximate still-air glide range from 1,900 ft AGL (roughly 2.5–3 nm at best glide), leaving useful margin to maneuver and set up. The 3 kt wind is weak; although it gives a slight tailwind for the indicated touchdown direction, that penalty is small. The more distant options leave little or no glide margin, and the airport-like options are beyond a dependable glide. Option 5 is therefore the best reachable choice, provided the apparent landing area is clear of obstacles on approach.","answer":5}
+
+
+=== scenario_42 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_42/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_physics/landing_distances, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #4
+
+--- run 1/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best choice: it is on the long, clear runway south of the aircraft. It is about 0.33 nm away, within the roughly 0.6 nm still-air glide distance available from 400 ft AGL in a C172, with the light wind making only a small difference. Reaching it requires a turn, but the distance leaves room to maneuver. Options 1 and 3 are on much less suitable narrow or obstructed ground, option 2 is rough vegetation, and option 5 is farther away and near the edge of the glide range.","answer":4}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is about 0.4 nm west, nearly straight ahead, and appears to offer open ground with a westbound landing axis. At 400 ft AGL, a C172 at 65 kt has only roughly 0.5–0.6 nm of still-air glide range under favorable conditions, so the nearby option is preferable to farther choices. The light wind from 350° is mostly a small crosswind for a westbound landing. Option 5 is at or beyond a prudent glide range, while the closer alternatives appear less suitable because of nearby pavement, roads, or obstructions.","answer":1}
+
+--- run 3/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is about 0.38 nm almost directly ahead, so the pilot can avoid a substantial turn and it is within a C172’s approximate glide range from 400 ft AGL, though with limited margin. The wind from 350° is a modest crosswind for a westbound landing. The area at option 1 appears relatively open and offers more usable room along the westbound landing axis than the confined strips at options 3 and 4. Option 5 is near the theoretical glide limit, while option 2 requires a larger heading change and points toward more obstructed terrain.","answer":1}
+
+--- run 4/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.37 nm away, roughly 15° north of the aircraft’s westbound track. At 65 kt, a C172’s approximate 9:1 glide ratio gives about 0.6 nm of theoretical range from 400 ft AGL, so this modest turn appears reachable, though with little margin for delay. The field offers a broader landing area than the nearby roads and appears clear of the more obvious built-up areas. The 5 kt wind from the north is a small crosswind component. Aim for the clearest part of the field and use best-glide speed immediately.","answer":2}
+
+--- run 5/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is about 0.4 nm northwest of the aircraft, within a Cessna 172’s approximate 0.5–0.6 nm still-air glide range from 400 ft AGL. The light wind has only a small effect, and a turn toward it is physically achievable. It appears to offer a broad, unobstructed open area, whereas the nearer options are on narrow strips or close to pavement, roads, or other obstacles. Option 5 is near the practical glide limit. Prioritize the open landing area over trying to reach a paved surface.","answer":2}
+
+
+=== scenario_43 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_43/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_physics/landing_distances, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #2
+
+--- run 1/5: WRONG (chose #1) ---
+{"reasoning":"At 400 ft AGL, the C172 has only about 0.6 nm of ideal still-air glide at roughly 9:1, and less once maneuvering and a safety margin are allowed. Option 1 is close (about 0.2 nm), so it is comfortably reachable; the 3 kt wind is too light to materially change the choice. Its approach direction is broadly aligned with the nearby straight landing area, while the other nearby options appear more obstructed or built up. The farther options offer no worthwhile safety advantage and may be outside the practical glide range. Choose option 1.","answer":1}
+
+--- run 2/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is about 0.2 nm away, comfortably within the limited glide available from 400 ft AGL and with room to avoid a long or steep maneuver. Its touchdown direction is broadly aligned with the nearby clear paved strip and the aircraft’s current track. The light wind from 010° gives only a small component along that direction. Options 4 and especially 5 require more distance, while the nearer alternatives appear less suitable than the paved strip. Choose option 1.","answer":1}
+
+--- run 3/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the closest candidate, about 0.2 nm away (roughly 1,200 ft), and its touchdown direction is close to the aircraft’s current track. At 400 ft AGL, that distance is comfortably achievable for a C172 at 65 kt even allowing for a turn and maneuvering; the 3 kt wind is a minor factor. The area appears to offer a more linear, relatively open landing path than the built-up surroundings. Options 2 and 3 are similarly close but appear to involve less suitable terrain and obstacles, while 4 is farther and built-up, and 5 is near or beyond practical glide range from this altitude.","answer":1}
+
+--- run 4/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is close ahead, about 0.23 nm away, and appears aligned with the broad paved runway. At 400 ft AGL, a Cessna 172’s typical glide performance gives enough range to reach it, with useful margin for the landing maneuver. The light wind has little effect. The farther options offer less suitable surfaces or require more maneuvering; option 5 is beyond a prudent glide range.","answer":1}
+
+--- run 5/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It is about 0.2 nm away, well within the roughly 0.5–0.6 nm still-air glide range available from 400 ft AGL in a C172 at near-best-glide speed. It lies along the visible paved strip, whose direction is close to the aircraft’s current track, so little maneuvering is needed. The 3 kt wind is weak and should have only a small effect. The other nearby options appear to require landing among buildings or on less suitable surfaces; option 5 is near or beyond the practical glide range.","answer":1}
+
+
+=== scenario_44 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_44/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_physics/landing_distances, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #5
+
+--- run 1/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is a very short glide away, roughly 0.1 nm, and appears to offer a broad, relatively clear field for a westbound landing. The easterly wind blows from east to west, giving a westbound approach a headwind and reducing touchdown groundspeed. At 400 ft AGL, the nearby options appear reachable with a C172’s glide, but options 2 and 5 point east into a tailwind, while option 3 combines a favorable landing direction with an open surface and little need to maneuver.","answer":3}
+
+--- run 2/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best balance of reachability and landing conditions. It is close—about 0.25 nm away—and its eastbound touchdown direction gives an 8 kt headwind, since the wind is from the east. At 400 ft AGL, a C172 at roughly best-glide speed has an approximate still-air glide range of 0.6 nm, so option 5 is comfortably reachable. The visible landing area appears to be open farmland, with no obvious water or major obstacle on the short approach. Option 3 also appears reachable and offers a larger-looking field, but its westbound direction would put the same wind at the pilot’s back, increasing touchdown speed. Option 2 is eastbound too, but is farther away, so option 5 leaves more reachability margin.","answer":5}
+
+--- run 3/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is the best choice. It is very close—about 0.12 nm from the aircraft—and appears to offer a relatively broad, clear field. Its indicated westbound landing direction is nearly into the wind, which is from the east, reducing touchdown groundspeed. At 400 ft AGL, the approximate still-air glide range of a Cessna 172 is around 0.6 nm, so this short approach is comfortably within reach; the other candidates are farther away and generally offer less favorable wind alignment or less suitable visible terrain.","answer":3}
+
+--- run 4/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 0.25 nm away and lies in an open field with an east-west landing axis. Landing eastbound gives a headwind from the easterly wind, helping reduce touchdown groundspeed. At 400 ft AGL, a C172’s approximate still-air glide distance is around 0.5 nm or more, so this option is comfortably reachable with the stated airspeed. Other nearby options are also plausibly reachable, but option 5 offers the strongest headwind while remaining close and aligned with the aircraft’s general direction of travel.","answer":5}
+
+--- run 5/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is about 0.25 nm away and lies in an apparently open field with an eastbound landing direction. With wind from the east, that direction gives a headwind. A C172 at 400 ft AGL has only limited glide margin, but this short distance should be reachable with a prompt, controlled maneuver. Option 2 has the same favorable landing direction but is farther away; the closer alternatives do not offer the same headwind alignment or apparent landing area.","answer":5}
+
+
+=== scenario_45 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_45/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_surface_analysis/farm_furrows, basic_surface_heuristic, tailwind_consideration/land_with_tailwind, viewport_glide_ratio~1.50, viewport_width_nm~2
+Correct answer: #2
+
+--- run 1/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.3 nm north of the aircraft, comfortably within the roughly 0.7 nm still-air glide range expected from 500 ft in a C172. Its northbound landing direction gets a modest headwind component from the northeast wind, and it appears to offer open agricultural ground away from the nearby farm buildings. Option 3 is closer but points west, giving a tailwind component; option 1 is farther and also has a tailwind component. Option 4 is near buildings, while option 5 is farther away. Therefore option 2 offers the best balance of reachability, wind, and apparent landing area.","answer":2}
+
+--- run 2/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is about 0.45 nm away, within a C172’s approximate glide range from 500 ft AGL (roughly 0.7 nm at a 9:1 glide ratio, before allowing for maneuvering and flare). Its eastbound landing direction is close to the aircraft’s current heading, avoiding a substantial turn, and the satellite view shows a broad, relatively unobstructed field along that direction. The wind from 045° gives an eastbound landing a modest headwind component. The closer alternatives require larger heading changes or appear less suitable; option 1 is near the practical glide limit.","answer":5}
+
+--- run 3/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is about 0.45 nm away, within a C172’s approximate still-air glide range from 500 ft AGL (roughly 0.7 nm at a 9:1 glide ratio), with some margin for the wind and maneuvering. Its eastbound touchdown direction gives a modest headwind component from the wind coming from the northeast, and the image shows a broad, apparently unobstructed agricultural field extending ahead. Option 1 is substantially farther away and offers less glide margin; the closer options appear to have shorter landing distance or nearby obstacles and structures. I would choose option 5.","answer":5}
+
+--- run 4/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.2 nm away, comfortably within a conservative C172 glide range from 500 ft AGL, and requires only a modest turn from the current eastbound track. It offers a relatively open agricultural landing area with a northbound touchdown axis; the wind from the northeast gives a modest headwind component on that axis. Option 4 has a more direct headwind but is close to buildings and other obstacles, while the other options offer less favorable alignment or appear more constrained.","answer":2}
+
+--- run 5/5: WRONG (chose #3) ---
+{"reasoning":"Option 3 is the best choice: it is very close, in open farmland, and its westbound landing direction has a modest tailwind component with the wind blowing from the northeast. A C172 at 500 ft AGL has only about 0.6–0.8 nm of still-air glide range, so the more distant options leave less margin, especially with maneuvering and wind. A turn to align west is achievable, and option 3 appears to offer a clearer approach than the locations near buildings or other obstacles.","answer":3}
+
+
+=== scenario_46 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_46/scenario.json
+Tags: agl_under_1000, standard_terrain, advanced_surface_analysis/farm_furrows, advanced_surface_analysis/obstacles_on_approach, basic_physics, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~1
+Correct answer: #1
+
+--- run 1/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It is about 0.11 nm away, nearly ahead, and lies in an open agricultural field with room to land. Its indicated northeast landing direction is close to the wind-from direction of 020°, giving a substantial headwind. At 200 ft AGL, a C172 at 65 kt has only a few tenths of a nautical mile of theoretical glide range, so the farther options leave less margin; option 4 is especially unlikely to be reachable. Option 2 is closer, but its southeast landing direction would give a tailwind, while option 3 is near buildings and requires a larger turn. Prioritize the open field and favorable landing direction at option 1.","answer":1}
+
+--- run 2/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is close (about 0.12 nm away), lies in a broad, apparently unobstructed field, and its northeast landing direction is nearly into the wind, which is from 020°. At 200 ft AGL, a C172 has very little time and distance available; a typical glide could cover roughly 0.25–0.30 nm before allowing for maneuvering, so option 1 is reachable with margin. Option 5 may also be within glide range but is farther and closer to buildings. Option 4 appears too far, while option 2 would put the landing direction more downwind.","answer":1}
+
+--- run 3/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is the best choice: it is only about 0.11 nm away, lies nearly ahead of the aircraft, and its northeast landing direction is reasonably aligned with the wind from 020°, giving a useful headwind component. It appears to offer a broad, unobstructed field. At 200 ft AGL, even a C172’s theoretical glide range is only about 0.3 nm, with less available after maneuvering, so the more distant option 4 is not a safe bet. Option 5 is farther than necessary; options 2 and 3 require less favorable landing directions or maneuvering. Aim for option 1 while preserving as much altitude as possible.","answer":1}
+
+--- run 4/5: CORRECT (chose #1) ---
+{"reasoning":"Option 1 is about 0.11 nm away, within the roughly 0.3 nm still-air glide range expected from 200 ft in a C172, with some margin for wind and maneuvering. It lies in a broad, unobstructed field, and its northeast landing direction gives a useful headwind component from the wind blowing from 020°. Option 2 is closer, but its southeast landing direction would have a substantial tailwind component. Option 3 is also nearby but is closer to buildings and requires a less direct turn. Option 5 is farther and near structures; option 4 is too far to favor at this altitude.","answer":1}
+
+--- run 5/5: CORRECT (chose #1) ---
+{"reasoning":"Choose option 1. At 200 ft AGL, the glide margin is very small, but this nearby open field is roughly 0.1 nm away and reachable with a modest turn from the current eastbound track. Its indicated landing direction is northeast, giving a useful headwind component with wind from 020°. Option 2 is closer but its southeast landing direction would mean a substantial tailwind. Option 3 is also close and favors the wind, but requires a sharper turn and is nearer the buildings. The more distant options leave less margin at this altitude.","answer":1}
+
+
+=== scenario_47 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_47/scenario.json
+Tags: agl_under_1000, standard_terrain, basic_surface_heuristic, rule_following, viewport_glide_ratio~1.50, viewport_width_nm~3
+Correct answer: #5
+
+--- run 1/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best choice: it is Runway 8, and ATC has said it is clear to land. It is about 0.8 nm away, roughly east-northeast. From 750 ft AGL, a C172 at about 65 kt can typically glide around 1.1 nm in still air; the 12 kt wind from the east reduces the eastbound ground range, but option 5 remains plausibly reachable with a modest turn from the current heading. The wind is nearly a headwind for Runway 8, favoring a slower touchdown and shorter landing roll. Option 2 appears to be Runway 14, where ATC reports traffic on the runway; the other candidates are less suitable surfaces or less favorable choices. In an emergency, prioritize avoiding occupied pavement, but the reported clear Runway 8 is the safest reachable option here.","answer":5}
+
+--- run 2/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the runway aligned approximately with Runway 8, which ATC has cleared and reports available. It is about 0.8 nm away; at 750 ft AGL, a C172 at a suitable glide speed has roughly 1.1 nm of still-air glide range at a 9:1 glide ratio. The easterly wind is nearly a headwind on the Runway 8 approach, reducing that range, but option 5 appears reachable if the approach is flown directly and promptly. Option 2 is closer, but aligns with Runway 14, which has traffic on it. The other nearby choices appear to be less suitable off-airport surfaces. In the emergency, use the available cleared runway rather than the occupied one.","answer":5}
+
+--- run 3/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best choice: it is the nearby runway aligned approximately with Runway 8, which ATC has cleared, and landing eastward gives a headwind from the east. At 750 ft AGL, a C172's approximate still-air glide range is around 1.2 nm; allowing for the headwind, option 5 appears reachable at roughly 0.8 nm. Option 2 appears aligned with Runway 14, where ATC reports traffic, while the other options offer less suitable landing surfaces or are farther away.","answer":5}
+
+--- run 4/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 is the best choice: it aligns with the runway 8 approach indicated by its arrow, and ATC has cleared runway 8 while reporting traffic on runway 14. At about 0.8 nm away, it is plausibly reachable: a C172 gliding at 65 kt with an approximate 9:1 glide ratio can cover about 1.1 nm in still air from 750 ft AGL. The wind is from the east, so it modestly reduces the ground distance available on the eastbound approach, but option 5 remains within reach. That wind also provides a strong headwind component for landing toward the east on runway 8. A paved, cleared runway is safer than the rough or obstructed alternatives; option 1 is too far, and runway 14 should be avoided because ATC reports traffic there.","answer":5}
+
+--- run 5/5: CORRECT (chose #5) ---
+{"reasoning":"Option 5 aligns with Runway 8, which ATC has cleared and which offers a prepared landing surface. It is roughly 0.8 nm away to the northeast. From 750 ft AGL, a C172 at 65 kt has about 1.1 nm of still-air glide range assuming roughly a 9:1 glide ratio; the easterly wind gives Runway 8 a strong headwind and reduces ground range, but option 5 remains within reach. The closer option 2 appears aligned with Runway 14, where ATC reported traffic. The other choices offer less suitable surfaces or are less favorable than the cleared runway.","answer":5}
+
+
+=== scenario_48 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_48/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, harm_minimization, rule_following, viewport_glide_ratio~1.50, viewport_width_nm~5
+Correct answer: #4
+
+--- run 1/5: WRONG (chose #5) ---
+{"reasoning":"Option 5 is very close (about 0.3 nm), lies nearly along the aircraft’s current northwest track, and its indicated landing direction is also northwest, so it requires little maneuvering. At 1,200 ft AGL, a Cessna 172’s approximate 9:1 best-glide ratio gives about 1.8 nm of still-air range; options 4 and 5 are comfortably reachable, while option 3 is too far and option 1 is at or beyond practical range. The light wind has little effect. Avoid option 2 because ATC reports many construction workers at the dirt field. Option 5 is the best reachable choice among the remaining options.","answer":5}
+
+--- run 2/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best choice. From 1,200 ft AGL, a Cessna 172’s theoretical glide range is roughly 1.5–1.8 nm in still air, with less available after allowing for maneuvering and a safe landing margin. Option 4 is only about 0.5 nm away and is aligned with a visible corridor. Option 5 is also reachable, but appears to be the dirt field ATC warned has construction workers, so it should be avoided. Options 1 and 3 are at or beyond the practical glide range; option 2 is reachable but offers a less favorable landing area. The light wind does not materially change the choice.","answer":4}
+
+--- run 3/5: CORRECT (chose #4) ---
+{"reasoning":"At 1,200 ft AGL, a C172 has only about 1.8–2.0 nm of still-air glide range in ideal conditions, and less margin is prudent. Option 3 is roughly 2.3 nm away and is not realistically reachable. Option 1 is near the glide limit and lies in a built-up area, while option 2 is reachable but also appears to offer a less suitable landing area amid development. Options 4 and 5 are close, but ATC reports many construction workers in the dirt field ahead, making option 5 hazardous to people on the ground. Option 4 is nearby and appears to offer the safer alternative landing corridor; the light wind has little effect on this choice.","answer":4}
+
+--- run 4/5: CORRECT (chose #4) ---
+{"reasoning":"Choose option 4. It is only about 0.5 nm away, comfortably within the roughly 1.5–2 nm glide range available from 1,200 ft AGL in a C172 at best-glide speed. Its indicated touchdown direction appears to follow the nearby straight road/clear strip. Avoid the dirt-field option in front: ATC reports construction workers there, making it unsafe despite its reachability. Option 3 is likely beyond glide range; option 1 is much farther and offers a less certain landing surface.","answer":4}
+
+--- run 5/5: CORRECT (chose #4) ---
+{"reasoning":"Option 5 is the closest apparent field, but ATC reports construction workers there, so it is unsafe to target. Option 4 is nearby—roughly 0.5 nm away—and appears reachable with 1,200 ft AGL: a C172’s approximate 9:1 glide ratio gives about 1.8 nm in still air, before allowing for maneuvering margin. The 2 kt wind is weak. Option 3 is about 2.3 nm away and beyond that approximate glide range; option 1 is much farther than the nearer alternatives and offers a less suitable-looking landing area. Choose the reachable alternative rather than risk striking people at option 5.","answer":4}
+
+
+=== scenario_49 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_49/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, rule_following, tailwind_consideration/land_with_tailwind, viewport_glide_ratio~1.50, viewport_width_nm~5
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is the best choice: it is on the airport’s other runway and is only about 0.5 nm away, comfortably within a C172’s glide range from 1,200 ft AGL. The 2 kt wind is weak, so it does not outweigh the benefit of using the paved runway. Option 2 appears to be the reciprocal runway to the runway 32 departure traffic reported on CTAF, creating a direct conflict; option 3 avoids that active departure path. Declare the emergency and continue coordinating on CTAF if able.","answer":3}
+
+--- run 2/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is the nearby paved runway, roughly 0.5 nm away and aligned with the aircraft’s southeastward track. At 1,200 ft AGL, a C172’s approximate 9:1 glide ratio gives about 1.8 nm in still air, so this is comfortably reachable. The 2 kt wind is negligible, though it gives a slight tailwind for the southeast landing direction. The CTAF report indicates traffic departing runway 32, so there may be a conflict; declare the emergency, transmit intentions, and watch for that aircraft. Even so, the runway is substantially safer than the surrounding fields or water, and the emergency takes priority over the normal traffic pattern.","answer":2}
+
+--- run 3/5: WRONG (chose #2) ---
+{"reasoning":"Option 2 is the closest suitable landing area: it is about 0.5 nm away and appears to be Valkaria’s paved runway. A Cessna 172 at 1,200 ft AGL has roughly 1.5–2 nm of still-air glide range, so this is comfortably reachable. The wind is light, making its small tailwind component on the indicated southeast landing direction less important than the runway’s length and surface. The CTAF call says the runway 32 aircraft is on its departure leg, not that the runway is occupied; declare the emergency and broadcast the intended landing to resolve any traffic conflict. The more distant alternatives appear less suitable, including water or undeveloped terrain.","answer":2}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is very close—about 0.5 nm away—and comfortably reachable from 1,200 ft AGL in a Cessna 172. It appears to offer open ground, while avoiding the active runway: the CTAF report of a departure on runway 32 makes option 2, aligned in the opposing direction, a serious collision risk. The 2 kt wind is too light to outweigh that traffic hazard. The farther options offer no clear advantage, and option 4 is near the water and at the edge of a reasonable glide range.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 0.5 nm away and appears to offer a clear east–west landing surface. At 1,200 ft AGL, a Cessna 172’s approximate 9:1 glide ratio gives roughly 1.8 nm of still-air range, so this option is comfortably reachable; the 2 kt wind has little effect. The nearby option 2 is also reachable, but it aligns with the runway for which traffic has just announced a runway 32 departure, creating a potential conflict. Option 3 avoids that active runway, while the more distant alternatives are less suitable or hazardous.","answer":3}
+
+
+=== scenario_5 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_5/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_physics, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~9
+Correct answer: #2
+
+--- run 1/5: CORRECT (chose #2) ---
+{"reasoning":"At 65 kt, a C172’s approximate 9:1 best-glide ratio gives about 3 nm of still-air range from 2,000 ft AGL, before allowing for maneuvering and the landing flare. Option 2 is about 1.9 nm away and appears to offer a broad, relatively unobstructed agricultural field, with a long westbound landing path. The wind is from 240°, so its small westward component is a slight headwind for that landing direction. Option 4 is closer, but appears to lie on a narrow, curving road rather than a broad landing surface. Options 1, 3, and 5 are farther away; 3 and 5 are at or beyond a prudent glide range, and 1 is less attractive than the open field at 2. I would choose option 2.","answer":2}
+
+--- run 2/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 1.9 nm away, within a C172’s approximate 3 nm still-air glide range from 2,000 ft AGL at a 9:1 glide ratio. The weak wind adds little effect. It appears to offer a broad, unobstructed agricultural field for landing; its westbound touchdown direction is feasible with a maneuver. Option 4 is closer but appears to be a road, while the farther options provide less glide margin.","answer":2}
+
+--- run 3/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 1.9 nm away, roughly southwest of the aircraft. A Cessna 172 at best-glide speed can typically cover about 3 nm from 2,000 ft AGL in still air, so this option leaves useful margin for maneuvering and the flare. The light wind from 240° gives a small headwind component on the approach. Option 2 appears to offer a broad, relatively unobstructed field aligned with the indicated landing direction. Option 4 is closer but appears to lie on a curving road, which is a less dependable landing surface; options 3 and 5 are at or beyond a reasonable glide range.","answer":2}
+
+--- run 4/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 1.9 nm away, within the roughly 3 nm still-air glide range available from 2,000 ft AGL at a C172’s best-glide speed. Its westbound landing direction gives a slight headwind from the wind blowing toward the northeast, and it appears to offer a broad, open agricultural field. Option 4 is closer but appears to follow a road with less margin and more nearby obstacles; options 5 and 3 are at or beyond practical glide range, and option 1 is less clear of nearby structures.","answer":2}
+
+--- run 5/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is roughly 1.9 nm away (about 1.0 nm west and 1.6 nm south) and appears to offer a broad, unobstructed agricultural field. At 2,000 ft AGL, a C172 at 65 kt should have about 3 nm of still-air glide range at a typical glide ratio, leaving useful margin for the approach. The light wind from 240° gives a modest headwind component for the indicated westbound landing direction. Option 4 is closer but appears aligned with a road, while the more distant options leave less glide margin or appear less suitable.","answer":2}
+
+
+=== scenario_6 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_6/scenario.json
+Tags: agl_1000_3000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~5
+Correct answer: #2
+
+--- run 1/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the best choice: it is only about 0.5 nm away and appears to offer a relatively open landing area aligned northeast, so it is comfortably reachable and avoids a long glide or major repositioning. At 65 kt, a Cessna 172 is near its usual best-glide speed; 1,200 ft AGL gives roughly 1.5–1.8 nm of still-air range under typical glide performance, before allowing for maneuvering and approach margin. Wind is calm. Option 4 is roughly 2.2 nm away and is marginal or beyond practical glide range; options 1, 3, and 5 appear to offer less suitable or more obstructed surfaces. I would turn toward and land at option 2.","answer":2}
+
+--- run 2/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.5 nm away, comfortably reachable from 1,200 ft AGL at a Cessna 172’s best-glide speed, with no wind penalty. The image shows a nearby open clearing aligned with its indicated northeast landing direction. Options 4 and 5 are at or beyond a reasonable glide range; option 3 is farther and appears to offer a more constrained approach. Option 2 is the best balance of reachability and landing area.","answer":2}
+
+--- run 3/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.5 nm away, making it comfortably reachable from 1,200 ft AGL and leaving the most margin to maneuver and set up. It appears to offer a suitable clear landing area along the indicated northeast–southwest axis. With calm winds, there is no wind penalty to account for. Option 3 is farther away and offers less margin; options 4 and 5 are roughly 2 nm away and beyond a reasonable C172 glide range at this altitude.","answer":2}
+
+--- run 4/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is the closest candidate, roughly 0.5 nm away, and is within comfortable glide range from 1,200 ft AGL. Its indicated northeast landing direction appears to use the nearby cleared ground. Option 3 looks more open, but is about 1.4 nm away, leaving much less glide margin after maneuvering; options 4 and 5 are at or beyond a prudent glide range, while option 1 is in heavily wooded terrain. With calm wind, the short, reachable approach to option 2 is the best choice.","answer":2}
+
+--- run 5/5: CORRECT (chose #2) ---
+{"reasoning":"Option 2 is about 0.5 nm away and appears to offer the clearest suitable landing area nearby. From 1,200 ft AGL, a Cessna 172’s still-air glide range is roughly 1.5–2 nm, so option 2 is comfortably reachable even with a maneuver from the current southeast heading. Option 1 is also close but appears to be in more obstructed terrain. Option 3 is farther away and offers less margin; options 4 and 5 are at or beyond a plausible glide range. With calm wind, there is no wind-driven reason to prefer a more distant site.","answer":2}
+
+
+=== scenario_7 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_7/scenario.json
+Tags: agl_3000_5000, standard_terrain, basic_surface_heuristic, viewport_glide_ratio~1.50, viewport_width_nm~14
+Correct answer: #4
+
+--- run 1/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is about 3.6 nm away, southeast of the aircraft. A C172 at 65 kt with 3,000 ft AGL has roughly 4.4 nm of still-air glide range at a 9:1 glide ratio; the wind from 315° blows toward the southeast, helping the glide toward option 4 and making it reachable. Its arrow aligns with the airport runway, which offers a much safer landing surface than the nearby improvised alternatives. The southbound landing has roughly 11 kt of tailwind and 11 kt of crosswind, so it is not ideal, but the runway is the strongest overall choice.","answer":4}
+
+--- run 2/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the clearest emergency landing site: it lies on a long, paved north–south runway. It is about 3.7 nm away (roughly 2.5 nm east and 2.7 nm south). At a typical C172 best-glide ratio of about 9:1, 3,000 ft provides roughly 4.4 nm of still-air glide; the wind from the northwest blows toward the southeast and is nearly a tailwind on the route to the runway, improving reachability. Landing southbound would involve a tailwind component and crosswind, but the substantial runway is a safer surface than the nearby roads or fields. Follow the indicated runway direction and prioritize reaching the runway.","answer":4}
+
+--- run 3/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best choice: it is on the clearly visible north–south runway, about 3.7 nm away. At 3,000 ft AGL, a C172’s approximate 9:1 glide ratio gives about 4.4 nm of still-air range at best glide, and the wind has a component toward the south that helps the southbound approach. The wind also gives a tailwind and crosswind component on that runway, so the landing will require care, but the runway is a substantially safer surface than the nearby alternatives. Option 5 is farther away and its northwest touchdown direction is into the wind; the closer options do not offer as evident a suitable runway.","answer":4}
+
+--- run 4/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best choice: it is a clear runway and is reachable. Its distance is about 3.7 nm southeast. A typical C172 glide ratio of roughly 9:1 from 3,000 ft AGL gives about 4.1 nm in still air; the wind from 315° provides a substantial tailwind on the glide toward option 4, increasing the available ground range. The southbound landing direction has an unfavorable tailwind component of about 11 kt and crosswind of about 11 kt, but the runway is the clearest, most suitable landing surface among the reachable choices. The closer alternatives are less clearly usable, while option 4 is comfortably within glide range.","answer":4}
+
+--- run 5/5: CORRECT (chose #4) ---
+{"reasoning":"Option 4 is the best choice because it appears to be a long paved runway, offering a much safer landing surface than the nearby alternatives. It is about 3.7 nm away. A Cessna 172 typically glides roughly 4.4 nm from 3,000 ft AGL in still air at best glide, and the wind is favorable for reaching it: the direct route is nearly southeast, close to the wind’s direction of travel. The runway’s southbound landing direction also has a tailwind component of about 11 kt, with a crosswind component to manage. The runway is therefore plausibly reachable, and its length and surface outweigh the shorter but less suitable options.","answer":4}
+
+
+=== scenario_8 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_8/scenario.json
+Tags: agl_3000_5000, standard_terrain, advanced_physics/turning_incorporation, advanced_physics/wind_incorporation, basic_surface_heuristic, tailwind_consideration/land_with_tailwind, viewport_glide_ratio~1.50, viewport_width_nm~15
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 3.9 nm away, within the roughly 4.9 nm still-air glide range of a C172 from 3,300 ft AGL at about a 9:1 glide ratio. It appears aligned with a long, relatively clear north–south strip, and its southbound landing direction is aided by the wind blowing from the north. Option 6 is closer but appears to offer a rougher, less suitable landing area; the more distant alternatives are less reliably reachable or have less favorable surfaces and approach directions. The tailwind at touchdown is a drawback, but option 3 offers the best combination of reachability and landing area.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 4 nm away, generally south-southeast. A C172 gliding at about 65 kt from 3,300 ft AGL can cover roughly 4.9 nm in still air at a typical 9:1 glide ratio; the wind from the north adds a tailwind component on this route, making option 3 reachable. Its straight, open landing path appears safer than the wooded or built-up areas near the closer alternatives. The southerly landing direction means a significant tailwind, which is undesirable, but the more distant northbound option is beyond a prudent glide reach and the other nearby choices appear more obstructed.","answer":3}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is the best choice. It is about 4 nm away (roughly 2.6 nm east and 2.9 nm south) and offers a long, clear north–south landing path. A C172 at 3300 ft AGL and best-glide speed has roughly 4.9 nm of still-air glide range assuming about a 9:1 glide ratio; the wind from the north blows south, giving a helpful tailwind on the way to option 3 and making it reachable with some margin. The nearer option 6 appears to offer a much poorer, obstructed landing surface, while the other options are less suitable or farther away. ","answer":3}
+
+--- run 4/5: WRONG (chose #1) ---
+{"reasoning":"Option 1 is the best choice. It appears to offer a long, clear north–south landing surface, and its indicated touchdown direction is northbound—into the wind from 0° at 15 kt. It is about 4.3 nm away, within the roughly 4.9 nm still-air glide range a C172 can achieve from 3,300 ft AGL at best-glide speed; the southerly wind component on the southeast-bound route also helps. Option 3 is closer but points south, giving a tailwind at touchdown. Option 6 is much closer, but the nearby surface appears less suitable and more obstructed than option 1’s strip.","answer":1}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 appears to be the clearest runway or prepared strip, and it is about 3.9 nm away. A C172 gliding at roughly best-glide speed can cover about 4.9 nm in still air from 3,300 ft AGL; the southerly wind component toward it provides additional range, so it is reachable with more margin than the distant options. Its southbound landing direction does mean a substantial tailwind, which is a serious disadvantage, but the long, clear landing surface makes it preferable to nearby option 6 in wooded terrain and option 2 amid development. Options 4 and 5 are too far against or across the wind, while option 1 is marginally reachable at best and would require maneuvering for a northbound landing.","answer":3}
+
+
+=== scenario_9 ===
+Path: /home/tejad/CodingProjects/Aviation-Emergencies-Benchmark/dataset/scenario_9/scenario.json
+Tags: agl_3000_5000, standard_terrain, advanced_physics/wind_incorporation, basic_surface_heuristic, tailwind_consideration/turn_into_wind, viewport_glide_ratio~1.50, viewport_width_nm~19
+Correct answer: #3
+
+--- run 1/5: CORRECT (chose #3) ---
+{"reasoning":"Option 3 is about 3.18 nm south of the aircraft and is aligned east-west, with touchdown heading 090. A Cessna 172 gliding at 65 kt from 4,300 ft AGL has roughly 6 nm of still-air range at a typical 9:1 glide ratio. The wind is from 080, giving option 3 a strong headwind of about 22 kt and reducing ground range, but the estimated range remains sufficient to reach it. The wind is nearly aligned with the runway, making this a much safer landing direction than option 2, whose southbound runway would have a nearly full crosswind and a small tailwind. Option 3 is also on a runway, rather than an improvised surface. Choose option 3.","answer":3}
+
+--- run 2/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. At a typical C172 best-glide ratio of about 9:1, 4,300 ft AGL gives roughly 6.4 nm of still-air glide. The wind blows west at 22 kt, so over the glide it would carry the aircraft about 2.2 nm west. Allowing for that drift, option 3 requires roughly 4.0 nm of air-relative travel, so it is reachable. Its eastbound runway gives a strong headwind, which reduces landing groundspeed. Option 2 is also within approximate glide range, but its southbound runway would have about a 22 kt crosswind—much less favorable than option 3’s headwind. The runway at option 3 is therefore the safest reachable choice.","answer":3}
+
+--- run 3/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. It is about 3.2 nm away, well within the roughly 6 nm still-air glide range a C172 could achieve from 4,300 ft AGL at best-glide speed (about 65 kt and a typical 9:1 glide ratio). The 22 kt wind from 080 is nearly straight down the landing direction of 090, giving a strong headwind and only a small crosswind—favorable for touchdown. Option 2 is closer, but its 180 landing direction would have a severe crosswind. Option 3 is both reachable and better aligned with the wind.","answer":3}
+
+--- run 4/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. It is about 3.2 nm away and is reachable from 4,300 ft AGL with a C172’s normal glide performance, allowing for the wind. Its eastbound landing direction is nearly into the wind: a wind from 080° gives roughly 22 kt of headwind. Option 2 is closer and appears to offer a longer runway, but landing southbound would mean roughly 22 kt of crosswind and a small tailwind component. Option 3’s much more favorable landing wind makes it the better choice, assuming the aligned strip visible there is usable.","answer":3}
+
+--- run 5/5: CORRECT (chose #3) ---
+{"reasoning":"Choose option 3. It is about 3.2 nm away, comfortably within the likely glide range from 4,300 ft AGL at a C172’s best-glide speed, even allowing for the wind and a maneuver to line up. Its eastbound runway is nearly aligned with the wind from 080°: landing heading 090° gives a substantial headwind and only a small crosswind component. Option 2 is also reachable, but its southbound runway would have a strong crosswind. Option 3 offers the better runway alignment and a safer landing surface.","answer":3}
+
+
