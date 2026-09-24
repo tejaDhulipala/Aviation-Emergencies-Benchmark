@@ -105,8 +105,19 @@ def load_api_key():
     sys.exit(f"{OPENROUTER_KEY_NAME} not found (or empty) in {ENV_FILE}")
 
 
+def _scenario_sort_key(scenario_path):
+    """Sorts by the trailing number in the containing folder's name (e.g. 'scenario_10',
+    'example_7') so ordering is numeric (0, 1, 2, ..., 10, 11) rather than lexicographic
+    (0, 1, 10, 11, ..., 2). Falls back to the plain path string for folders that don't end
+    in a number, sorted after all the numbered ones."""
+    match = re.search(r"(\d+)$", scenario_path.parent.name)
+    if match:
+        return (0, int(match.group(1)), str(scenario_path))
+    return (1, 0, str(scenario_path))
+
+
 def find_scenarios(dataset_dir):
-    return sorted(Path(dataset_dir).rglob("scenario.json"))
+    return sorted(Path(dataset_dir).rglob("scenario.json"), key=_scenario_sort_key)
 
 
 def build_user_text(scenario):
