@@ -2,7 +2,7 @@ import math
 import io
 import requests
 from PIL import Image
-from utils.constants import TILE_SIZE, NM_TO_M, MAX_ZOOM, M_PER_DEG_LAT, WEB_MERCATOR_RES_ZOOM0
+from .utils.constants import TILE_SIZE, NM_TO_M, MAX_ZOOM, M_PER_DEG_LAT, WEB_MERCATOR_RES_ZOOM0
 
 TILE_URL = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
 HEADERS = {"User-Agent": "emergency-decision-making-sim/1.0"}

@@ -7,8 +7,8 @@ import types
 import pygame as pg
 from PIL import Image
 
-import main
-from plane import Plane
+from . import ruler
+from .plane import Plane
 
 LANDING_OPTION_COLOR = (255, 255, 0)   # yellow
 LANDING_OPTION_RADIUS = 10             # px
@@ -72,8 +72,8 @@ def render_full_surface(background_pil, size_nm, resolution, heading_deg, landin
     """Composes background + ruler + centered plane + all landing options into one Surface,
     used for both the live preview and the final export."""
     surface = pil_to_pygame_surface(background_pil)
-    scale = main.make_scale(0, 0, size_nm, width=resolution, height=resolution)
-    main.draw_ruler(surface, scale, size_nm, 0, 0, width=resolution, height=resolution)
+    scale = ruler.make_scale(0, 0, size_nm, width=resolution, height=resolution)
+    ruler.draw_ruler(surface, scale, size_nm, 0, 0, width=resolution, height=resolution)
     draw_plane(surface, heading_deg, resolution // 2, resolution // 2, radius=PLANE_RADIUS)
     for option in landing_options:
         sx, sy = scale(option["rel_x"], option["rel_y"])

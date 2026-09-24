@@ -13,19 +13,19 @@ from tkinter import filedialog, messagebox, ttk
 import pygame as pg
 from PIL import ImageTk
 
-from map import SatelliteMap
-from scenario_viewport import (
+from .map import SatelliteMap
+from .scenario_viewport import (
     DEFAULT_BANK_ANGLE_DEG,
     make_inverse_scale,
     render_full_surface,
     surface_to_pil_image,
 )
-from main import make_scale
-from altitude_loss_levels import compute_altitude_loss, altitude_loss_full_physics_path
-from utils.basic_math import desired_heading
-from utils.constants import W_MAX, V_GLIDE, OBSTACLE_CLEARANCE_FT, FT_PER_NM, GR_0
-from utils.dubins import dubins_path_points
-from scenario_tags import TAG_CATEGORIES, TagHeader, split_tags_by_category
+from .ruler import make_scale
+from .altitude_loss_levels import compute_altitude_loss, altitude_loss_full_physics_path
+from .utils.basic_math import desired_heading
+from .utils.constants import W_MAX, V_GLIDE, OBSTACLE_CLEARANCE_FT, FT_PER_NM, GR_0
+from .utils.dubins import dubins_path_points
+from .scenario_tags import TAG_CATEGORIES, TagHeader, split_tags_by_category
 
 PROBE_DOT_COLOR = "red"
 PROBE_DOT_RADIUS_PX = 3

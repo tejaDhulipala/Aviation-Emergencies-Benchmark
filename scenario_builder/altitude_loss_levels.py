@@ -1,11 +1,11 @@
 import math
 import warnings
 
-from utils.basic_math import desired_heading
-from utils.glide_ratio_and_density import cessna_glide_ratio
-from utils.dubins import dubins_altitude_loss, dubins_maneuver_best_path, DUBINS_BANK_ANGLES_DEG
-from utils.constants import GR_0, FT_PER_NM, OBSTACLE_CLEARANCE_FT, W_MAX, RHO_0, V_GLIDE
-from plane import Plane, EnvironmentVariables, Instruction
+from .utils.basic_math import desired_heading
+from .utils.glide_ratio_and_density import cessna_glide_ratio
+from .utils.dubins import dubins_altitude_loss, dubins_maneuver_best_path, DUBINS_BANK_ANGLES_DEG
+from .utils.constants import GR_0, FT_PER_NM, OBSTACLE_CLEARANCE_FT, W_MAX, RHO_0, V_GLIDE
+from .plane import Plane, EnvironmentVariables, Instruction
 
 _DEFAULT_TEMPERATURE_C = 15  # app-side placeholder, no physical effect on today's glide-ratio math
 

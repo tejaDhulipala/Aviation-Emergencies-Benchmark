@@ -1,13 +1,13 @@
 import math
 from dataclasses import dataclass
 
-from utils import cessna_glide_ratio, density_from_altitude, desired_heading, signed_heading_diff, landing_distance, compass_direction
-from utils.constants import (
+from .utils import cessna_glide_ratio, density_from_altitude, desired_heading, signed_heading_diff, landing_distance, compass_direction
+from .utils.constants import (
     OBSTACLE_CLEARANCE_FT,
     ENGINE_RPM_DEFAULT,
     VALID_FLAP_SETTINGS,
 )
-from utils.paths import altitude_loss, turn_radius_ft, CONE_ALPHA_DEG
+from .utils.paths import altitude_loss, turn_radius_ft, CONE_ALPHA_DEG
 
 @dataclass
 class EnvironmentVariables:
