@@ -18,7 +18,7 @@ containing:
 Usage:
     python3 llm_run.py                      # full run, default model
     python3 llm_run.py --model openai/gpt-4o-mini --runs 1
-    python3 llm_run.py --reasoning-effort high  # explicit reasoning effort instead of the model's own default
+    python3 llm_run.py --model openai/gpt-6-luna --reasoning-effort pro  # explicit reasoning effort
     python3 llm_run.py --limit 2 --dry-run  # print the prompt for the first 2 scenarios, no API calls
 """
 
@@ -46,7 +46,15 @@ OPENROUTER_KEY_NAME = "OPENROUTER-KEY"
 RUNS_PER_SCENARIO = 3
 DEFAULT_MODEL = "google/gemma-4-31b-it"
 DEFAULT_WORKERS = 8  # concurrent in-flight API requests
-VALID_REASONING_EFFORTS = ["low", "medium", "high"]  # OpenRouter's unified reasoning.effort enum
+# Valid reasoning.effort values are model-specific (e.g. GPT-6 uses "standard"/"pro", not the
+# generic "low"/"medium"/"high" some other models use), and not something reliably knowable
+# for every model. Keyed by model-id prefix so e.g. "openai/gpt-6" covers the whole gpt-6-*
+# family (luna, sol, astra, ...). Add entries here as you learn more models' real values;
+# anything not matched here is passed through unchecked and left to OpenRouter's own API to
+# reject if it's wrong.
+KNOWN_REASONING_EFFORTS = {
+    "openai/gpt-6": ["standard", "pro"],
+}
 REQUEST_TIMEOUT_S = 120
 
 # Bucket widths for treating the continuous viewport:glide ratio / viewport_width_nm
@@ -91,6 +99,19 @@ Format your response as a JSON output in the following format:
 """
 
 JSON_FENCE_RE = re.compile(r"```(?:json)?\s*(\{.*?\})\s*```", re.DOTALL | re.IGNORECASE)
+
+
+def validate_reasoning_effort(model, reasoning_effort):
+    """Raises (via sys.exit) if reasoning_effort is set and model matches a known family in
+    KNOWN_REASONING_EFFORTS but the value isn't in that family's valid list. Models we don't
+    have known values for are left unchecked -- OpenRouter's own API will reject an invalid
+    value for those, just not before the request is sent."""
+    if reasoning_effort is None:
+        return
+    for prefix, valid_values in KNOWN_REASONING_EFFORTS.items():
+        if model.startswith(prefix) and reasoning_effort not in valid_values:
+            sys.exit(f"--reasoning-effort {reasoning_effort!r} is not valid for {model} "
+                      f"(known valid values for {prefix}*: {', '.join(valid_values)})")
 
 
 def load_api_key():
@@ -322,9 +343,13 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Print the prompt for each scenario instead of calling the API")
     parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
                          help=f"Concurrent in-flight API requests (default: {DEFAULT_WORKERS})")
-    parser.add_argument("--reasoning-effort", choices=VALID_REASONING_EFFORTS, default=None,
-                         help="Reasoning effort level (low/medium/high). Omit to use the model's own default.")
+    parser.add_argument("--reasoning-effort", default=None,
+                         help="Reasoning effort level. Valid values are model-specific (e.g. "
+                              "GPT-6 uses standard/pro); validated locally only for models in "
+                              "KNOWN_REASONING_EFFORTS, otherwise checked by the API itself. "
+                              "Omit to use the model's own default.")
     args = parser.parse_args()
+    validate_reasoning_effort(args.model, args.reasoning_effort)
 
     scenario_paths = find_scenarios(args.dataset_dir)
     if args.limit is not None:
