@@ -51,8 +51,7 @@
   "created_at": "2026-09-01T04:15:33",
   "starting_condition_tags": [
     "agl_1000_3000",
-    "nonstandard_terrain/coastal",
-    "standard_terrain"
+    "nonstandard_terrain/coastal"
   ],
   "expected_behavior_tags": [
     "basic_surface_heuristic"
