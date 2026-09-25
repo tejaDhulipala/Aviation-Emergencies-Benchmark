@@ -44,11 +44,11 @@
       "heading_deg": 185.71059313749964
     }
   ],
-  "ground_truth_index": null,
+  "ground_truth_index": 0,
   "answer_explanation": "Option 3 is not reachable considering wind. Option 4 is a guarenteed fatality since it's over an urban area. Option 2 is reachable and over an open field, which will has a lower risk to civilians than the golf course. ",
   "prompt_additions": "Here is some extra information that may not be decipherable from the image alone. Option 5 is over a golf course that is currently hosting a major tournament. ",
   "image_file": "viewport.png",
-  "created_at": "2026-09-02T02:15:14",
+  "created_at": "2026-09-24T17:04:51",
   "starting_condition_tags": [
     "agl_1000_3000",
     "nonstandard_terrain/coastal"
